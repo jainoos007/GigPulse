@@ -1,8 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Project } from "../types/project.types";
 import { Calendar, DollarSign, User, Trash2, Flag } from "lucide-react";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 interface Props {
   project: Project;
@@ -10,27 +26,53 @@ interface Props {
 }
 
 export const ProjectCard: React.FC<Props> = ({ project, onDelete }) => {
-  const statusColors = {
-    PLANNING: "bg-slate-500/10 text-slate-400 border-slate-500/20",
-    ACTIVE: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    ON_HOLD: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    COMPLETED: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    CANCELLED: "bg-red-500/10 text-red-400 border-red-500/20",
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "PLANNING":
+        return <Badge variant="secondary">Planning</Badge>;
+      case "ACTIVE":
+        return <Badge variant="default">Active</Badge>;
+      case "ON_HOLD":
+        return <Badge variant="warning">On Hold</Badge>;
+      case "COMPLETED":
+        return <Badge variant="success">Completed</Badge>;
+      case "CANCELLED":
+        return <Badge variant="destructive">Cancelled</Badge>;
+      default:
+        return <Badge variant="outline">{status}</Badge>;
+    }
   };
 
-  const priorityColors = {
-    LOW: "text-slate-400",
-    MEDIUM: "text-blue-400",
-    HIGH: "text-amber-400",
-    URGENT: "text-red-400 font-bold",
+  const getPriorityBadge = (priority: string) => {
+    switch (priority) {
+      case "LOW":
+        return <span className="text-slate-400 font-medium">Low</span>;
+      case "MEDIUM":
+        return <span className="text-blue-400 font-medium">Medium</span>;
+      case "HIGH":
+        return <span className="text-amber-400 font-semibold">High</span>;
+      case "URGENT":
+        return <span className="text-red-400 font-bold">Urgent</span>;
+      default:
+        return <span className="text-slate-400">{priority}</span>;
+    }
+  };
+
+  const handleDelete = () => {
+    onDelete(project.id);
+    toast.success("Project deleted", {
+      description: `${project.name} has been removed from workspace.`,
+    });
   };
 
   return (
-    <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all space-y-4 flex flex-col justify-between group">
-      <div className="space-y-3">
+    <Card className="flex flex-col justify-between hover:border-slate-700 transition-all group">
+      <CardHeader className="p-5 pb-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+            <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors">
               {project.name}
             </h3>
             {project.clientName && (
@@ -40,65 +82,72 @@ export const ProjectCard: React.FC<Props> = ({ project, onDelete }) => {
               </p>
             )}
           </div>
-          <span
-            className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${
-              statusColors[project.status] || statusColors.PLANNING
-            }`}
-          >
-            {project.status.replace("_", " ")}
-          </span>
+          {getStatusBadge(project.status)}
         </div>
+      </CardHeader>
 
+      <CardContent className="p-5 py-3 space-y-3 text-xs border-t border-b border-slate-800/60 my-2">
         {/* Progress Bar */}
-        <div className="space-y-1.5 pt-1">
-          <div className="flex items-center justify-between text-xs font-medium">
+        <div className="space-y-1.5">
+          <div className="flex items-center justify-between text-xs font-semibold">
             <span className="text-slate-400">Progress</span>
-            <span className="text-blue-400 font-bold">{project.progress}%</span>
+            <span className="text-blue-400">{project.progress}%</span>
           </div>
-          <div className="w-full bg-slate-950 rounded-full h-2 overflow-hidden border border-slate-800">
-            <div
-              className="bg-blue-600 h-2 rounded-full transition-all duration-500"
-              style={{ width: `${project.progress}%` }}
-            />
-          </div>
+          <Progress value={project.progress} className="h-2" />
         </div>
 
-        <div className="space-y-1.5 text-xs text-slate-300 pt-2 border-t border-slate-800/80">
+        <div className="space-y-1.5 text-slate-300 pt-1">
           {project.budget && (
-            <div className="flex items-center gap-2 font-medium text-emerald-400">
+            <div className="flex items-center gap-2 font-semibold text-emerald-400">
               <DollarSign className="w-4 h-4 text-emerald-500 shrink-0" />
               <span>Budget: ${project.budget.toLocaleString()}</span>
             </div>
           )}
 
           {project.deadline && (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-slate-400">
               <Calendar className="w-4 h-4 text-slate-500 shrink-0" />
               <span>Deadline: {new Date(project.deadline).toLocaleDateString()}</span>
             </div>
           )}
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-slate-400">
             <Flag className="w-4 h-4 text-slate-500 shrink-0" />
-            <span className={priorityColors[project.priority]}>
-              Priority: {project.priority}
-            </span>
+            <span>Priority: {getPriorityBadge(project.priority)}</span>
           </div>
         </div>
-      </div>
+      </CardContent>
 
-      <div className="pt-3 border-t border-slate-800/50 flex items-center justify-between">
+      <CardFooter className="p-5 pt-2 flex items-center justify-between">
         <span className="text-[10px] text-slate-500">
           Created {new Date(project.createdAt).toLocaleDateString()}
         </span>
-        <button
-          onClick={() => onDelete(project.id)}
-          className="text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-red-500/10 transition-colors"
-          title="Delete Project"
-        >
-          <Trash2 className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
+
+        <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+          <AlertDialogTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+              title="Delete Project"
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete Project &quot;{project.name}&quot;?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete the project and all related tasks.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDelete}>Delete Project</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </CardFooter>
+    </Card>
   );
 };

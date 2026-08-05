@@ -1,8 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Proposal } from "../types/proposal.types";
 import { FileCode, Calendar, DollarSign, User, Trash2, ArrowRightLeft, CheckCircle2 } from "lucide-react";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 interface Props {
   proposal: Proposal;
@@ -11,20 +26,45 @@ interface Props {
 }
 
 export const ProposalCard: React.FC<Props> = ({ proposal, onConvert, onDelete }) => {
-  const statusColors = {
-    DRAFT: "bg-slate-500/10 text-slate-400 border-slate-500/20",
-    SENT: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    ACCEPTED: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20 font-bold",
-    REJECTED: "bg-red-500/10 text-red-400 border-red-500/20",
-    EXPIRED: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "DRAFT":
+        return <Badge variant="secondary">Draft</Badge>;
+      case "SENT":
+        return <Badge variant="default">Sent</Badge>;
+      case "ACCEPTED":
+        return <Badge variant="success">Accepted</Badge>;
+      case "REJECTED":
+        return <Badge variant="destructive">Rejected</Badge>;
+      case "EXPIRED":
+        return <Badge variant="warning">Expired</Badge>;
+      default:
+        return <Badge variant="outline">{status}</Badge>;
+    }
+  };
+
+  const handleConvert = () => {
+    onConvert(proposal.id);
+    toast.success("Proposal Converted!", {
+      description: `Proposal "${proposal.title}" has been converted into an active project.`,
+    });
+  };
+
+  const handleDelete = () => {
+    onDelete(proposal.id);
+    toast.success("Proposal deleted", {
+      description: `Proposal "${proposal.title}" removed.`,
+    });
   };
 
   return (
-    <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all space-y-4 flex flex-col justify-between group">
-      <div className="space-y-3">
+    <Card className="flex flex-col justify-between hover:border-slate-700 transition-all group">
+      <CardHeader className="p-5 pb-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
+            <h3 className="text-base font-bold text-white group-hover:text-purple-400 transition-colors">
               {proposal.title}
             </h3>
             {proposal.clientName && (
@@ -34,22 +74,18 @@ export const ProposalCard: React.FC<Props> = ({ proposal, onConvert, onDelete })
               </p>
             )}
           </div>
-          <span
-            className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${
-              statusColors[proposal.status] || statusColors.DRAFT
-            }`}
-          >
-            {proposal.status}
-          </span>
+          {getStatusBadge(proposal.status)}
         </div>
+      </CardHeader>
 
+      <CardContent className="p-5 py-3 space-y-2 text-xs text-slate-300 border-t border-b border-slate-800/60 my-2">
         {proposal.content && (
-          <p className="text-xs text-slate-400 line-clamp-3 bg-slate-950/60 p-3 rounded-xl border border-slate-800/50">
+          <p className="text-xs text-slate-400 line-clamp-3 bg-slate-950/60 p-3 rounded-xl border border-slate-800/50 leading-relaxed">
             {proposal.content}
           </p>
         )}
 
-        <div className="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800/80">
+        <div className="space-y-2 pt-1">
           {proposal.value !== null && proposal.value !== undefined && (
             <div className="flex items-center justify-between font-bold text-purple-400 text-sm">
               <span>Estimated Value:</span>
@@ -64,30 +100,49 @@ export const ProposalCard: React.FC<Props> = ({ proposal, onConvert, onDelete })
             </div>
           )}
         </div>
-      </div>
+      </CardContent>
 
-      <div className="pt-3 border-t border-slate-800/50 flex items-center justify-between">
+      <CardFooter className="p-5 pt-2 flex items-center justify-between">
         {!proposal.convertedToId ? (
-          <button
-            onClick={() => onConvert(proposal.id)}
-            className="text-xs text-purple-400 hover:text-purple-300 font-medium px-2.5 py-1 bg-purple-500/10 hover:bg-purple-500/20 rounded-lg flex items-center gap-1.5 transition-colors"
+          <Button
+            variant="link"
+            size="sm"
+            onClick={handleConvert}
+            className="p-0 h-auto text-xs text-purple-400 hover:text-purple-300 font-semibold flex items-center gap-1.5"
           >
             <ArrowRightLeft className="w-3.5 h-3.5" /> Convert to Project
-          </button>
+          </Button>
         ) : (
           <span className="text-xs text-emerald-400 font-semibold flex items-center gap-1">
             <CheckCircle2 className="w-3.5 h-3.5" /> Converted to Project
           </span>
         )}
 
-        <button
-          onClick={() => onDelete(proposal.id)}
-          className="text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-red-500/10 transition-colors"
-          title="Delete Proposal"
-        >
-          <Trash2 className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
+        <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+          <AlertDialogTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+              title="Delete Proposal"
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete Proposal &quot;{proposal.title}&quot;?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action will permanently delete the proposal record.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDelete}>Delete Proposal</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </CardFooter>
+    </Card>
   );
 };

@@ -1,8 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Meeting } from "../types/meeting.types";
 import { Calendar, Video, ExternalLink, User, Trash2, Bell } from "lucide-react";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 interface Props {
   meeting: Meeting;
@@ -10,14 +25,22 @@ interface Props {
 }
 
 export const MeetingCard: React.FC<Props> = ({ meeting, onDelete }) => {
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const isPast = new Date(meeting.meetingDate) < new Date();
 
+  const handleDelete = () => {
+    onDelete(meeting.id);
+    toast.success("Meeting removed", {
+      description: `Meeting "${meeting.title}" deleted.`,
+    });
+  };
+
   return (
-    <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all space-y-4 flex flex-col justify-between group">
-      <div className="space-y-3">
+    <Card className="flex flex-col justify-between hover:border-slate-700 transition-all group">
+      <CardHeader className="p-5 pb-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+            <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors">
               {meeting.title}
             </h3>
             {meeting.clientName && (
@@ -27,69 +50,80 @@ export const MeetingCard: React.FC<Props> = ({ meeting, onDelete }) => {
               </p>
             )}
           </div>
-          <span
-            className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${
-              isPast
-                ? "bg-slate-800 text-slate-400 border-slate-700"
-                : "bg-blue-500/10 text-blue-400 border-blue-500/20"
-            }`}
-          >
+          <Badge variant={isPast ? "secondary" : "default"}>
             {isPast ? "Past" : "Upcoming"}
-          </span>
+          </Badge>
+        </div>
+      </CardHeader>
+
+      <CardContent className="p-5 py-3 space-y-2 text-xs text-slate-300 border-t border-b border-slate-800/60 my-2">
+        <div className="flex items-center gap-2 text-blue-400 font-semibold">
+          <Calendar className="w-4 h-4 text-blue-500 shrink-0" />
+          <span>{new Date(meeting.meetingDate).toLocaleString()}</span>
         </div>
 
-        <div className="space-y-2 text-xs text-slate-300 pt-2 border-t border-slate-800/80">
-          <div className="flex items-center gap-2 text-blue-400 font-medium">
-            <Calendar className="w-4 h-4 text-blue-500 shrink-0" />
-            <span>{new Date(meeting.meetingDate).toLocaleString()}</span>
+        {meeting.platform && (
+          <div className="flex items-center gap-2 text-slate-300">
+            <Video className="w-4 h-4 text-slate-500 shrink-0" />
+            <span>{meeting.platform}</span>
           </div>
+        )}
 
-          {meeting.platform && (
-            <div className="flex items-center gap-2">
-              <Video className="w-4 h-4 text-slate-500 shrink-0" />
-              <span>{meeting.platform}</span>
-            </div>
-          )}
+        {meeting.locationUrl && (
+          <div className="flex items-center gap-2">
+            <ExternalLink className="w-4 h-4 text-slate-500 shrink-0" />
+            <a
+              href={meeting.locationUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-400 hover:underline truncate font-medium"
+            >
+              Join Meeting Link
+            </a>
+          </div>
+        )}
 
-          {meeting.locationUrl && (
-            <div className="flex items-center gap-2">
-              <ExternalLink className="w-4 h-4 text-slate-500 shrink-0" />
-              <a
-                href={meeting.locationUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-400 hover:underline truncate"
-              >
-                Join Meeting Link
-              </a>
-            </div>
-          )}
+        {meeting.notes && (
+          <p className="text-xs text-slate-400 line-clamp-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/50 mt-1">
+            {meeting.notes}
+          </p>
+        )}
+      </CardContent>
 
-          {meeting.notes && (
-            <p className="text-xs text-slate-400 line-clamp-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/50 mt-1">
-              {meeting.notes}
-            </p>
-          )}
-        </div>
-      </div>
-
-      <div className="pt-3 border-t border-slate-800/50 flex items-center justify-between">
+      <CardFooter className="p-5 pt-2 flex items-center justify-between">
         {meeting.reminder ? (
-          <span className="text-[10px] text-emerald-400 flex items-center gap-1">
+          <span className="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
             <Bell className="w-3 h-3" /> Reminder active
           </span>
         ) : (
           <span className="text-[10px] text-slate-600">No reminder</span>
         )}
 
-        <button
-          onClick={() => onDelete(meeting.id)}
-          className="text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-red-500/10 transition-colors"
-          title="Delete Meeting"
-        >
-          <Trash2 className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
+        <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+          <AlertDialogTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+              title="Delete Meeting"
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete Meeting &quot;{meeting.title}&quot;?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action will remove the scheduled call from your calendar.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDelete}>Delete Meeting</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </CardFooter>
+    </Card>
   );
 };
