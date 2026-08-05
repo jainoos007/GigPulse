@@ -12,6 +12,13 @@ enum Role {
   ASSISTANT
 }
 
+enum ClientStatus {
+  ACTIVE
+  INACTIVE
+  PROSPECT
+  ARCHIVED
+}
+
 model User {
   id            String         @id @default(uuid())
   email         String         @unique
@@ -26,6 +33,7 @@ model User {
   updatedAt     DateTime       @updatedAt @map("updated_at")
 
   refreshTokens RefreshToken[]
+  clients       Client[]
 
   @@map("users")
 }
@@ -42,4 +50,30 @@ model RefreshToken {
 
   @@index([userId])
   @@map("refresh_tokens")
+}
+
+model Client {
+  id          String       @id @default(uuid())
+  userId      String       @map("user_id")
+  name        String
+  email       String
+  phone       String?
+  address     String?      @db.Text
+  companyName String?      @map("company_name")
+  website     String?
+  industry    String?
+  taxId       String?      @map("tax_id")
+  status      ClientStatus @default(ACTIVE)
+  notes       String?      @db.Text
+  isDeleted   Boolean      @default(false) @map("is_deleted")
+  deletedAt   DateTime?    @map("deleted_at")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([email])
+  @@index([status])
+  @@map("clients")
 }
