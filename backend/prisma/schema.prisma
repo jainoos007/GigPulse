@@ -19,6 +19,15 @@ enum ClientStatus {
   ARCHIVED
 }
 
+enum LeadStatus {
+  NEW
+  CONTACTED
+  PROPOSAL_SENT
+  NEGOTIATION
+  WON
+  LOST
+}
+
 model User {
   id            String         @id @default(uuid())
   email         String         @unique
@@ -34,6 +43,7 @@ model User {
 
   refreshTokens RefreshToken[]
   clients       Client[]
+  leads         Lead[]
 
   @@map("users")
 }
@@ -76,4 +86,29 @@ model Client {
   @@index([email])
   @@index([status])
   @@map("clients")
+}
+
+model Lead {
+  id             String     @id @default(uuid())
+  userId         String     @map("user_id")
+  name           String
+  email          String
+  phone          String?
+  companyName    String?    @map("company_name")
+  estimatedValue Float?     @map("estimated_value")
+  source         String?
+  status         LeadStatus @default(NEW)
+  notes          String?    @db.Text
+  convertedToId  String?    @map("converted_to_id")
+  isDeleted      Boolean    @default(false) @map("is_deleted")
+  deletedAt      DateTime?  @map("deleted_at")
+  createdAt      DateTime   @default(now()) @map("created_at")
+  updatedAt      DateTime   @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([email])
+  @@index([status])
+  @@map("leads")
 }
