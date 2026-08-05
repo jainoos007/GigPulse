@@ -8,6 +8,7 @@ import { ProposalResponseDto } from "../types/proposal.types";
 import { AppError } from "../../../shared/errors/app-error";
 import { HttpStatus } from "../../../shared/constants/http-status";
 import { ProposalStatusEnum } from "../../../shared/enums/proposal-status.enum";
+import { ProjectStatusEnum } from "../../../shared/enums/project-status.enum";
 import { Proposal } from "@prisma/client";
 
 export class ProposalService {
@@ -75,7 +76,7 @@ export class ProposalService {
       name: proposal.title,
       description: proposal.content || undefined,
       budget: proposal.value || undefined,
-      status: "PLANNING",
+      status: ProjectStatusEnum.PLANNING,
     });
 
     const updatedProposal = await ProposalRepository.updateProposal(id, userId, {

@@ -54,7 +54,12 @@ export class InvoiceService {
 
     return {
       data: result.data.map((i) => this.mapInvoiceToDto(i)),
-      meta: result.meta,
+      meta: {
+        total: result.total,
+        page: result.page,
+        limit: result.limit,
+        totalPages: result.totalPages,
+      },
       metrics,
     };
   }

@@ -7,6 +7,7 @@ import { LeadResponseDto } from "../types/lead.types";
 import { AppError } from "../../../shared/errors/app-error";
 import { HttpStatus } from "../../../shared/constants/http-status";
 import { LeadStatusEnum } from "../../../shared/enums/lead-status.enum";
+import { ClientStatusEnum } from "../../../shared/enums/client-status.enum";
 import { Lead } from "@prisma/client";
 
 export class LeadService {
@@ -67,7 +68,7 @@ export class LeadService {
       phone: lead.phone || undefined,
       companyName: lead.companyName || undefined,
       notes: lead.notes ? `Converted from Lead ID: ${lead.id}\nNotes: ${lead.notes}` : `Converted from Lead ID: ${lead.id}`,
-      status: "ACTIVE",
+      status: ClientStatusEnum.ACTIVE,
     });
 
     // 2. Mark lead status WON & link convertedToId
