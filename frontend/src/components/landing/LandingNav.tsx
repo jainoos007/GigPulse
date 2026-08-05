@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Sparkles, Menu, X, ArrowRight } from "lucide-react";
 
 export function LandingNav() {
@@ -18,7 +19,7 @@ export function LandingNav() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/80 transition-all">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800/80 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
@@ -27,10 +28,10 @@ export function LandingNav() {
               FF
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
+              <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 FreelanceFlow
               </span>
-              <span className="text-[10px] uppercase tracking-widest text-slate-400 font-medium -mt-1">
+              <span className="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-medium -mt-1">
                 CRM for Freelancers
               </span>
             </div>
@@ -42,7 +43,7 @@ export function LandingNav() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-slate-300 hover:text-white transition-colors hover:scale-105 transform"
+                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors hover:scale-105 transform"
               >
                 {link.label}
               </a>
@@ -51,10 +52,11 @@ export function LandingNav() {
 
           {/* Action CTAs */}
           <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             <Button
               variant="ghost"
               asChild
-              className="text-slate-300 hover:text-white hover:bg-slate-900 border border-transparent hover:border-slate-800"
+              className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent hover:border-slate-200 dark:hover:border-slate-800"
             >
               <Link href="/login">Sign In</Link>
             </Button>
@@ -69,10 +71,11 @@ export function LandingNav() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 focus:outline-none"
+              className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 focus:outline-none"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -83,24 +86,24 @@ export function LandingNav() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-4 pb-6 space-y-4 animate-in slide-in-from-top-4 duration-200">
+        <div className="md:hidden bg-white/95 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 px-4 pt-4 pb-6 space-y-4 animate-in slide-in-from-top-4 duration-200">
           <div className="flex flex-col space-y-3">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium text-slate-300 hover:text-white py-2 px-3 rounded-lg hover:bg-slate-900 transition-colors"
+                className="text-base font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
               >
                 {link.label}
               </a>
             ))}
           </div>
-          <div className="pt-4 border-t border-slate-800/80 flex flex-col gap-3">
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex flex-col gap-3">
             <Button
               variant="outline"
               asChild
-              className="w-full justify-center border-slate-800 text-slate-300 hover:text-white hover:bg-slate-900"
+              className="w-full justify-center border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900"
             >
               <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
                 Sign In
