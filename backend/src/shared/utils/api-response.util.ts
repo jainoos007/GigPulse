@@ -1,6 +1,6 @@
 import { Response } from "express";
-import { HttpStatus } from "../constants/http-status.js";
-import { ApiResponse } from "../types/api.js";
+import { HttpStatus } from "../constants/http-status";
+import { ApiResponse } from "../types/api";
 
 export class ApiResponseUtil {
   static success<T>(res: Response, message: string, data?: T, statusCode: number = HttpStatus.OK) {

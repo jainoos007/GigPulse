@@ -1,4 +1,4 @@
-import { RoleEnum } from "../../../shared/enums/role.enum.js";
+import { RoleEnum } from "../../../shared/enums/role.enum";
 
 export interface UserResponseDto {
   id: string;
