@@ -5,6 +5,7 @@ import leadRoutes from "../modules/leads/routes/lead.routes";
 import projectRoutes from "../modules/projects/routes/project.routes";
 import taskRoutes from "../modules/tasks/routes/task.routes";
 import meetingRoutes from "../modules/meetings/routes/meeting.routes";
+import invoiceRoutes from "../modules/invoices/routes/invoice.routes";
 
 const apiV1Router = Router();
 
@@ -14,6 +15,7 @@ apiV1Router.use("/leads", leadRoutes);
 apiV1Router.use("/projects", projectRoutes);
 apiV1Router.use("/tasks", taskRoutes);
 apiV1Router.use("/meetings", meetingRoutes);
+apiV1Router.use("/invoices", invoiceRoutes);
 
 apiV1Router.get("/health", (req, res) => {
   res.json({

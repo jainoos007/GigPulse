@@ -2,7 +2,20 @@
 
 import React, { useEffect } from "react";
 import { useAuth } from "@/features/auth/hooks/useAuth";
-import { LogOut, User, Building, Shield, LayoutDashboard } from "lucide-react";
+import Link from "next/link";
+import {
+  LogOut,
+  User,
+  Building,
+  Shield,
+  Users,
+  Target,
+  Briefcase,
+  CheckSquare,
+  Calendar,
+  FileText,
+  ArrowRight,
+} from "lucide-react";
 
 export default function DashboardPage() {
   const { user, logout, fetchCurrentUser, isLoading } = useAuth();
@@ -18,6 +31,51 @@ export default function DashboardPage() {
       </div>
     );
   }
+
+  const modules = [
+    {
+      title: "Clients",
+      desc: "Manage client directory, contact info, and status",
+      href: "/clients",
+      icon: Users,
+      color: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    },
+    {
+      title: "Lead Pipeline",
+      desc: "Track sales pipeline and convert leads to clients",
+      href: "/leads",
+      icon: Target,
+      color: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    },
+    {
+      title: "Projects",
+      desc: "Oversee active projects, budgets, and deadlines",
+      href: "/projects",
+      icon: Briefcase,
+      color: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+    },
+    {
+      title: "Task Kanban",
+      desc: "Manage tasks across To-Do, In Progress, Review, Completed",
+      href: "/tasks",
+      icon: CheckSquare,
+      color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    },
+    {
+      title: "Meetings",
+      desc: "Schedule client calls, platform links, and reminders",
+      href: "/meetings",
+      icon: Calendar,
+      color: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    },
+    {
+      title: "Invoices & Payments",
+      desc: "Client billing, tax/discount calculations, and revenue tracking",
+      href: "/invoices",
+      icon: FileText,
+      color: "bg-teal-500/10 text-teal-400 border-teal-500/20",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-slate-950 text-white flex flex-col">
@@ -49,9 +107,10 @@ export default function DashboardPage() {
       <main className="flex-1 max-w-7xl w-full mx-auto p-8 space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard Overview</h1>
-          <p className="text-slate-400 mt-1">Welcome back, {user?.firstName}! Here is your current account status.</p>
+          <p className="text-slate-400 mt-1">Welcome back, {user?.firstName}! Access your workspace CRM modules below.</p>
         </div>
 
+        {/* Account Info Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
             <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center">
@@ -81,15 +140,35 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Placeholder Module Banner */}
-        <div className="p-8 rounded-2xl bg-slate-900/50 border border-dashed border-slate-800 text-center space-y-3">
-          <div className="w-12 h-12 rounded-2xl bg-slate-800 text-slate-400 flex items-center justify-center mx-auto">
-            <LayoutDashboard className="w-6 h-6" />
+        {/* Module Navigation Grid */}
+        <div className="space-y-4 pt-4">
+          <h2 className="text-xl font-bold tracking-tight">CRM Workspace Modules</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {modules.map((m) => {
+              const Icon = m.icon;
+              return (
+                <Link
+                  key={m.title}
+                  href={m.href}
+                  className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 hover:bg-slate-900/80 transition-all flex flex-col justify-between space-y-4 group"
+                >
+                  <div className="space-y-3">
+                    <div className={`w-12 h-12 rounded-xl border flex items-center justify-center ${m.color}`}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+                      {m.title}
+                    </h3>
+                    <p className="text-xs text-slate-400 leading-relaxed">{m.desc}</p>
+                  </div>
+
+                  <div className="flex items-center text-xs font-semibold text-emerald-400 group-hover:translate-x-1 transition-transform">
+                    Open Module <ArrowRight className="w-4 h-4 ml-1" />
+                  </div>
+                </Link>
+              );
+            })}
           </div>
-          <h3 className="text-lg font-semibold">Module 1 (Authentication Core) Active</h3>
-          <p className="text-sm text-slate-400 max-w-md mx-auto">
-            User authentication, JWT token refresh rotation, and Redux state management are operational. Next modules (Clients, Projects, Tasks) ready to connect.
-          </p>
         </div>
       </main>
     </div>
