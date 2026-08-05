@@ -1,0 +1,4 @@
+export const PROPOSAL_CONSTANTS = {
+  DEFAULT_PAGE_SIZE: 15,
+  MAX_PAGE_SIZE: 100,
+} as const;

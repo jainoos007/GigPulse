@@ -14,6 +14,7 @@ import {
   CheckSquare,
   Calendar,
   FileText,
+  FileCode,
   ArrowRight,
 } from "lucide-react";
 
@@ -74,6 +75,13 @@ export default function DashboardPage() {
       href: "/invoices",
       icon: FileText,
       color: "bg-teal-500/10 text-teal-400 border-teal-500/20",
+    },
+    {
+      title: "Proposals & Contracts",
+      desc: "Draft project scopes, manage proposals, and convert into projects",
+      href: "/proposals",
+      icon: FileCode,
+      color: "bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20",
     },
   ];
 
@@ -156,13 +164,13 @@ export default function DashboardPage() {
                     <div className={`w-12 h-12 rounded-xl border flex items-center justify-center ${m.color}`}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+                    <h3 className="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
                       {m.title}
                     </h3>
                     <p className="text-xs text-slate-400 leading-relaxed">{m.desc}</p>
                   </div>
 
-                  <div className="flex items-center text-xs font-semibold text-emerald-400 group-hover:translate-x-1 transition-transform">
+                  <div className="flex items-center text-xs font-semibold text-purple-400 group-hover:translate-x-1 transition-transform">
                     Open Module <ArrowRight className="w-4 h-4 ml-1" />
                   </div>
                 </Link>

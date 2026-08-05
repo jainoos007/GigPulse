@@ -66,6 +66,14 @@ enum PaymentMethod {
   OTHER
 }
 
+enum ProposalStatus {
+  DRAFT
+  SENT
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
 model User {
   id            String         @id @default(uuid())
   email         String         @unique
@@ -87,6 +95,7 @@ model User {
   meetings      Meeting[]
   invoices      Invoice[]
   payments      Payment[]
+  proposals     Proposal[]
 
   @@map("users")
 }
@@ -123,10 +132,11 @@ model Client {
   createdAt   DateTime     @default(now()) @map("created_at")
   updatedAt   DateTime     @updatedAt @map("updated_at")
 
-  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  projects Project[]
-  meetings Meeting[]
-  invoices Invoice[]
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projects  Project[]
+  meetings  Meeting[]
+  invoices  Invoice[]
+  proposals Proposal[]
 
   @@index([userId])
   @@index([email])
@@ -151,7 +161,8 @@ model Lead {
   createdAt      DateTime   @default(now()) @map("created_at")
   updatedAt      DateTime   @updatedAt @map("updated_at")
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  proposals Proposal[]
 
   @@index([userId])
   @@index([email])
@@ -282,4 +293,30 @@ model Payment {
   @@index([userId])
   @@index([invoiceId])
   @@map("payments")
+}
+
+model Proposal {
+  id             String         @id @default(uuid())
+  userId         String         @map("user_id")
+  clientId       String         @map("client_id")
+  leadId         String?        @map("lead_id")
+  title          String
+  value          Float?
+  content        String?        @db.Text
+  status         ProposalStatus @default(DRAFT)
+  expiryDate     DateTime?      @map("expiry_date")
+  convertedToId  String?        @map("converted_to_id")
+  isDeleted      Boolean        @default(false) @map("is_deleted")
+  deletedAt      DateTime?      @map("deleted_at")
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  lead   Lead?  @relation(fields: [leadId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([clientId])
+  @@index([status])
+  @@map("proposals")
 }
