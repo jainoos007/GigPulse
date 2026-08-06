@@ -189,7 +189,7 @@ export default function DashboardLayout({
       {/* Main Content Area */}
       <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
         {/* Topbar */}
-        <header data-no-scroll-lock="true" className="sticky top-0 z-30 h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur px-4 sm:px-8 flex items-center justify-between transition-colors">
+        <header data-no-scroll-lock="true" className="sticky top-0 z-30 h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur px-4 sm:px-8 lg:px-12 pr-6 sm:pr-10 lg:pr-14 flex items-center justify-between transition-colors">
           <div className="flex items-center gap-4">
             {/* Mobile Sheet Trigger */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
@@ -228,7 +228,7 @@ export default function DashboardLayout({
             </Breadcrumb>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2.5 sm:gap-3.5 pr-2 sm:pr-4">
             {/* Theme Switcher Toggle */}
             <ThemeToggle />
 
