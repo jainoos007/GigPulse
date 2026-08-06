@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Logo } from "@/components/ui/Logo";
 import { Menu, X, ArrowRight, LayoutDashboard } from "lucide-react";
 import { useAuth } from "@/features/auth/hooks/useAuth";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function LandingNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,7 +37,12 @@ export function LandingNav() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800/80 transition-all">
+    <motion.header
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800/80 transition-all"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
@@ -69,7 +76,13 @@ export function LandingNav() {
           {/* Action CTAs */}
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            {mounted && !isLoading && (
+            {!mounted ? null : isLoading ? (
+              // Show skeleton while auth resolves to prevent layout flash
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-9 w-20 rounded-xl" />
+                <Skeleton className="h-9 w-28 rounded-xl" />
+              </div>
+            ) : (
               user ? (
                 <Button
                   asChild
@@ -164,6 +177,6 @@ export function LandingNav() {
           </div>
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

@@ -67,13 +67,39 @@
 }
 
 @layer base {
-  html {
+  html,
+  html:root {
     scrollbar-gutter: stable;
+    overflow-y: scroll !important;
   }
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground antialiased selection:bg-blue-500 selection:text-white transition-colors duration-200;
+  }
+
+  /* Prevent react-remove-scroll from creating extra scrollbar, hiding root scrollbar, or shifting layout */
+  html:root body,
+  html:root body[data-scroll-locked],
+  html:root body[data-react-remove-scroll-locked],
+  html:root body[style] {
+    overflow-y: visible !important;
+    padding-right: 0px !important;
+    margin-right: 0px !important;
+  }
+
+  html:root body[data-scroll-locked] header,
+  html:root body[data-scroll-locked] aside,
+  html:root body[data-react-remove-scroll-locked] header,
+  html:root body[data-react-remove-scroll-locked] aside,
+  html:root body[style] header,
+  html:root body[style] aside,
+  header,
+  header[style],
+  aside,
+  aside[style] {
+    padding-right: 0px !important;
+    margin-right: 0px !important;
   }
 }

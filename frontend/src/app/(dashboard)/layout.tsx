@@ -144,7 +144,7 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex transition-colors duration-200">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex w-64 flex-col border-r border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur shrink-0 fixed inset-y-0 z-40 transition-colors">
+      <aside data-no-scroll-lock="true" className="hidden lg:flex w-64 flex-col border-r border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur shrink-0 fixed inset-y-0 z-40 transition-colors">
         <div className="p-6 flex items-center justify-between border-b border-slate-200 dark:border-slate-800/80">
           <Link href="/" className="flex items-center gap-3 group" title="Go to FreelanceFlow landing page">
             <div className="w-9 h-9 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-1.5 shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform duration-200">
@@ -189,7 +189,7 @@ export default function DashboardLayout({
       {/* Main Content Area */}
       <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
         {/* Topbar */}
-        <header className="sticky top-0 z-30 h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur px-4 sm:px-8 flex items-center justify-between transition-colors">
+        <header data-no-scroll-lock="true" className="sticky top-0 z-30 h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur px-4 sm:px-8 flex items-center justify-between transition-colors">
           <div className="flex items-center gap-4">
             {/* Mobile Sheet Trigger */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
