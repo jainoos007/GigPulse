@@ -21,7 +21,7 @@ export function HeroSection() {
   const { user } = useAuth();
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
+    <section className="relative min-h-[calc(100vh-4rem)] sm:min-h-[calc(100vh-5rem)] flex flex-col justify-center py-10 sm:py-14 lg:py-16 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
       {/* Background Decorative Glow Effects */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[400px] bg-gradient-to-tr from-blue-500/15 via-indigo-500/10 to-purple-500/10 dark:from-blue-600/20 dark:via-indigo-600/15 dark:to-purple-600/10 blur-[120px] rounded-full pointer-events-none -z-0" />
       <div className="absolute top-10 left-10 w-72 h-72 bg-blue-500/10 blur-[90px] rounded-full pointer-events-none" />
@@ -30,7 +30,7 @@ export function HeroSection() {
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:32px_32px] opacity-20 dark:opacity-25 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 z-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 sm:space-y-7 z-10 my-auto">
         {/* Category Badge */}
         <FadeIn delay={0.1} direction="down">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm dark:shadow-xl backdrop-blur-md hover:border-blue-500/50 transition-colors">
@@ -65,14 +65,14 @@ export function HeroSection() {
             <Button
               size="lg"
               asChild
-              className="w-full sm:w-auto h-13 px-8 text-base font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-xl"
+              className="w-full sm:w-auto h-14 px-8 py-3.5 text-base font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-full"
             >
               {user ? (
-                <Link href="/dashboard" className="flex items-center gap-2 justify-center">
+                <Link href="/dashboard" className="flex items-center gap-2.5 justify-center h-full">
                   <LayoutDashboard className="w-5 h-5" /> Go to Dashboard
                 </Link>
               ) : (
-                <Link href="/login" className="flex items-center gap-2 justify-center">
+                <Link href="/login" className="flex items-center gap-2.5 justify-center h-full">
                   Launch Application <ArrowRight className="w-5 h-5" />
                 </Link>
               )}
@@ -81,9 +81,9 @@ export function HeroSection() {
               size="lg"
               variant="outline"
               asChild
-              className="w-full sm:w-auto h-13 px-8 text-base font-semibold border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white rounded-xl backdrop-blur-md"
+              className="w-full sm:w-auto h-14 px-8 py-3.5 text-base font-semibold border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white rounded-full backdrop-blur-md"
             >
-              <a href="#features" className="flex items-center gap-2 justify-center">
+              <a href="#features" className="flex items-center gap-2.5 justify-center h-full">
                 Explore Features
               </a>
             </Button>

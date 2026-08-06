@@ -6,14 +6,23 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Logo } from "@/components/ui/Logo";
-import { Menu, X, ArrowRight, LayoutDashboard } from "lucide-react";
+import { Menu, X, ArrowRight, LayoutDashboard, LogOut, User as UserIcon } from "lucide-react";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function LandingNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { user, isLoading, fetchCurrentUser } = useAuth();
+  const { user, isLoading, fetchCurrentUser, logout } = useAuth();
 
   // Ensure hydration is done before rendering auth-dependent UI
   useEffect(() => {
@@ -38,35 +47,30 @@ export function LandingNav() {
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800/80 transition-all"
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className="sticky top-0 z-50 w-full border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl transition-all"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-1.5 shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform duration-300">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-9 h-9 rounded-xl bg-blue-500/10 dark:bg-blue-500/10 border border-blue-500/20 dark:border-blue-500/30 flex items-center justify-center p-1.5 transition-transform duration-300 group-hover:scale-105">
               <Logo className="w-full h-full" />
             </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                FreelanceFlow
-              </span>
-              <span className="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-medium -mt-1">
-                CRM for Freelancers
-              </span>
-            </div>
+            <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">
+              Freelance<span className="text-blue-600 dark:text-blue-500">Flow</span>
+            </span>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Desktop Links */}
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors hover:scale-105 transform"
+                className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
               >
                 {link.label}
               </a>
@@ -79,19 +83,47 @@ export function LandingNav() {
             {!mounted ? null : isLoading ? (
               // Show skeleton while auth resolves to prevent layout flash
               <div className="flex items-center gap-3">
-                <Skeleton className="h-9 w-20 rounded-xl" />
-                <Skeleton className="h-9 w-28 rounded-xl" />
+                <Skeleton className="h-9 w-9 rounded-full" />
               </div>
             ) : (
               user ? (
-                <Button
-                  asChild
-                  className="bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300 rounded-xl"
-                >
-                  <Link href="/dashboard" className="flex items-center gap-2">
-                    <LayoutDashboard className="w-4 h-4" /> Go to Dashboard
-                  </Link>
-                </Button>
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      className="relative h-10 w-10 rounded-full p-0 overflow-hidden ring-2 ring-blue-500/30 hover:ring-blue-500 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+                      title={`${user.firstName} ${user.lastName}`}
+                    >
+                      <Avatar className="h-full w-full border-none">
+                        <AvatarFallback className="bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-bold text-xs">
+                          {user.firstName?.[0]}{user.lastName?.[0]}
+                        </AvatarFallback>
+                      </Avatar>
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 shadow-xl rounded-xl">
+                    <DropdownMenuLabel className="font-normal p-3">
+                      <div className="flex flex-col space-y-1">
+                        <p className="text-xs font-bold text-slate-900 dark:text-white leading-none">{user.firstName} {user.lastName}</p>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-none">{user.email}</p>
+                      </div>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator className="bg-slate-200 dark:bg-slate-800" />
+                    <DropdownMenuItem asChild className="gap-2 text-xs cursor-pointer py-2 font-medium">
+                      <Link href="/dashboard">
+                        <LayoutDashboard className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                        <span>Dashboard</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator className="bg-slate-200 dark:bg-slate-800" />
+                    <DropdownMenuItem
+                      onClick={logout}
+                      className="gap-2 text-xs text-red-600 dark:text-red-400 focus:text-red-700 dark:focus:text-red-300 focus:bg-red-500/10 cursor-pointer py-2"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Sign out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               ) : (
                 <>
                   <Button
@@ -103,7 +135,7 @@ export function LandingNav() {
                   </Button>
                   <Button
                     asChild
-                    className="bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300"
+                    className="bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300 rounded-xl"
                   >
                     <Link href="/login" className="flex items-center gap-2">
                       Launch App <ArrowRight className="w-4 h-4" />

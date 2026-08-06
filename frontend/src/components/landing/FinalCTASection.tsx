@@ -37,14 +37,14 @@ export function FinalCTASection() {
               <Button
                 size="lg"
                 asChild
-                className="w-full sm:w-auto h-13 px-8 text-base font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-xl"
+                className="w-full sm:w-auto h-14 px-8 py-3.5 text-base font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-full"
               >
                 {user ? (
-                  <Link href="/dashboard" className="flex items-center justify-center gap-2">
+                  <Link href="/dashboard" className="flex items-center justify-center gap-2.5 h-full">
                     <LayoutDashboard className="w-5 h-5" /> Go to Dashboard
                   </Link>
                 ) : (
-                  <Link href="/login" className="flex items-center justify-center gap-2">
+                  <Link href="/login" className="flex items-center justify-center gap-2.5 h-full">
                     Launch Application <ArrowRight className="w-5 h-5" />
                   </Link>
                 )}
@@ -53,9 +53,9 @@ export function FinalCTASection() {
                 size="lg"
                 variant="outline"
                 asChild
-                className="w-full sm:w-auto h-13 px-8 text-base font-semibold border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white rounded-xl"
+                className="w-full sm:w-auto h-14 px-8 py-3.5 text-base font-semibold border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white rounded-full"
               >
-                <a href="#features" className="flex items-center justify-center gap-2">
+                <a href="#features" className="flex items-center justify-center gap-2.5 h-full">
                   Explore Features
                 </a>
               </Button>

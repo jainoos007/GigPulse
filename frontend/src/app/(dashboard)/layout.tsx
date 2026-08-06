@@ -22,6 +22,7 @@ import {
   ChevronRight,
   ShieldCheck,
   User as UserIcon,
+  Home,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -218,7 +219,9 @@ export default function DashboardLayout({
             <Breadcrumb className="hidden sm:block">
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/dashboard" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200">CRM</BreadcrumbLink>
+                  <BreadcrumbLink href="/dashboard" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 flex items-center transition-colors" title="Home">
+                    <Home className="w-4 h-4" />
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
