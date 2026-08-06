@@ -164,55 +164,80 @@ export const EditProjectModal: React.FC<Props> = ({
               )}
             />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="budget"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-700 dark:text-slate-300">Budget ($)</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        placeholder="12000"
-                        className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
-                        {...field}
-                        value={field.value ?? ""}
-                        onChange={(e) =>
-                          field.onChange(
-                            e.target.value === "" ? undefined : Number(e.target.value)
-                          )
-                        }
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="budget"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-slate-700 dark:text-slate-300">Budget ($)</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          min="0"
+                          placeholder="12000"
+                          className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
+                          value={field.value === undefined || field.value === null ? "" : field.value}
+                          onKeyDown={(e) => {
+                            if (e.key === "-" || e.key === "e" || e.key === "E") {
+                              e.preventDefault();
+                            }
+                          }}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === "") {
+                              field.onChange(undefined);
+                            } else {
+                              const num = parseFloat(val);
+                              if (!isNaN(num)) {
+                                field.onChange(Math.max(0, num));
+                              }
+                            }
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              <FormField
-                control={form.control}
-                name="progress"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-700 dark:text-slate-300">Progress (%: 0-100)</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        min="0"
-                        max="100"
-                        placeholder="0"
-                        className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
-                        {...field}
-                        value={field.value ?? 0}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+                <FormField
+                  control={form.control}
+                  name="progress"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-slate-700 dark:text-slate-300">Progress (%: 0-100)</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          min="0"
+                          max="100"
+                          placeholder="0"
+                          className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
+                          value={field.value === undefined || field.value === null ? "" : field.value}
+                          onKeyDown={(e) => {
+                            if (e.key === "-" || e.key === "e" || e.key === "E") {
+                              e.preventDefault();
+                            }
+                          }}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === "") {
+                              field.onChange(undefined);
+                            } else {
+                              const num = parseFloat(val);
+                              if (!isNaN(num)) {
+                                field.onChange(Math.min(100, Math.max(0, num)));
+                              }
+                            }
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField

@@ -62,9 +62,9 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
       dueDate: "",
       notes: "",
       status: "DRAFT",
-      tax: 0,
-      discount: 0,
-      amount: 0,
+      tax: undefined,
+      discount: undefined,
+      amount: undefined,
     },
   });
 
@@ -75,7 +75,12 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
 
   const handleFormSubmit = async (data: InvoiceSchemaType) => {
     try {
-      await onSubmit(data);
+      await onSubmit({
+        ...data,
+        amount: data.amount ?? 0,
+        tax: data.tax ?? 0,
+        discount: data.discount ?? 0,
+      });
       toast.success("Invoice generated!", {
         description: `New invoice for $${estimatedTotal.toFixed(2)} created.`,
       });
@@ -170,11 +175,27 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                     <FormControl>
                       <Input
                         type="number"
+                        min="0"
                         step="0.01"
                         placeholder="1000.00"
                         className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
-                        {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        value={field.value === undefined || field.value === null ? "" : field.value}
+                        onKeyDown={(e) => {
+                          if (e.key === "-" || e.key === "e" || e.key === "E") {
+                            e.preventDefault();
+                          }
+                        }}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === "") {
+                            field.onChange(undefined);
+                          } else {
+                            const num = parseFloat(val);
+                            if (!isNaN(num)) {
+                              field.onChange(Math.max(0, num));
+                            }
+                          }
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -191,11 +212,27 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                     <FormControl>
                       <Input
                         type="number"
+                        min="0"
                         step="0.1"
                         placeholder="10"
                         className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
-                        {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        value={field.value === undefined || field.value === null ? "" : field.value}
+                        onKeyDown={(e) => {
+                          if (e.key === "-" || e.key === "e" || e.key === "E") {
+                            e.preventDefault();
+                          }
+                        }}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === "") {
+                            field.onChange(undefined);
+                          } else {
+                            const num = parseFloat(val);
+                            if (!isNaN(num)) {
+                              field.onChange(Math.max(0, num));
+                            }
+                          }
+                        }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -212,11 +249,27 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                     <FormControl>
                       <Input
                         type="number"
+                        min="0"
                         step="0.01"
                         placeholder="50"
                         className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
-                        {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        value={field.value === undefined || field.value === null ? "" : field.value}
+                        onKeyDown={(e) => {
+                          if (e.key === "-" || e.key === "e" || e.key === "E") {
+                            e.preventDefault();
+                          }
+                        }}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === "") {
+                            field.onChange(undefined);
+                          } else {
+                            const num = parseFloat(val);
+                            if (!isNaN(num)) {
+                              field.onChange(Math.max(0, num));
+                            }
+                          }
+                        }}
                       />
                     </FormControl>
                     <FormMessage />

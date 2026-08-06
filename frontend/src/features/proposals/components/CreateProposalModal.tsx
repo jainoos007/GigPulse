@@ -205,14 +205,27 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
                       <FormControl>
                         <Input
                           type="number"
+                          min="0"
+                          step="0.01"
                           placeholder="8500"
                           className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
-                          {...field}
-                          onChange={(e) =>
-                            field.onChange(
-                              e.target.value === "" ? undefined : Number(e.target.value)
-                            )
-                          }
+                          value={field.value === undefined || field.value === null ? "" : field.value}
+                          onKeyDown={(e) => {
+                            if (e.key === "-" || e.key === "e" || e.key === "E") {
+                              e.preventDefault();
+                            }
+                          }}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === "") {
+                              field.onChange(undefined);
+                            } else {
+                              const num = parseFloat(val);
+                              if (!isNaN(num)) {
+                                field.onChange(Math.max(0, num));
+                              }
+                            }
+                          }}
                         />
                       </FormControl>
                       <FormMessage />

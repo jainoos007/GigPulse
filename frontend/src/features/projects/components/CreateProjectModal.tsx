@@ -61,13 +61,16 @@ export const CreateProjectModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
       deadline: "",
       status: "PLANNING",
       priority: "MEDIUM",
-      progress: 0,
+      progress: undefined,
     },
   });
 
   const handleFormSubmit = async (data: ProjectSchemaType) => {
     try {
-      await onSubmit(data);
+      await onSubmit({
+        ...data,
+        progress: data.progress ?? 0,
+      });
       toast.success("Project created!", {
         description: `${data.name} has been created.`,
       });
@@ -75,7 +78,7 @@ export const CreateProjectModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
       onClose();
     } catch (err: any) {
       toast.error("Failed to create project", {
-        description: err.message || "An error occurred.",
+        description: err.message || "An unexpected error occurred.",
       });
     }
   };
@@ -149,14 +152,26 @@ export const CreateProjectModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                       <FormControl>
                         <Input
                           type="number"
+                          min="0"
                           placeholder="12000"
                           className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
-                          {...field}
-                          onChange={(e) =>
-                            field.onChange(
-                              e.target.value === "" ? undefined : Number(e.target.value)
-                            )
-                          }
+                          value={field.value === undefined || field.value === null ? "" : field.value}
+                          onKeyDown={(e) => {
+                            if (e.key === "-" || e.key === "e" || e.key === "E") {
+                              e.preventDefault();
+                            }
+                          }}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === "") {
+                              field.onChange(undefined);
+                            } else {
+                              const num = parseFloat(val);
+                              if (!isNaN(num)) {
+                                field.onChange(Math.max(0, num));
+                              }
+                            }
+                          }}
                         />
                       </FormControl>
                       <FormMessage />
@@ -177,8 +192,23 @@ export const CreateProjectModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                           max="100"
                           placeholder="0"
                           className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
-                          {...field}
-                          onChange={(e) => field.onChange(Number(e.target.value))}
+                          value={field.value === undefined || field.value === null ? "" : field.value}
+                          onKeyDown={(e) => {
+                            if (e.key === "-" || e.key === "e" || e.key === "E") {
+                              e.preventDefault();
+                            }
+                          }}
+                          onChange={(e) => {
+                            const val = e.target.value;
+                            if (val === "") {
+                              field.onChange(undefined);
+                            } else {
+                              const num = parseFloat(val);
+                              if (!isNaN(num)) {
+                                field.onChange(Math.min(100, Math.max(0, num)));
+                              }
+                            }
+                          }}
                         />
                       </FormControl>
                       <FormMessage />
