@@ -509,7 +509,7 @@ export default function DashboardPage() {
               <Skeleton className="h-20 w-full" />
             ) : pendingTasks.length === 0 ? (
               <div className="text-center py-8 text-xs text-slate-500 dark:text-slate-400 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl">
-                All tasks completed! 🎉 <Button variant="link" size="sm" onClick={() => setActiveModal("task")} className="text-emerald-600 dark:text-emerald-400 p-0 h-auto text-xs">Add new task</Button>
+                All tasks completed! <Button variant="link" size="sm" onClick={() => setActiveModal("task")} className="text-emerald-600 dark:text-emerald-400 p-0 h-auto text-xs">Add new task</Button>
               </div>
             ) : (
               pendingTasks.slice(0, 3).map((task) => (

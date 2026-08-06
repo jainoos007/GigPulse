@@ -1,24 +1,24 @@
-# ⚡ GigPulse – Operating System for Freelancers
+# GigPulse – Operating System for Freelancers
 
 **GigPulse** is a modern, full-stack Customer Relationship Management (CRM) & Operating System designed specifically for freelancers to streamline clients, leads, projects, tasks, meetings, proposals, invoices, and payments in one unified platform.
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
-- 🔐 **Authentication & Security**: Secure JWT auth, refresh token rotation, bcrypt password hashing, and role-based access control (`FREELANCER`, `ASSISTANT`).
-- 👤 **Client Management**: Store client contacts, company information, tax IDs, industry verticals, and track activity history.
-- 🎯 **Lead Pipeline**: Manage leads, estimated deal values, stages (`NEW` -> `WON`/`LOST`), and convert leads directly into active clients.
-- 📁 **Project Management**: Track budgets, start & deadline dates, completion progress percentages, and status priorities.
-- 📋 **Interactive Task Kanban Board**: Manage project tasks, priority levels, due date deadlines, and kanban swimlanes.
-- 📅 **Meeting Management**: Schedule meetings, log agenda notes, track platform URLs (Google Meet, Zoom), and set reminders.
-- 📜 **Proposal Generator & Tracking**: Create client/lead proposals, valuation amounts, status lifecycle, and convert accepted proposals into active projects.
-- 💳 **Invoicing & Payment Tracking**: Auto-calculate totals (subtotal, tax, discount), send invoices, record payments, and monitor revenue stats.
-- 📊 **Dashboard Analytics**: Real-time business metrics for total clients, active projects, revenue summaries, and upcoming deadlines.
+- **Authentication & Security**: Secure JWT auth, refresh token rotation, bcrypt password hashing, and role-based access control (`FREELANCER`, `ASSISTANT`).
+- **Client Management**: Store client contacts, company information, tax IDs, industry verticals, and track activity history.
+- **Lead Pipeline**: Manage leads, estimated deal values, stages (`NEW` -> `WON`/`LOST`), and convert leads directly into active clients.
+- **Project Management**: Track budgets, start & deadline dates, completion progress percentages, and status priorities.
+- **Interactive Task Kanban Board**: Manage project tasks, priority levels, due date deadlines, and kanban swimlanes.
+- **Meeting Management**: Schedule meetings, log agenda notes, track platform URLs (Google Meet, Zoom), and set reminders.
+- **Proposal Generator & Tracking**: Create client/lead proposals, valuation amounts, status lifecycle, and convert accepted proposals into active projects.
+- **Invoicing & Payment Tracking**: Auto-calculate totals (subtotal, tax, discount), send invoices, record payments, and monitor revenue stats.
+- **Dashboard Analytics**: Real-time business metrics for total clients, active projects, revenue summaries, and upcoming deadlines.
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend
 
@@ -36,7 +36,7 @@
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 GigPulse/
@@ -78,7 +78,7 @@ GigPulse/
 
 ---
 
-## ⚡ Quick Start (Local Setup)
+## Quick Start (Local Setup)
 
 ### 1. Prerequisites
 

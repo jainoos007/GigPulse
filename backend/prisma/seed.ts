@@ -4,27 +4,30 @@ import bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("🌱 Starting database seeding for FreelanceFlow CRM...");
+  console.log("[SEED] Starting database seeding for GigPulse CRM...");
 
-  // Clean existing records in reverse dependency order
-  await prisma.payment.deleteMany();
-  await prisma.invoice.deleteMany();
-  await prisma.meeting.deleteMany();
-  await prisma.task.deleteMany();
-  await prisma.project.deleteMany();
-  await prisma.proposal.deleteMany();
-  await prisma.lead.deleteMany();
-  await prisma.client.deleteMany();
-  await prisma.refreshToken.deleteMany();
-  await prisma.user.deleteMany();
-
-  console.log("🧹 Cleaned old database records.");
+  // Clean existing records in reverse dependency order (if tables exist)
+  try {
+    await prisma.payment.deleteMany();
+    await prisma.invoice.deleteMany();
+    await prisma.meeting.deleteMany();
+    await prisma.task.deleteMany();
+    await prisma.project.deleteMany();
+    await prisma.proposal.deleteMany();
+    await prisma.lead.deleteMany();
+    await prisma.client.deleteMany();
+    await prisma.refreshToken.deleteMany();
+    await prisma.user.deleteMany();
+    console.log("[CLEAN] Cleaned old database records.");
+  } catch (err) {
+    console.log("[INFO] Skipping cleanup: Database tables do not exist yet or are clean.");
+  }
 
   // 1. Create Demo User
   const passwordHash = await bcrypt.hash("Password123!", 10);
   const demoUser = await prisma.user.create({
     data: {
-      email: "demo@freelanceflow.com",
+      email: "demo@gigpulse.com",
       passwordHash,
       firstName: "Alex",
       lastName: "Rivers",
@@ -34,7 +37,7 @@ async function main() {
     },
   });
 
-  console.log(`👤 Created Demo User: ${demoUser.email} (Password: Password123!)`);
+  console.log(`[USER] Created Demo User: ${demoUser.email} (Password: Password123!)`);
 
   // 2. Create Clients
   const client1 = await prisma.client.create({
@@ -65,7 +68,7 @@ async function main() {
     },
   });
 
-  console.log("👥 Created Clients: Acme Corporation & Nexus Media Ltd");
+  console.log("[CLIENTS] Created Clients: Acme Corporation & Nexus Media Ltd");
 
   // 3. Create Leads
   const lead1 = await prisma.lead.create({
@@ -95,7 +98,7 @@ async function main() {
     },
   });
 
-  console.log("🎯 Created Sales Leads: Vanguard Tech & Solaris BioTech");
+  console.log("[LEADS] Created Sales Leads: Vanguard Tech & Solaris BioTech");
 
   // 4. Create Projects
   const project1 = await prisma.project.create({
@@ -128,7 +131,7 @@ async function main() {
     },
   });
 
-  console.log("🚀 Created Projects: Acme SaaS Portal & Nexus E-Commerce Checkout");
+  console.log("[PROJECTS] Created Projects: Acme SaaS Portal & Nexus E-Commerce Checkout");
 
   // 5. Create Tasks (Kanban Board Items)
   await prisma.task.createMany({
@@ -172,7 +175,7 @@ async function main() {
     ],
   });
 
-  console.log("📋 Created Kanban Tasks across TODO, IN_PROGRESS, REVIEW, and COMPLETED columns");
+  console.log("[TASKS] Created Kanban Tasks across TODO, IN_PROGRESS, REVIEW, and COMPLETED columns");
 
   // 6. Create Meetings
   await prisma.meeting.createMany({
@@ -200,7 +203,7 @@ async function main() {
     ],
   });
 
-  console.log("📅 Created Scheduled & Past Client Meetings");
+  console.log("[MEETINGS] Created Scheduled & Past Client Meetings");
 
   // 7. Create Invoices & Payments
   const invoice1 = await prisma.invoice.create({
@@ -246,7 +249,7 @@ async function main() {
     },
   });
 
-  console.log("💰 Created Invoices & Payments (Settled & Outstanding)");
+  console.log("[INVOICES] Created Invoices & Payments (Settled & Outstanding)");
 
   // 8. Create Proposals
   await prisma.proposal.createMany({
@@ -272,17 +275,17 @@ async function main() {
     ],
   });
 
-  console.log("📄 Created Proposals & Contracts");
+  console.log("[PROPOSALS] Created Proposals & Contracts");
 
-  console.log("\n✅ Database Seeding Successfully Completed!");
-  console.log("🔑 Demo Login Credentials:");
-  console.log("   Email: demo@freelanceflow.com");
+  console.log("\n[SUCCESS] Database Seeding Successfully Completed!");
+  console.log("Demo Login Credentials:");
+  console.log("   Email: demo@gigpulse.com");
   console.log("   Password: Password123!\n");
 }
 
 main()
   .catch((e) => {
-    console.error("❌ Seeding failed:", e);
+    console.error("[ERROR] Seeding failed:", e);
     process.exit(1);
   })
   .finally(async () => {
