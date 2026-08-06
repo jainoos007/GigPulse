@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Logo } from "@/components/ui/Logo";
 import { Menu, X, ArrowRight } from "lucide-react";
 
 export function LandingNav() {
@@ -22,8 +23,8 @@ export function LandingNav() {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-blue-500 to-indigo-500 flex items-center justify-center font-bold text-lg text-white shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-300">
-              FF
+            <div className="w-10 h-10 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-1.5 shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform duration-300">
+              <Logo className="w-full h-full" />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">

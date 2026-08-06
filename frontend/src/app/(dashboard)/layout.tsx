@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/features/auth/hooks/useAuth";
+import { Logo } from "@/components/ui/Logo";
 import {
   LayoutDashboard,
   Users,
@@ -88,8 +89,8 @@ export default function DashboardLayout({
   if (isLoading) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-6 space-y-4">
-        <div className="w-12 h-12 rounded-2xl bg-blue-600 animate-pulse flex items-center justify-center font-bold text-xl text-white">
-          FF
+        <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center p-2">
+          <Logo className="w-full h-full animate-pulse" />
         </div>
         <div className="flex items-center space-x-2 text-slate-500 dark:text-slate-400 text-sm">
           <Skeleton className="h-4 w-32" />
@@ -141,8 +142,8 @@ export default function DashboardLayout({
       <aside className="hidden lg:flex w-64 flex-col border-r border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur shrink-0 fixed inset-y-0 z-40 transition-colors">
         <div className="p-6 flex items-center justify-between border-b border-slate-200 dark:border-slate-800/80">
           <Link href="/dashboard" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-base text-white shadow-md shadow-blue-600/30">
-              FF
+            <div className="w-9 h-9 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-1.5 shadow-md shadow-blue-500/10">
+              <Logo className="w-full h-full" />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white leading-none">
@@ -196,8 +197,8 @@ export default function DashboardLayout({
               <SheetContent side="left" className="w-72 p-0 bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800">
                 <div className="p-6 border-b border-slate-200 dark:border-slate-800">
                   <Link href="/dashboard" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
-                    <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-base text-white">
-                      FF
+                    <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center p-1.5">
+                      <Logo className="w-full h-full" />
                     </div>
                     <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white">FreelanceFlow</span>
                   </Link>

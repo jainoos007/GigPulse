@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Mail } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 export function LandingFooter() {
   const navLinks = [
@@ -17,8 +18,8 @@ export function LandingFooter() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* Logo & Brand */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 via-blue-500 to-indigo-500 flex items-center justify-center font-bold text-sm text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
-              FF
+            <div className="w-8 h-8 rounded-lg bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-1 shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform">
+              <Logo className="w-full h-full" />
             </div>
             <span className="font-bold text-base text-slate-900 dark:text-white tracking-tight">FreelanceFlow</span>
           </Link>
