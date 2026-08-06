@@ -141,12 +141,12 @@ export default function DashboardLayout({
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex w-64 flex-col border-r border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur shrink-0 fixed inset-y-0 z-40 transition-colors">
         <div className="p-6 flex items-center justify-between border-b border-slate-200 dark:border-slate-800/80">
-          <Link href="/dashboard" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-1.5 shadow-md shadow-blue-500/10">
+          <Link href="/" className="flex items-center gap-3 group" title="Go to FreelanceFlow landing page">
+            <div className="w-9 h-9 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-1.5 shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform duration-200">
               <Logo className="w-full h-full" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white leading-none">
+              <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white leading-none group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 FreelanceFlow
               </span>
               <span className="text-[10px] text-slate-500 font-medium tracking-wide uppercase mt-1">
@@ -196,7 +196,7 @@ export default function DashboardLayout({
               </SheetTrigger>
               <SheetContent side="left" className="w-72 p-0 bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800">
                 <div className="p-6 border-b border-slate-200 dark:border-slate-800">
-                  <Link href="/dashboard" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
+                  <Link href="/" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
                     <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center p-1.5">
                       <Logo className="w-full h-full" />
                     </div>
@@ -253,8 +253,8 @@ export default function DashboardLayout({
               </PopoverContent>
             </Popover>
 
-            {/* User Dropdown Menu */}
-            <DropdownMenu>
+            {/* User Dropdown Menu - modal={false} prevents layout shift & scrollbar disappearing */}
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative gap-2 px-2 rounded-xl text-left hover:bg-slate-100 dark:hover:bg-slate-900">
                   <Avatar className="w-8 h-8">
