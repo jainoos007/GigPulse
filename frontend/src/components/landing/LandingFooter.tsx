@@ -12,7 +12,7 @@ export function LandingFooter() {
   ];
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-800/80 py-10 text-slate-400 text-sm">
+    <footer className="bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 py-10 text-slate-600 dark:text-slate-400 text-sm transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* Logo & Brand */}
@@ -20,16 +20,16 @@ export function LandingFooter() {
             <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 via-blue-500 to-indigo-500 flex items-center justify-center font-bold text-sm text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
               FF
             </div>
-            <span className="font-bold text-base text-white tracking-tight">FreelanceFlow</span>
+            <span className="font-bold text-base text-slate-900 dark:text-white tracking-tight">FreelanceFlow</span>
           </Link>
 
           {/* Navigation Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-slate-400">
+          <nav className="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-slate-600 dark:text-slate-400">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="hover:text-white transition-colors"
+                className="hover:text-slate-900 dark:hover:text-white transition-colors"
               >
                 {link.label}
               </a>
@@ -39,7 +39,7 @@ export function LandingFooter() {
           {/* Contact Link */}
           <a
             href="mailto:contact@freelanceflow.dev"
-            className="text-xs font-medium text-slate-400 hover:text-white transition-colors flex items-center gap-1.5"
+            className="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1.5"
           >
             <Mail className="w-3.5 h-3.5" />
             <span>contact@freelanceflow.dev</span>
@@ -47,10 +47,10 @@ export function LandingFooter() {
         </div>
 
         {/* Divider & Copyright */}
-        <div className="pt-6 border-t border-slate-900/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <div className="pt-6 border-t border-slate-200 dark:border-slate-900/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-500">
           <p>© {new Date().getFullYear()} FreelanceFlow CRM. All rights reserved.</p>
           <div className="flex items-center gap-2 text-[11px] text-slate-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
             <span>All Systems Operational</span>
           </div>
         </div>
