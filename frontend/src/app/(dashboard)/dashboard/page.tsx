@@ -64,6 +64,7 @@ export default function DashboardPage() {
     invoices,
     upcomingMeetings,
     pendingTasks,
+    monthlyRevenueTrend,
   } = useDashboardData();
 
   // Modal Visibility States
@@ -200,13 +201,16 @@ export default function DashboardPage() {
             {isLoading ? (
               <Skeleton className="h-8 w-28" />
             ) : (
-              <h3 className="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">
-                ${stats.totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </h3>
+              <>
+                <h3 className="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">
+                  ${stats.totalRevenue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </h3>
+                <div className="flex items-center gap-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400 pt-0.5">
+                  <TrendingUp className="w-3.5 h-3.5" />
+                  <span>{stats.momGrowthPercentage >= 0 ? `+${stats.momGrowthPercentage}%` : `${stats.momGrowthPercentage}%`} vs last month</span>
+                </div>
+              </>
             )}
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-              Collected from settled client invoices
-            </p>
           </CardContent>
         </Card>
 
@@ -292,55 +296,53 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      {/* Row 2: Active Projects Health & Financial Breakdown */}
+      {/* Row 2: Revenue Trend Chart & Financial Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Project Health Monitor */}
-        <Card className="lg:col-span-2 bg-white dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 shadow-sm dark:shadow-none">
+        {/* 6-Month Revenue Trend Chart */}
+        <Card className="lg:col-span-2 bg-white dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 shadow-sm dark:shadow-none flex flex-col justify-between">
           <CardHeader className="flex flex-row items-center justify-between p-5 pb-3">
             <div>
-              <CardTitle className="text-base font-bold text-slate-900 dark:text-white">Active Projects Health</CardTitle>
+              <CardTitle className="text-base font-bold text-slate-900 dark:text-white">Revenue & Payment Pipeline</CardTitle>
               <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
-                Milestones, priorities, and progress completion
+                6-month historical payment trend & collection metrics
               </CardDescription>
             </div>
-            <Button variant="ghost" size="sm" asChild className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-700">
-              <Link href="/projects">View All ({projects.length}) <ChevronRight className="w-3.5 h-3.5 ml-1" /></Link>
-            </Button>
+            <Badge variant="outline" className="border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs">
+              6-Month Trend
+            </Badge>
           </CardHeader>
           <CardContent className="p-5 pt-0 space-y-4">
             {isLoading ? (
-              <div className="space-y-3">
-                <Skeleton className="h-12 w-full" />
-                <Skeleton className="h-12 w-full" />
-                <Skeleton className="h-12 w-full" />
-              </div>
-            ) : projects.length === 0 ? (
-              <div className="text-center py-8 text-xs text-slate-500 dark:text-slate-400 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl">
-                No active projects found. <Button variant="link" size="sm" onClick={() => setActiveModal("project")} className="text-blue-600 dark:text-blue-400 p-0 h-auto text-xs">Create your first project</Button>
-              </div>
+              <Skeleton className="h-44 w-full" />
             ) : (
-              projects.slice(0, 4).map((project) => (
-                <div key={project.id} className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80 space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="truncate">
-                      <h4 className="text-xs font-bold text-slate-900 dark:text-white truncate">{project.name}</h4>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{project.clientName || "Direct Client"}</p>
-                    </div>
-                    <Badge variant={project.status === "ACTIVE" ? "default" : "secondary"} className="text-[10px] shrink-0">
-                      {project.status}
-                    </Badge>
+              <div className="h-48 flex items-end justify-between gap-2 sm:gap-4 pt-6 border-b border-slate-200 dark:border-slate-800/80 pb-2">
+                {monthlyRevenueTrend.map((item) => (
+                  <div key={item.month} className="flex-1 flex flex-col items-center gap-2 h-full justify-end group/bar">
+                    <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 opacity-90 group-hover/bar:opacity-100 transition-opacity font-semibold">
+                      {item.formattedAmount}
+                    </span>
+                    <div
+                      className={`w-full rounded-t-md transition-all duration-500 ${
+                        item.isCurrent
+                          ? "bg-gradient-to-t from-blue-600 to-indigo-500 shadow-lg shadow-blue-500/30"
+                          : "bg-slate-200 dark:bg-slate-800 group-hover/bar:bg-blue-500/40 dark:group-hover/bar:bg-blue-500/30"
+                      }`}
+                      style={{ height: item.heightPct }}
+                    />
+                    <span className={`text-xs ${item.isCurrent ? "text-blue-600 dark:text-blue-400 font-bold" : "text-slate-500 dark:text-slate-400"}`}>
+                      {item.month}
+                    </span>
                   </div>
-                  <div className="space-y-1">
-                    <div className="flex justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-400">
-                      <span>Progress</span>
-                      <span className="text-blue-600 dark:text-blue-400">{project.progress}%</span>
-                    </div>
-                    <Progress value={project.progress} className="h-1.5" />
-                  </div>
-                </div>
-              ))
+                ))}
+              </div>
             )}
           </CardContent>
+          <div className="p-5 pt-0 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/40 mt-2">
+            <span>Historical total based on settled & sent invoices</span>
+            <span className="font-semibold text-emerald-600 dark:text-emerald-400 font-mono">
+              Live Aggregation
+            </span>
+          </div>
         </Card>
 
         {/* Financial Breakdown Summary */}
@@ -385,8 +387,56 @@ export default function DashboardPage() {
         </Card>
       </div>
 
-      {/* Row 3: Operational Agenda (Upcoming Meetings & Urgent Tasks) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Row 3: Operational Agenda (Projects Health, Meetings & Urgent Tasks) */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Project Health Monitor */}
+        <Card className="bg-white dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 shadow-sm dark:shadow-none">
+          <CardHeader className="flex flex-row items-center justify-between p-5 pb-3">
+            <div>
+              <CardTitle className="text-base font-bold text-slate-900 dark:text-white">Active Projects Health</CardTitle>
+              <CardDescription className="text-xs text-slate-500 dark:text-slate-400">
+                Milestones & progress completion
+              </CardDescription>
+            </div>
+            <Button variant="ghost" size="sm" asChild className="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-700">
+              <Link href="/projects">View All ({projects.length}) <ChevronRight className="w-3.5 h-3.5 ml-1" /></Link>
+            </Button>
+          </CardHeader>
+          <CardContent className="p-5 pt-0 space-y-3">
+            {isLoading ? (
+              <div className="space-y-3">
+                <Skeleton className="h-12 w-full" />
+                <Skeleton className="h-12 w-full" />
+              </div>
+            ) : projects.length === 0 ? (
+              <div className="text-center py-8 text-xs text-slate-500 dark:text-slate-400 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl">
+                No active projects found. <Button variant="link" size="sm" onClick={() => setActiveModal("project")} className="text-blue-600 dark:text-blue-400 p-0 h-auto text-xs">Create project</Button>
+              </div>
+            ) : (
+              projects.slice(0, 3).map((project) => (
+                <div key={project.id} className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80 space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="truncate">
+                      <h4 className="text-xs font-bold text-slate-900 dark:text-white truncate">{project.name}</h4>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{project.clientName || "Direct Client"}</p>
+                    </div>
+                    <Badge variant={project.status === "ACTIVE" ? "default" : "secondary"} className="text-[10px] shrink-0">
+                      {project.status}
+                    </Badge>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-400">
+                      <span>Progress</span>
+                      <span className="text-blue-600 dark:text-blue-400">{project.progress}%</span>
+                    </div>
+                    <Progress value={project.progress} className="h-1.5" />
+                  </div>
+                </div>
+              ))
+            )}
+          </CardContent>
+        </Card>
+
         {/* Upcoming Meetings Panel */}
         <Card className="bg-white dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 shadow-sm dark:shadow-none">
           <CardHeader className="flex flex-row items-center justify-between p-5 pb-3">

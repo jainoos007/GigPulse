@@ -17,6 +17,15 @@ import { Meeting } from "@/features/meetings/types/meeting.types";
 import { Invoice, InvoiceMetrics } from "@/features/invoices/types/invoice.types";
 import { Proposal } from "@/features/proposals/types/proposal.types";
 
+export interface MonthlyRevenueData {
+  month: string;
+  year: number;
+  amount: number;
+  heightPct: string;
+  formattedAmount: string;
+  isCurrent: boolean;
+}
+
 export interface DashboardStats {
   totalClients: number;
   totalLeads: number;
@@ -30,6 +39,7 @@ export interface DashboardStats {
   pendingRevenue: number;
   overdueAmount: number;
   acceptedProposalsCount: number;
+  momGrowthPercentage: number;
 }
 
 export function useDashboardData() {
@@ -103,6 +113,61 @@ export function useDashboardData() {
 
   const acceptedProposalsCount = proposals.filter((pr) => pr.status === "ACCEPTED").length;
 
+  // 6-Month Historical Revenue Calculation
+  const now = new Date();
+  const past6Months: { month: string; year: number; monthIdx: number; amount: number; isCurrent: boolean }[] = [];
+
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    const monthName = d.toLocaleString("default", { month: "short" });
+    past6Months.push({
+      month: monthName,
+      year: d.getFullYear(),
+      monthIdx: d.getMonth(),
+      amount: 0,
+      isCurrent: i === 0,
+    });
+  }
+
+  invoices.forEach((inv) => {
+    if (inv.status === "PAID" || inv.status === "SENT") {
+      const invDate = new Date(inv.updatedAt || inv.createdAt);
+      const mIdx = invDate.getMonth();
+      const y = invDate.getFullYear();
+      const target = past6Months.find((item) => item.monthIdx === mIdx && item.year === y);
+      if (target) {
+        target.amount += inv.totalAmount || inv.amount || 0;
+      }
+    }
+  });
+
+  const maxAmount = Math.max(...past6Months.map((m) => m.amount), 1);
+
+  const monthlyRevenueTrend: MonthlyRevenueData[] = past6Months.map((item) => {
+    const pct = Math.max(18, Math.round((item.amount / maxAmount) * 100));
+    const formattedAmount =
+      item.amount >= 1000
+        ? `$${(item.amount / 1000).toFixed(1)}k`
+        : `$${item.amount.toFixed(0)}`;
+    return {
+      month: item.month,
+      year: item.year,
+      amount: item.amount,
+      heightPct: `${pct}%`,
+      formattedAmount,
+      isCurrent: item.isCurrent,
+    };
+  });
+
+  const currMonthVal = past6Months[5]?.amount || 0;
+  const prevMonthVal = past6Months[4]?.amount || 0;
+  let momGrowthPercentage = 0;
+  if (prevMonthVal > 0) {
+    momGrowthPercentage = Math.round(((currMonthVal - prevMonthVal) / prevMonthVal) * 100);
+  } else if (currMonthVal > 0) {
+    momGrowthPercentage = 100;
+  }
+
   const stats: DashboardStats = {
     totalClients,
     totalLeads,
@@ -116,6 +181,7 @@ export function useDashboardData() {
     pendingRevenue: invoiceMetrics?.pendingRevenue || 0,
     overdueAmount: invoiceMetrics?.overdueAmount || 0,
     acceptedProposalsCount,
+    momGrowthPercentage,
   };
 
   return {
@@ -131,5 +197,6 @@ export function useDashboardData() {
     proposals,
     upcomingMeetings,
     pendingTasks,
+    monthlyRevenueTrend,
   };
 }
