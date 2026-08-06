@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { LoginForm } from "@/features/auth/components/LoginForm";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Logo } from "@/components/ui/Logo";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function LoginPage() {
   const { user, isLoading, fetchCurrentUser } = useAuth();
@@ -22,8 +24,11 @@ export default function LoginPage() {
 
   if (isLoading || user) {
     return (
-      <main className="min-h-screen w-full flex items-center justify-center p-4 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
-        <div className="w-8 h-8 rounded-full border-2 border-blue-600 border-t-transparent animate-spin" />
+      <main className="min-h-screen w-full flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 space-y-4">
+        <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center p-2 shadow-md shadow-blue-500/10">
+          <Logo className="w-full h-full animate-pulse" />
+        </div>
+        <Skeleton className="h-4 w-32 rounded-full" />
       </main>
     );
   }
