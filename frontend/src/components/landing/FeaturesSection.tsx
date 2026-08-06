@@ -15,6 +15,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { FadeIn } from "@/components/landing/FadeIn";
 
 export function FeaturesSection() {
   const features = [
@@ -101,51 +102,52 @@ export function FeaturesSection() {
     <section className="py-20 sm:py-32 bg-slate-50 dark:bg-slate-950 relative border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-200" id="features">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Header */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <Badge variant="outline" className="border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 text-xs">
-            Full Suite Capabilities
-          </Badge>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Everything You Need to Manage Your Freelance Operations
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
-            Integrated modules designed to handle the complete end-to-end freelancer workflow without third-party friction.
-          </p>
-        </div>
+        <FadeIn direction="up">
+          <div className="text-center space-y-4 max-w-3xl mx-auto">
+            <Badge variant="outline" className="border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 text-xs">
+              Full Suite Capabilities
+            </Badge>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Everything You Need to Manage Your Freelance Operations
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
+              Integrated modules designed to handle the complete end-to-end freelancer workflow without third-party friction.
+            </p>
+          </div>
+        </FadeIn>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feat) => {
+          {features.map((feat, index) => {
             const Icon = feat.icon;
             return (
-              <div
-                key={feat.title}
-                className="group relative bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl dark:shadow-none backdrop-blur-md flex flex-col justify-between"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feat.color} border flex items-center justify-center`}>
-                      <Icon className="w-6 h-6" />
+              <FadeIn key={feat.title} delay={index * 0.05} direction="up" className="h-full">
+                <div className="group relative bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl dark:shadow-none backdrop-blur-md flex flex-col justify-between h-full">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feat.color} border flex items-center justify-center`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <span className="text-[11px] font-mono font-semibold text-slate-600 dark:text-slate-400 px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50">
+                        {feat.tag}
+                      </span>
                     </div>
-                    <span className="text-[11px] font-mono font-semibold text-slate-600 dark:text-slate-400 px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50">
-                      {feat.tag}
-                    </span>
+
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors flex items-center gap-1.5">
+                      {feat.title}
+                    </h3>
+
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                      {feat.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors flex items-center gap-1.5">
-                    {feat.title}
-                  </h3>
-
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {feat.description}
-                  </p>
+                  <div className="pt-6 flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span>Explore capability</span>
+                    <ArrowUpRight className="w-4 h-4 ml-1" />
+                  </div>
                 </div>
-
-                <div className="pt-6 flex items-center text-xs font-semibold text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>Explore capability</span>
-                  <ArrowUpRight className="w-4 h-4 ml-1" />
-                </div>
-              </div>
+              </FadeIn>
             );
           })}
         </div>

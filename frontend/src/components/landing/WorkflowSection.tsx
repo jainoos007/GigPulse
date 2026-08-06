@@ -2,6 +2,7 @@
 
 import { UserPlus, UserCheck, FolderKanban, CheckSquare, FileSpreadsheet, DollarSign, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { FadeIn } from "@/components/landing/FadeIn";
 
 export function WorkflowSection() {
   const steps = [
@@ -53,39 +54,43 @@ export function WorkflowSection() {
     <section className="py-20 sm:py-32 bg-slate-50 dark:bg-slate-950 relative overflow-hidden border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-200" id="workflow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Header */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <Badge variant="outline" className="border-indigo-500/30 text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-3.5 py-1 text-xs">
-            End-To-End Application Workflow
-          </Badge>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            How Data Flows Through FreelanceFlow
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
-            Experience a continuous lifecycle where lead records convert into clients, projects, tasks, invoices, and payouts without data re-entry.
-          </p>
-        </div>
+        <FadeIn direction="up">
+          <div className="text-center space-y-4 max-w-3xl mx-auto">
+            <Badge variant="outline" className="border-indigo-500/30 text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-3.5 py-1 text-xs">
+              End-To-End Application Workflow
+            </Badge>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              How Data Flows Through FreelanceFlow
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
+              Experience a continuous lifecycle where lead records convert into clients, projects, tasks, invoices, and payouts without data re-entry.
+            </p>
+          </div>
+        </FadeIn>
 
         {/* Workflow Breadcrumb Indicator */}
-        <div className="hidden lg:flex items-center justify-center gap-2 py-3 px-6 bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-full max-w-4xl mx-auto text-xs font-mono text-slate-700 dark:text-slate-300 font-semibold shadow-md dark:shadow-xl">
-          <span className="text-blue-600 dark:text-blue-400">Lead</span>
-          <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-          <span className="text-indigo-600 dark:text-indigo-400">Client</span>
-          <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-          <span className="text-purple-600 dark:text-purple-400">Project</span>
-          <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-          <span className="text-cyan-600 dark:text-cyan-400">Tasks</span>
-          <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-          <span className="text-amber-600 dark:text-amber-400">Invoice</span>
-          <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-          <span className="text-emerald-600 dark:text-emerald-400">Payment</span>
-        </div>
+        <FadeIn delay={0.1} direction="up">
+          <div className="hidden lg:flex items-center justify-center gap-2 py-3 px-6 bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-full max-w-4xl mx-auto text-xs font-mono text-slate-700 dark:text-slate-300 font-semibold shadow-md dark:shadow-xl">
+            <span className="text-blue-600 dark:text-blue-400">Lead</span>
+            <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
+            <span className="text-indigo-600 dark:text-indigo-400">Client</span>
+            <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
+            <span className="text-purple-600 dark:text-purple-400">Project</span>
+            <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
+            <span className="text-cyan-600 dark:text-cyan-400">Tasks</span>
+            <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
+            <span className="text-amber-600 dark:text-amber-400">Invoice</span>
+            <ArrowRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
+            <span className="text-emerald-600 dark:text-emerald-400">Payment</span>
+          </div>
+        </FadeIn>
 
         {/* Timeline Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 relative">
           {steps.map((s, index) => {
             const Icon = s.icon;
             return (
-              <div key={s.step} className="relative group">
+              <FadeIn key={s.step} delay={index * 0.08} direction="up" className="relative group h-full">
                 <div className="h-full bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 rounded-2xl p-5 space-y-4 flex flex-col justify-between backdrop-blur-md hover:-translate-y-1 transition-all duration-300 shadow-md dark:shadow-none">
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
@@ -107,7 +112,7 @@ export function WorkflowSection() {
                     <ArrowRight className="w-5 h-5 text-slate-400 dark:text-slate-600" />
                   </div>
                 )}
-              </div>
+              </FadeIn>
             );
           })}
         </div>

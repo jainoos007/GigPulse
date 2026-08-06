@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { FadeIn } from "@/components/landing/FadeIn";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle2,
@@ -27,70 +29,80 @@ export function HeroSection() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 z-10">
         {/* Category Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm dark:shadow-xl backdrop-blur-md hover:border-blue-500/50 transition-colors">
-          <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[11px] px-2.5 py-0.5 rounded-full border-none font-semibold">
-            FREELANCE OPERATING SYSTEM
-          </Badge>
-          <span>All-in-One CRM, Tasks & Invoicing</span>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-        </div>
+        <FadeIn delay={0.1} direction="down">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm dark:shadow-xl backdrop-blur-md hover:border-blue-500/50 transition-colors">
+            <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[11px] px-2.5 py-0.5 rounded-full border-none font-semibold">
+              FREELANCE OPERATING SYSTEM
+            </Badge>
+            <span>All-in-One CRM, Tasks & Invoicing</span>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+          </div>
+        </FadeIn>
 
         {/* Headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-5xl mx-auto">
-          Manage Clients, Projects, Tasks, Invoices & Meetings —{" "}
-          <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 dark:from-blue-400 dark:via-indigo-300 dark:to-purple-400 bg-clip-text text-transparent">
-            All in One Place.
-          </span>
-        </h1>
+        <FadeIn delay={0.2} direction="up">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] max-w-5xl mx-auto">
+            Manage Clients, Projects, Tasks, Invoices & Meetings —{" "}
+            <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 dark:from-blue-400 dark:via-indigo-300 dark:to-purple-400 bg-clip-text text-transparent">
+              All in One Place.
+            </span>
+          </h1>
+        </FadeIn>
 
         {/* Supporting Description */}
-        <p className="text-slate-600 dark:text-slate-400 text-lg sm:text-xl max-w-3xl mx-auto font-normal leading-relaxed">
-          A modern CRM built for freelancers to manage clients, projects, tasks, invoices, and meetings in one place.
-        </p>
+        <FadeIn delay={0.3} direction="up">
+          <p className="text-slate-600 dark:text-slate-400 text-lg sm:text-xl max-w-3xl mx-auto font-normal leading-relaxed">
+            A modern CRM built for freelancers to manage clients, projects, tasks, invoices, and meetings in one place.
+          </p>
+        </FadeIn>
 
         {/* Action CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-          <Button
-            size="lg"
-            asChild
-            className="w-full sm:w-auto h-13 px-8 text-base font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-xl"
-          >
-            <Link href="/login" className="flex items-center gap-2 justify-center">
-              Launch Application <ArrowRight className="w-5 h-5" />
-            </Link>
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            asChild
-            className="w-full sm:w-auto h-13 px-8 text-base font-semibold border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white rounded-xl backdrop-blur-md"
-          >
-            <a href="#features" className="flex items-center gap-2 justify-center">
-              Explore Features
-            </a>
-          </Button>
-        </div>
+        <FadeIn delay={0.4} direction="up">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <Button
+              size="lg"
+              asChild
+              className="w-full sm:w-auto h-13 px-8 text-base font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-xl"
+            >
+              <Link href="/login" className="flex items-center gap-2 justify-center">
+                Launch Application <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+              className="w-full sm:w-auto h-13 px-8 text-base font-semibold border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900/60 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white rounded-xl backdrop-blur-md"
+            >
+              <a href="#features" className="flex items-center gap-2 justify-center">
+                Explore Features
+              </a>
+            </Button>
+          </div>
+        </FadeIn>
 
         {/* User / Product Benefits Highlights Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium pt-2">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            <span>Client & Lead CRM</span>
+        <FadeIn delay={0.5} direction="up">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium pt-2">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <span>Client & Lead CRM</span>
+            </div>
+            <div className="hidden sm:block text-slate-300 dark:text-slate-700">•</div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <span>Automated PDF Invoices</span>
+            </div>
+            <div className="hidden sm:block text-slate-300 dark:text-slate-700">•</div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+              <span>Financial Analytics</span>
+            </div>
           </div>
-          <div className="hidden sm:block text-slate-300 dark:text-slate-700">•</div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-            <span>Automated PDF Invoices</span>
-          </div>
-          <div className="hidden sm:block text-slate-300 dark:text-slate-700">•</div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-            <span>Financial Analytics</span>
-          </div>
-        </div>
+        </FadeIn>
 
         {/* High-Fidelity Dashboard Mockup */}
-        <div className="pt-10 max-w-6xl mx-auto">
+        <FadeIn delay={0.6} direction="up" className="pt-10 max-w-6xl mx-auto">
           <div className="relative rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white/90 dark:bg-slate-900/90 shadow-2xl shadow-slate-200/50 dark:shadow-blue-950/50 backdrop-blur-2xl overflow-hidden p-2 sm:p-4 group">
             {/* Top Window Control Bar */}
             <div className="flex items-center justify-between px-4 py-3 bg-slate-100 dark:bg-slate-950/80 rounded-t-xl border-b border-slate-200 dark:border-slate-800/80 mb-3">
@@ -217,7 +229,7 @@ export function HeroSection() {
               </div>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );
