@@ -3,7 +3,9 @@ import { config } from "./config/environment";
 import prisma from "./database/prisma";
 
 const server = app.listen(config.port, () => {
-  console.log(`🚀 FreelanceFlow Backend API running on http://localhost:${config.port} [${config.nodeEnv}]`);
+  console.log(
+    `GigPulse Backend API running on http://localhost:${config.port} [${config.nodeEnv}]`,
+  );
 });
 
 const gracefulShutdown = async (signal: string) => {
