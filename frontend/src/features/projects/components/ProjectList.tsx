@@ -6,7 +6,7 @@ import { Project } from "../types/project.types";
 import { ProjectCard } from "./ProjectCard";
 import { CreateProjectModal } from "./CreateProjectModal";
 import { EditProjectModal } from "./EditProjectModal";
-import { Search, Plus, Briefcase, Filter } from "lucide-react";
+import { Search, Plus, Briefcase, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -37,6 +37,23 @@ export const ProjectList: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
 
+  const statusOptions = [
+    { id: "ALL", label: "All Statuses", color: "bg-slate-400" },
+    { id: "PLANNING", label: "Planning", color: "bg-blue-400" },
+    { id: "ACTIVE", label: "Active", color: "bg-emerald-500" },
+    { id: "ON_HOLD", label: "On Hold", color: "bg-amber-500" },
+    { id: "COMPLETED", label: "Completed", color: "bg-blue-600" },
+    { id: "CANCELLED", label: "Cancelled", color: "bg-rose-500" },
+  ];
+
+  const priorityOptions = [
+    { id: "ALL", label: "All Priorities", color: "bg-slate-400" },
+    { id: "LOW", label: "Low", color: "bg-slate-400" },
+    { id: "MEDIUM", label: "Medium", color: "bg-blue-500" },
+    { id: "HIGH", label: "High", color: "bg-amber-500" },
+    { id: "URGENT", label: "Urgent", color: "bg-rose-500" },
+  ];
+
   return (
     <div className="space-y-6">
       {/* Header Bar */}
@@ -48,61 +65,139 @@ export const ProjectList: React.FC = () => {
 
         <Button
           onClick={() => setIsModalOpen(true)}
-          className="gap-2 text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white"
+          className="gap-2 text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white rounded-xl shadow-sm hover:shadow"
         >
           <Plus className="w-4 h-4" /> Create Project
         </Button>
       </div>
 
       {/* Filter & Search Bar */}
-      <Card className="bg-white/80 dark:bg-slate-900/60 p-4 border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none">
-        <div className="flex flex-col md:flex-row items-center gap-4">
+      <Card className="bg-white/80 dark:bg-slate-900/60 p-3.5 sm:p-4 border-slate-200/80 dark:border-slate-800 shadow-sm backdrop-blur-md space-y-3 transition-all">
+        <div className="flex flex-col md:flex-row items-center gap-3">
           <div className="relative flex-1 w-full">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 transition-colors" />
             <Input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search projects by name or description..."
-              className="pl-10 bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
+              className="pl-10 pr-9 h-10 bg-slate-50/80 dark:bg-slate-950/80 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-xs sm:text-sm placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-all"
             />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-1 rounded-md"
+                title="Clear search"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
-            <Filter className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
-            <Select
-              value={statusFilter || "ALL"}
-              onValueChange={(val) => setStatusFilter(val === "ALL" ? "" : val)}
-            >
-              <SelectTrigger className="w-[150px] bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                <SelectValue placeholder="All Statuses" />
-              </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                <SelectItem value="ALL">All Statuses</SelectItem>
-                <SelectItem value="PLANNING">Planning</SelectItem>
-                <SelectItem value="ACTIVE">Active</SelectItem>
-                <SelectItem value="ON_HOLD">On Hold</SelectItem>
-                <SelectItem value="COMPLETED">Completed</SelectItem>
-                <SelectItem value="CANCELLED">Cancelled</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto shrink-0">
+            <div className="relative flex-1 sm:flex-initial sm:w-[170px]">
+              <Select
+                value={statusFilter || "ALL"}
+                onValueChange={(val) => setStatusFilter(val === "ALL" ? "" : val)}
+              >
+                <SelectTrigger className="h-10 w-full bg-slate-50/80 dark:bg-slate-950/80 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-xs sm:text-sm font-medium">
+                  <SelectValue placeholder="All Statuses" />
+                </SelectTrigger>
+                <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl shadow-xl">
+                  {statusOptions.map((opt) => (
+                    <SelectItem key={opt.id} value={opt.id}>
+                      <span className="flex items-center gap-2">
+                        <span className={`w-2 h-2 rounded-full ${opt.color}`} />
+                        <span>{opt.label}</span>
+                      </span>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-            <Select
-              value={priorityFilter || "ALL"}
-              onValueChange={(val) => setPriorityFilter(val === "ALL" ? "" : val)}
-            >
-              <SelectTrigger className="w-[150px] bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                <SelectValue placeholder="All Priorities" />
-              </SelectTrigger>
-              <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                <SelectItem value="ALL">All Priorities</SelectItem>
-                <SelectItem value="LOW">Low</SelectItem>
-                <SelectItem value="MEDIUM">Medium</SelectItem>
-                <SelectItem value="HIGH">High</SelectItem>
-                <SelectItem value="URGENT">Urgent</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="relative flex-1 sm:flex-initial sm:w-[170px]">
+              <Select
+                value={priorityFilter || "ALL"}
+                onValueChange={(val) => setPriorityFilter(val === "ALL" ? "" : val)}
+              >
+                <SelectTrigger className="h-10 w-full bg-slate-50/80 dark:bg-slate-950/80 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-xs sm:text-sm font-medium">
+                  <SelectValue placeholder="All Priorities" />
+                </SelectTrigger>
+                <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-xl shadow-xl">
+                  {priorityOptions.map((opt) => (
+                    <SelectItem key={opt.id} value={opt.id}>
+                      <span className="flex items-center gap-2">
+                        <span className={`w-2 h-2 rounded-full ${opt.color}`} />
+                        <span>{opt.label}</span>
+                      </span>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
+
+        {/* Active Filter Chips Bar */}
+        {(search || statusFilter || priorityFilter) && (
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800/80 text-xs">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-slate-400 dark:text-slate-500 font-medium">Active filters:</span>
+
+              {search && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-900/50 font-medium text-[11px]">
+                  <span>Search: &quot;{search}&quot;</span>
+                  <button
+                    onClick={() => setSearch("")}
+                    className="hover:text-blue-900 dark:hover:text-white transition-colors"
+                    title="Remove search filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {statusFilter && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-900/50 font-medium text-[11px]">
+                  <span>Status: {statusFilter}</span>
+                  <button
+                    onClick={() => setStatusFilter("")}
+                    className="hover:text-emerald-900 dark:hover:text-white transition-colors"
+                    title="Remove status filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+
+              {priorityFilter && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-200/60 dark:border-amber-900/50 font-medium text-[11px]">
+                  <span>Priority: {priorityFilter}</span>
+                  <button
+                    onClick={() => setPriorityFilter("")}
+                    className="hover:text-amber-900 dark:hover:text-white transition-colors"
+                    title="Remove priority filter"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+            </div>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setSearch("");
+                setStatusFilter("");
+                setPriorityFilter("");
+              }}
+              className="h-7 px-2.5 text-[11px] font-semibold text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-colors shrink-0"
+            >
+              Clear all filters
+            </Button>
+          </div>
+        )}
       </Card>
 
       {/* Project Cards Grid */}
