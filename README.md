@@ -1,5 +1,7 @@
 # GigPulse – Operating System for Freelancers
 
+🌐 **Live Demo**: [https://gigpulse.jainoos.xyz/](https://gigpulse.jainoos.xyz/)
+
 **GigPulse** is a modern, full-stack Customer Relationship Management (CRM) & Operating System designed specifically for freelancers to streamline clients, leads, projects, tasks, meetings, proposals, invoices, and payments in one unified platform.
 
 ---
