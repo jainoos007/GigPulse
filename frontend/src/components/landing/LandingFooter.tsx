@@ -35,7 +35,6 @@ export function LandingFooter() {
               <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
               <li><a href="#showcase" className="hover:text-white transition-colors">Showcase</a></li>
               <li><a href="#workflow" className="hover:text-white transition-colors">Workflow</a></li>
-              <li><a href="#architecture" className="hover:text-white transition-colors">Architecture</a></li>
             </ul>
           </div>
 
@@ -49,8 +48,8 @@ export function LandingFooter() {
                 </a>
               </li>
               <li>
-                <a href="#architecture" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5" /> Documentation
+                <a href="#showcase" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <FileText className="w-3.5 h-3.5" /> Interactive Showcase
                 </a>
               </li>
               <li>
