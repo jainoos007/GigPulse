@@ -14,7 +14,6 @@ export function LandingNav() {
     { label: "Features", href: "#features" },
     { label: "Showcase", href: "#showcase" },
     { label: "Workflow", href: "#workflow" },
-    { label: "Tech Stack", href: "#tech-stack" },
     { label: "Architecture", href: "#architecture" },
   ];
 

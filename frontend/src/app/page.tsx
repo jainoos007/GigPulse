@@ -4,7 +4,6 @@ import { AboutSection } from "@/components/landing/AboutSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { ShowcaseSection } from "@/components/landing/ShowcaseSection";
 import { WorkflowSection } from "@/components/landing/WorkflowSection";
-import { TechStackSection } from "@/components/landing/TechStackSection";
 import { ArchitectureSection } from "@/components/landing/ArchitectureSection";
 import { FinalCTASection } from "@/components/landing/FinalCTASection";
 import { LandingFooter } from "@/components/landing/LandingFooter";
@@ -19,7 +18,6 @@ export default function Home() {
         <FeaturesSection />
         <ShowcaseSection />
         <WorkflowSection />
-        <TechStackSection />
         <ArchitectureSection />
         <FinalCTASection />
       </main>
