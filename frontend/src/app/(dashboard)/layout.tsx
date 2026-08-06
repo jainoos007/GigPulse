@@ -147,13 +147,13 @@ export default function DashboardLayout({
       {/* Desktop Sidebar */}
       <aside data-no-scroll-lock="true" className="hidden lg:flex w-64 flex-col border-r border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur shrink-0 fixed inset-y-0 z-40 transition-colors">
         <div className="p-6 flex items-center justify-between border-b border-slate-200 dark:border-slate-800/80">
-          <Link href="/" className="flex items-center gap-3 group" title="Go to FreelanceFlow landing page">
+          <Link href="/" className="flex items-center gap-3 group" title="Go to GigPulse landing page">
             <div className="w-9 h-9 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-1.5 shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform duration-200">
               <Logo className="w-full h-full" />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white leading-none group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                FreelanceFlow
+                GigPulse
               </span>
               <span className="text-[10px] text-slate-500 font-medium tracking-wide uppercase mt-1">
                 CRM Dashboard
@@ -206,7 +206,7 @@ export default function DashboardLayout({
                     <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center p-1.5">
                       <Logo className="w-full h-full" />
                     </div>
-                    <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white">FreelanceFlow</span>
+                    <span className="font-bold text-base tracking-tight text-slate-900 dark:text-white">GigPulse</span>
                   </Link>
                 </div>
                 <div className="py-6">

@@ -11,7 +11,7 @@ import { HelpCircle } from "lucide-react";
 export function FAQSection() {
   const faqs = [
     {
-      q: "Is FreelanceFlow really free to start?",
+      q: "Is GigPulse really free to start?",
       a: "Yes! Our Starter plan is 100% free forever with no credit card required. You get up to 5 active client profiles, pipeline tracking, and manual invoice generation out of the box.",
     },
     {
@@ -20,11 +20,11 @@ export function FAQSection() {
     },
     {
       q: "How does invoice generation work?",
-      a: "FreelanceFlow enables you to generate professional PDF invoices with custom line items, tax rates, payment terms, and notes in 1-click. You can track payment status right from your financial dashboard.",
+      a: "GigPulse enables you to generate professional PDF invoices with custom line items, tax rates, payment terms, and notes in 1-click. You can track payment status right from your financial dashboard.",
     },
     {
       q: "Is my client data safe and encrypted?",
-      a: "Security is our core foundation. FreelanceFlow uses industry-standard JWT authentication, httpOnly secure cookie sessions, and encrypted database backups to ensure your business data is 100% protected.",
+      a: "Security is our core foundation. GigPulse uses industry-standard JWT authentication, httpOnly secure cookie sessions, and encrypted database backups to ensure your business data is 100% protected.",
     },
     {
       q: "Can I manage retainer clients and recurring projects?",
@@ -48,7 +48,7 @@ export function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            Everything you need to know about setting up and running your business on FreelanceFlow.
+            Everything you need to know about setting up and running your business on GigPulse.
           </p>
         </div>
 

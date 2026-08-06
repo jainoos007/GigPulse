@@ -21,7 +21,7 @@ export function LandingFooter() {
             <div className="w-8 h-8 rounded-lg bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-1 shadow-md shadow-blue-500/10 group-hover:scale-105 transition-transform">
               <Logo className="w-full h-full" />
             </div>
-            <span className="font-bold text-base text-slate-900 dark:text-white tracking-tight">FreelanceFlow</span>
+            <span className="font-bold text-base text-slate-900 dark:text-white tracking-tight">GigPulse</span>
           </Link>
 
           {/* Navigation Links */}
@@ -39,17 +39,17 @@ export function LandingFooter() {
 
           {/* Contact Link */}
           <a
-            href="mailto:contact@freelanceflow.dev"
+            href="mailto:contact@gigpulse.dev"
             className="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1.5"
           >
             <Mail className="w-3.5 h-3.5" />
-            <span>contact@freelanceflow.dev</span>
+            <span>contact@gigpulse.dev</span>
           </a>
         </div>
 
         {/* Divider & Copyright */}
         <div className="pt-6 border-t border-slate-200 dark:border-slate-900/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-500">
-          <p>© {new Date().getFullYear()} FreelanceFlow CRM. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} GigPulse CRM. All rights reserved.</p>
           <div className="flex items-center gap-2 text-[11px] text-slate-500">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
             <span>All Systems Operational</span>

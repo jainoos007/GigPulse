@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FreelanceFlow – CRM for Freelancers",
+  title: "GigPulse – Workspace OS for Freelancers",
   description: "Manage clients, projects, invoices, meetings, tasks, and files from a single platform.",
   icons: {
     icon: "/icon.svg",

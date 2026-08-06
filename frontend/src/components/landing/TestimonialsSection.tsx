@@ -11,7 +11,7 @@ export function TestimonialsSection() {
       handle: "@marcusdesign",
       avatar: "MV",
       quote:
-        "FreelanceFlow completely transformed how I manage my design studio. I used to lose 5-6 hours a week toggling between Notion and Excel. Now everything from lead intake to PDF invoicing happens in one sleek app.",
+        "GigPulse completely transformed how I manage my design studio. I used to lose 5-6 hours a week toggling between Notion and Excel. Now everything from lead intake to PDF invoicing happens in one sleek app.",
       rating: 5,
     },
     {
@@ -29,7 +29,7 @@ export function TestimonialsSection() {
       handle: "@arivera",
       avatar: "AR",
       quote:
-        "As an independent consultant running a 3-person creative team, keeping track of client contracts and project tasks was chaos. FreelanceFlow brought total clarity.",
+        "As an independent consultant running a 3-person creative team, keeping track of client contracts and project tasks was chaos. GigPulse brought total clarity.",
       rating: 5,
     },
   ];
@@ -43,10 +43,10 @@ export function TestimonialsSection() {
             Loved By Freelancers
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Hear From Independent Creators Winning with FreelanceFlow
+            Hear From Independent Creators Winning with GigPulse
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            Join thousands of designers, developers, writers, and agency owners who trust FreelanceFlow daily.
+            Join thousands of designers, developers, writers, and agency owners who trust GigPulse daily.
           </p>
         </div>
 

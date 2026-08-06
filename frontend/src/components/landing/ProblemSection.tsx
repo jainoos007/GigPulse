@@ -38,7 +38,7 @@ export function ProblemSection() {
             Freelancing Shouldn't Feel Like Endless Admin Chaos
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            Traditional tools force you to switch between 5 different apps just to manage a single client. FreelanceFlow brings total clarity back to your work.
+            Traditional tools force you to switch between 5 different apps just to manage a single client. GigPulse brings total clarity back to your work.
           </p>
         </div>
 
@@ -59,17 +59,17 @@ export function ProblemSection() {
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-rose-500/5 border border-rose-500/15">
                   <XCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
                   <div className="space-y-0.5">
-                    <span className="text-xs font-bold text-rose-400 uppercase tracking-wider">Without FreelanceFlow</span>
+                    <span className="text-xs font-bold text-rose-400 uppercase tracking-wider">Without GigPulse</span>
                     <p className="text-sm text-slate-300">{item.bad}</p>
                   </div>
                 </div>
 
-                {/* The FreelanceFlow Way */}
+                {/* The GigPulse Way */}
                 <div className="flex items-start gap-3 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
                   <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                   <div className="space-y-0.5">
                     <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
-                      <Sparkles className="w-3 h-3" /> With FreelanceFlow
+                      <Sparkles className="w-3 h-3" /> With GigPulse
                     </span>
                     <p className="text-sm text-slate-200">{item.good}</p>
                   </div>

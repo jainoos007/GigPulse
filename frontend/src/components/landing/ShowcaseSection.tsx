@@ -42,7 +42,7 @@ export function ShowcaseSection() {
               Explore the Core Application Interfaces
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
-              Switch between the screens below to experience FreelanceFlow's responsive UI modules.
+              Switch between the screens below to experience GigPulse's responsive UI modules.
             </p>
           </div>
         </FadeIn>

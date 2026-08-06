@@ -119,7 +119,7 @@ export function HeroSection() {
                 <div className="w-3 h-3 rounded-full bg-rose-500/80" />
                 <div className="w-3 h-3 rounded-full bg-amber-500/80" />
                 <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                <span className="ml-2 text-xs font-mono text-slate-500 dark:text-slate-400">freelanceflow.app/dashboard</span>
+                <span className="ml-2 text-xs font-mono text-slate-500 dark:text-slate-400">gigpulse.app/dashboard</span>
               </div>
               <div className="flex items-center gap-3 text-xs text-slate-600 dark:text-slate-400">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">

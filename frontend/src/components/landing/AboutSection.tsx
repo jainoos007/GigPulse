@@ -16,13 +16,13 @@ export function AboutSection() {
         <FadeIn direction="up">
           <div className="text-center space-y-4 max-w-3xl mx-auto">
             <Badge variant="outline" className="border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3.5 py-1 text-xs">
-              <Info className="w-3.5 h-3.5 mr-1.5" /> About FreelanceFlow
+              <Info className="w-3.5 h-3.5 mr-1.5" /> About GigPulse
             </Badge>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Built to Solve Real Freelance Fragmentation
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg leading-relaxed">
-              FreelanceFlow was designed to replace disjointed spreadsheet trackers, standalone invoice apps, and loose email threads with a single unified operating platform.
+              GigPulse was designed to replace disjointed spreadsheet trackers, standalone invoice apps, and loose email threads with a single unified operating platform.
             </p>
           </div>
         </FadeIn>
@@ -37,10 +37,10 @@ export function AboutSection() {
                   <Zap className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  Why FreelanceFlow Was Built
+                  Why GigPulse Was Built
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Freelancers waste hours every week context switching between separate apps for CRM, task management, invoice generation, and scheduling. FreelanceFlow bridges these modules into one seamless system.
+                  Freelancers waste hours every week context switching between separate apps for CRM, task management, invoice generation, and scheduling. GigPulse bridges these modules into one seamless system.
                 </p>
               </div>
 

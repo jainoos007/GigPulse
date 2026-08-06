@@ -37,7 +37,7 @@ export const LoginForm: React.FC = () => {
     try {
       await login(data);
       toast.success("Welcome back!", {
-        description: "Successfully signed into your FreelanceFlow workspace.",
+        description: "Successfully signed into your GigPulse workspace.",
       });
     } catch (err: any) {
       toast.error("Sign in failed", {
@@ -51,7 +51,7 @@ export const LoginForm: React.FC = () => {
       <CardHeader className="text-center pb-6">
         <Link
           href="/"
-          title="Go to FreelanceFlow home"
+          title="Go to GigPulse home"
           className="inline-block mx-auto group focus:outline-none"
         >
           <div className="w-12 h-12 rounded-2xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/20 flex items-center justify-center p-2 mb-3 shadow-md shadow-blue-500/10 group-hover:scale-105 group-hover:border-blue-500/40 transition-all duration-200">
@@ -60,7 +60,7 @@ export const LoginForm: React.FC = () => {
         </Link>
         <CardTitle className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Welcome back</CardTitle>
         <CardDescription className="text-slate-600 dark:text-slate-400 text-xs">
-          Sign in to access your FreelanceFlow CRM workspace
+          Sign in to access your GigPulse CRM workspace
         </CardDescription>
       </CardHeader>
 

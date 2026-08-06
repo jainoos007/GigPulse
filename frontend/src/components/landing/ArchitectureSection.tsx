@@ -64,7 +64,7 @@ export function ArchitectureSection() {
             Designed for Scalability & Maintainability
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            Explore the underlying system design and technical architecture that powers FreelanceFlow.
+            Explore the underlying system design and technical architecture that powers GigPulse.
           </p>
         </div>
 

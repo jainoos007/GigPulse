@@ -50,7 +50,7 @@ export function BenefitsSection() {
             Built for Real Freelance Growth
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            FreelanceFlow isn't just software; it's your competitive advantage in a crowded market.
+            GigPulse isn't just software; it's your competitive advantage in a crowded market.
           </p>
         </div>
 

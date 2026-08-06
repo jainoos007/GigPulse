@@ -60,7 +60,7 @@ export function WorkflowSection() {
               End-To-End Application Workflow
             </Badge>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              How Data Flows Through FreelanceFlow
+              How Data Flows Through GigPulse
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
               Experience a continuous lifecycle where lead records convert into clients, projects, tasks, invoices, and payouts without data re-entry.

@@ -60,7 +60,7 @@ export function LandingNav() {
               <Logo className="w-full h-full" />
             </div>
             <span className="font-bold text-lg tracking-tight text-slate-900 dark:text-white">
-              Freelance<span className="text-blue-600 dark:text-blue-500">Flow</span>
+              Gig<span className="text-blue-600 dark:text-blue-500">Pulse</span>
             </span>
           </Link>
 
