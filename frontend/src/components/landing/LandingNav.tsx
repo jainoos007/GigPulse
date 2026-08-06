@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -10,11 +10,9 @@ import { useAuth } from "@/features/auth/hooks/useAuth";
 
 export function LandingNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, fetchCurrentUser } = useAuth();
-
-  useEffect(() => {
-    fetchCurrentUser();
-  }, [fetchCurrentUser]);
+  const { user, isLoading } = useAuth();
+  // Don't render auth-dependent CTAs until we know the auth state
+  const showAuthActions = !isLoading;
 
   const navLinks = [
     { label: "About", href: "#about" },
@@ -58,33 +56,35 @@ export function LandingNav() {
           {/* Action CTAs */}
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            {user ? (
-              <Button
-                asChild
-                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300 rounded-xl"
-              >
-                <Link href="/dashboard" className="flex items-center gap-2">
-                  <LayoutDashboard className="w-4 h-4" /> Go to Dashboard
-                </Link>
-              </Button>
-            ) : (
-              <>
-                <Button
-                  variant="ghost"
-                  asChild
-                  className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent hover:border-slate-200 dark:hover:border-slate-800"
-                >
-                  <Link href="/login">Sign In</Link>
-                </Button>
+            {showAuthActions && (
+              user ? (
                 <Button
                   asChild
-                  className="bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300"
+                  className="bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300 rounded-xl"
                 >
-                  <Link href="/login" className="flex items-center gap-2">
-                    Launch App <ArrowRight className="w-4 h-4" />
+                  <Link href="/dashboard" className="flex items-center gap-2">
+                    <LayoutDashboard className="w-4 h-4" /> Go to Dashboard
                   </Link>
                 </Button>
-              </>
+              ) : (
+                <>
+                  <Button
+                    variant="ghost"
+                    asChild
+                    className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 border border-transparent hover:border-slate-200 dark:hover:border-slate-800"
+                  >
+                    <Link href="/login">Sign In</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    className="bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300"
+                  >
+                    <Link href="/login" className="flex items-center gap-2">
+                      Launch App <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </Button>
+                </>
+              )
             )}
           </div>
 

@@ -20,8 +20,10 @@ interface AuthState {
 const initialState: AuthState = {
   user: null,
   accessToken: typeof window !== "undefined" ? localStorage.getItem("accessToken") : null,
-  isAuthenticated: false,
-  isLoading: true,
+  // If a token is present in localStorage, treat user as likely authenticated
+  // until fetchCurrentUser confirms or denies it. This prevents the login flash.
+  isAuthenticated: typeof window !== "undefined" ? !!localStorage.getItem("accessToken") : false,
+  isLoading: typeof window !== "undefined" ? !!localStorage.getItem("accessToken") : false,
 };
 
 export const authSlice = createSlice({
