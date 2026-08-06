@@ -21,12 +21,14 @@
 ## 🛠️ Technology Stack
 
 ### Backend
+
 - **Framework**: Express.js (v4) with TypeScript
 - **Database ORM**: Prisma ORM (v5) + MySQL
 - **Authentication**: JSON Web Tokens (JWT) & HTTP-Only Cookies
 - **Middleware**: Express Rate Limit, Helmet, CORS, Express Validator / Zod
 
 ### Frontend
+
 - **Framework**: Next.js (v14/v15 App Router) + React + TypeScript
 - **Styling**: Tailwind CSS + Radix UI / shadcn/ui components
 - **State Management**: Redux Toolkit & React Hooks
@@ -38,13 +40,7 @@
 
 ```
 GigPulse/
-├── docs/                      # Comprehensive Documentation
-│   ├── api.md                 # REST API Specification (v1)
-│   ├── architecture.md        # Modular Monolith Architecture
-│   ├── database.md            # Database Schema & Entity Documentation
-│   ├── deployment.md          # Production Deployment & Setup Guide
-│   └── prd.md                 # Product Requirements Document
-│
+|
 ├── backend/                   # Express.js API Monolith
 │   ├── prisma/                # Prisma Schema & Database Seeds
 │   │   ├── schema.prisma      # Models, Enums & Relations
@@ -85,10 +81,12 @@ GigPulse/
 ## ⚡ Quick Start (Local Setup)
 
 ### 1. Prerequisites
+
 - Node.js (v18+)
 - MySQL Server (running on port 3306)
 
 ### 2. Backend Setup
+
 ```bash
 # Navigate to backend
 cd backend
@@ -110,6 +108,7 @@ npm run dev
 ```
 
 ### 3. Frontend Setup
+
 ```bash
 # Navigate to frontend
 cd frontend
@@ -127,13 +126,3 @@ npm run dev
 Visit `http://localhost:3000` in your browser to launch **GigPulse**.
 
 ---
-
-## 📚 Project Documentation Links
-
-For detailed architectural, database, and API specifications, refer to the documentation directory:
-
-- 📖 [Product Requirements Document (PRD)](docs/prd.md)
-- 🏗️ [System Architecture](docs/architecture.md)
-- 🗄️ [Database Schema & Entities](docs/database.md)
-- 🔌 [REST API Documentation](docs/api.md)
-- 🚀 [Deployment Guide](docs/deployment.md)
