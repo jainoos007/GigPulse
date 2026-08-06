@@ -1,6 +1,6 @@
 "use client";
 
-import { Info, Target, Users, Zap, CheckCircle2, ShieldCheck } from "lucide-react";
+import { Info, Target, Users, Zap, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export function AboutSection() {
@@ -14,13 +14,13 @@ export function AboutSection() {
         {/* Section Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <Badge variant="outline" className="border-blue-500/30 text-blue-400 bg-blue-500/10 px-3.5 py-1 text-xs">
-            <Info className="w-3.5 h-3.5 mr-1.5" /> Project Background
+            <Info className="w-3.5 h-3.5 mr-1.5" /> About FreelanceFlow
           </Badge>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Built to Solve Real Freelance Fragmentation
           </h2>
           <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
-            FreelanceFlow was designed as a full-stack engineering solution to replace disjointed spreadsheet trackers, standalone invoice apps, and loose email threads with a single unified operating platform.
+            FreelanceFlow was designed to replace disjointed spreadsheet trackers, standalone invoice apps, and loose email threads with a single unified operating platform.
           </p>
         </div>
 
@@ -35,7 +35,7 @@ export function AboutSection() {
               Why FreelanceFlow Was Built
             </h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Freelancers waste hours every week context switching between separate apps for CRM, task management, invoice generation, and scheduling. FreelanceFlow bridges these modules into one seamless full-stack system.
+              Freelancers waste hours every week context switching between separate apps for CRM, task management, invoice generation, and scheduling. FreelanceFlow bridges these modules into one seamless system.
             </p>
             <ul className="space-y-2 pt-2 text-xs text-slate-300 font-medium">
               <li className="flex items-center gap-2">
@@ -44,7 +44,7 @@ export function AboutSection() {
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Zero dependency on third-party SaaS subscriptions</span>
+                <span>Streamlined client and project management</span>
               </li>
             </ul>
           </div>
@@ -90,7 +90,7 @@ export function AboutSection() {
               </li>
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Contractors needing client 360 records</span>
+                <span>Contractors needing 360° client records</span>
               </li>
             </ul>
           </div>

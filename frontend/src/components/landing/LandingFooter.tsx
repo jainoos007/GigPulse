@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github, FileText, Mail, ShieldCheck } from "lucide-react";
+import { FileText, Mail, ShieldCheck, Zap } from "lucide-react";
 
 export function LandingFooter() {
   return (
@@ -18,40 +18,35 @@ export function LandingFooter() {
               <span className="font-bold text-lg text-white tracking-tight">FreelanceFlow</span>
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              A modern full-stack CRM built for freelancers to manage clients, projects, tasks, invoices, and meetings in one place.
+              A modern CRM built for freelancers to manage clients, projects, tasks, invoices, and meetings in one place.
             </p>
 
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] text-slate-300 font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Full-Stack Portfolio Showcase</span>
+              <span>All Systems Operational</span>
             </div>
           </div>
 
           {/* Quick Navigation */}
           <div className="space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Project Navigation</h4>
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Navigation</h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#about" className="hover:text-white transition-colors">About Project</a></li>
+              <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
               <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#showcase" className="hover:text-white transition-colors">Screen Showcase</a></li>
+              <li><a href="#showcase" className="hover:text-white transition-colors">Showcase</a></li>
               <li><a href="#workflow" className="hover:text-white transition-colors">Workflow</a></li>
               <li><a href="#tech-stack" className="hover:text-white transition-colors">Tech Stack</a></li>
               <li><a href="#architecture" className="hover:text-white transition-colors">Architecture</a></li>
             </ul>
           </div>
 
-          {/* Key Resources (GitHub, Documentation, Contact, License) */}
+          {/* Key Resources */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">Resources</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors flex items-center gap-1.5"
-                >
-                  <Github className="w-3.5 h-3.5" /> GitHub Repository
+                <a href="#features" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <Zap className="w-3.5 h-3.5 text-blue-400" /> Explore Features
                 </a>
               </li>
               <li>
@@ -61,12 +56,12 @@ export function LandingFooter() {
               </li>
               <li>
                 <a href="mailto:contact@freelanceflow.dev" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5" /> Contact Developer
+                  <Mail className="w-3.5 h-3.5" /> Contact Support
                 </a>
               </li>
               <li>
                 <span className="text-slate-400 flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> MIT License
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Privacy & Terms
                 </span>
               </li>
             </ul>
@@ -75,11 +70,8 @@ export function LandingFooter() {
 
         {/* Bottom Copyright */}
         <div className="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} FreelanceFlow Portfolio Project. Built with Next.js, Express, & Prisma.</p>
+          <p>© {new Date().getFullYear()} FreelanceFlow CRM. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 transition-colors">
-              <Github className="w-4 h-4" />
-            </a>
             <a href="mailto:contact@freelanceflow.dev" className="hover:text-slate-300 transition-colors">
               <Mail className="w-4 h-4" />
             </a>

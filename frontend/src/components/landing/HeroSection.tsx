@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
   ArrowRight,
-  Github,
   CheckCircle2,
   TrendingUp,
   Users,
@@ -13,8 +12,8 @@ import {
   Clock,
   DollarSign,
   Layers,
-  Code,
   Sparkles,
+  ChevronRight,
 } from "lucide-react";
 
 export function HeroSection() {
@@ -29,12 +28,13 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:32px_32px] opacity-25 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 z-10">
-        {/* Project Type Badge */}
+        {/* Category Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs sm:text-sm font-medium text-slate-300 shadow-xl backdrop-blur-md hover:border-blue-500/50 transition-colors">
           <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[11px] px-2.5 py-0.5 rounded-full border-none font-semibold">
-            PORTFOLIO SHOWCASE
+            FREELANCE OPERATING SYSTEM
           </Badge>
-          <span>Full Stack Freelance Operating System</span>
+          <span>All-in-One CRM, Tasks & Invoicing</span>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
         </div>
 
         {/* Headline */}
@@ -67,32 +67,27 @@ export function HeroSection() {
             asChild
             className="w-full sm:w-auto h-13 px-8 text-base font-semibold border-slate-800 bg-slate-900/60 hover:bg-slate-900 text-slate-200 hover:text-white rounded-xl backdrop-blur-md border hover:border-slate-700"
           >
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 justify-center"
-            >
-              <Github className="w-4 h-4" /> View GitHub Source
+            <a href="#features" className="flex items-center gap-2 justify-center">
+              Explore Features
             </a>
           </Button>
         </div>
 
-        {/* Technical Highlights Bar */}
+        {/* User / Product Benefits Highlights Bar */}
         <div className="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-400 font-medium pt-2">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-blue-400" />
-            <span>Modular Monolith Architecture</span>
+            <span>Client & Lead CRM</span>
           </div>
           <div className="hidden sm:block text-slate-700">•</div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-indigo-400" />
-            <span>Type-Safe Next.js & Express</span>
+            <span>Automated PDF Invoices</span>
           </div>
           <div className="hidden sm:block text-slate-700">•</div>
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-purple-400" />
-            <span>Production Deployment Ready</span>
+            <span>Financial Analytics</span>
           </div>
         </div>
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { Menu, X, ArrowRight, Github } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 export function LandingNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,7 +32,7 @@ export function LandingNav() {
                 FreelanceFlow
               </span>
               <span className="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-medium -mt-1">
-                Portfolio Showcase
+                CRM for Freelancers
               </span>
             </div>
           </Link>

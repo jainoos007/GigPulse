@@ -1,6 +1,6 @@
 "use client";
 
-import { Code2, Server, Cpu, Database, Shield, Layers, Cloud, Sparkles } from "lucide-react";
+import { Code2, Server, Cpu, Database, Shield, Layers, Cloud } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export function TechStackSection() {
@@ -55,7 +55,7 @@ export function TechStackSection() {
         {/* Section Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <Badge variant="outline" className="border-indigo-500/30 text-indigo-400 bg-indigo-500/10 px-3.5 py-1 text-xs">
-            <Cpu className="w-3.5 h-3.5 mr-1.5" /> Full Stack Stack Showcase
+            <Cpu className="w-3.5 h-3.5 mr-1.5" /> Technology Stack
           </Badge>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Powered by Production-Grade Technologies

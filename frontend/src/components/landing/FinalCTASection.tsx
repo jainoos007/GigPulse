@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, Code, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export function FinalCTASection() {
@@ -25,7 +25,7 @@ export function FinalCTASection() {
           </h2>
 
           <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Test out the live application environment or inspect the full-stack repository code on GitHub.
+            Launch the live application environment and manage your clients, projects, tasks, and invoices seamlessly.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
@@ -44,20 +44,15 @@ export function FinalCTASection() {
               asChild
               className="w-full sm:w-auto h-13 px-8 text-base font-semibold border-slate-800 bg-slate-900/60 hover:bg-slate-900 text-slate-200 hover:text-white rounded-xl"
             >
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2"
-              >
-                <Github className="w-4 h-4" /> View GitHub Repository
+              <a href="#features" className="flex items-center justify-center gap-2">
+                Explore Features
               </a>
             </Button>
           </div>
 
           <div className="flex items-center justify-center gap-2 text-xs text-slate-400 font-medium pt-2">
             <CheckCircle className="w-4 h-4 text-emerald-400" />
-            <span>Open Source Portfolio Project • Full Stack Next.js & Express</span>
+            <span>Enterprise Security • SSL Encrypted • Fast & Reliable</span>
           </div>
         </div>
       </div>
