@@ -25,19 +25,22 @@ export function AboutSection() {
         </div>
 
         {/* 3 Core Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           {/* Pillar 1: Why It Was Built */}
-          <div className="bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 rounded-2xl p-8 space-y-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 group">
-            <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-bold shadow-lg shadow-blue-500/10 group-hover:scale-110 transition-transform">
-              <Zap className="w-6 h-6" />
+          <div className="bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 rounded-2xl p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between h-full">
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-bold shadow-lg shadow-blue-500/10 group-hover:scale-110 transition-transform">
+                <Zap className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                Why FreelanceFlow Was Built
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Freelancers waste hours every week context switching between separate apps for CRM, task management, invoice generation, and scheduling. FreelanceFlow bridges these modules into one seamless system.
+              </p>
             </div>
-            <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
-              Why FreelanceFlow Was Built
-            </h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Freelancers waste hours every week context switching between separate apps for CRM, task management, invoice generation, and scheduling. FreelanceFlow bridges these modules into one seamless system.
-            </p>
-            <ul className="space-y-2 pt-2 text-xs text-slate-300 font-medium">
+
+            <ul className="space-y-2.5 pt-6 mt-6 border-t border-slate-800/60 text-xs text-slate-300 font-medium">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Unified data flow from lead to invoice</span>
@@ -50,17 +53,20 @@ export function AboutSection() {
           </div>
 
           {/* Pillar 2: The Problem It Solves */}
-          <div className="bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 rounded-2xl p-8 space-y-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 group">
-            <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shadow-lg shadow-indigo-500/10 group-hover:scale-110 transition-transform">
-              <Target className="w-6 h-6" />
+          <div className="bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 rounded-2xl p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between h-full">
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold shadow-lg shadow-indigo-500/10 group-hover:scale-110 transition-transform">
+                <Target className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+                The Problem It Solves
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Eliminates untracked client inquiries, missed project deadlines, lost contract assets, manual invoice preparation, and lack of real-time financial visibility.
+              </p>
             </div>
-            <h3 className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
-              The Problem It Solves
-            </h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Eliminates untracked client inquiries, missed project deadlines, lost file assets, manual invoice preparation, and zero financial forecasting.
-            </p>
-            <ul className="space-y-2 pt-2 text-xs text-slate-300 font-medium">
+
+            <ul className="space-y-2.5 pt-6 mt-6 border-t border-slate-800/60 text-xs text-slate-300 font-medium">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Real-time revenue visibility & analytics</span>
@@ -73,17 +79,20 @@ export function AboutSection() {
           </div>
 
           {/* Pillar 3: Who It Is Designed For */}
-          <div className="bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 rounded-2xl p-8 space-y-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 group">
-            <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold shadow-lg shadow-purple-500/10 group-hover:scale-110 transition-transform">
-              <Users className="w-6 h-6" />
+          <div className="bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 rounded-2xl p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 group flex flex-col justify-between h-full">
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold shadow-lg shadow-purple-500/10 group-hover:scale-110 transition-transform">
+                <Users className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">
+                Who It Is Designed For
+              </h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Tailored for independent software developers, UI/UX designers, copywriters, digital consultants, and freelance agency owners managing multiple active accounts.
+              </p>
             </div>
-            <h3 className="text-xl font-bold text-white group-hover:text-purple-400 transition-colors">
-              Who It Is Designed For
-            </h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Tailored for independent software developers, UI/UX designers, copywriters, digital consultants, and freelance agency owners managing multiple active client accounts.
-            </p>
-            <ul className="space-y-2 pt-2 text-xs text-slate-300 font-medium">
+
+            <ul className="space-y-2.5 pt-6 mt-6 border-t border-slate-800/60 text-xs text-slate-300 font-medium">
               <li className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Solo freelancers & small agency owners</span>
