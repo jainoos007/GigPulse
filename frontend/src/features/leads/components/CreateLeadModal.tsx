@@ -71,15 +71,15 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20">
+            <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center border border-purple-500/20">
               <Target className="w-5 h-5" />
             </div>
             <div>
-              <DialogTitle className="text-xl font-bold">Add New Opportunity / Lead</DialogTitle>
-              <DialogDescription className="text-slate-400 text-xs">
+              <DialogTitle className="text-xl font-bold text-slate-900 dark:text-white">Add New Opportunity / Lead</DialogTitle>
+              <DialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                 Track prospect pipeline stages and estimated deal values
               </DialogDescription>
             </div>
@@ -94,9 +94,9 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Lead Name *</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Lead Name *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Sarah Connor" {...field} />
+                      <Input placeholder="Sarah Connor" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -108,9 +108,9 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address *</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Email Address *</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="sarah@cyberdyne.com" {...field} />
+                      <Input type="email" placeholder="sarah@cyberdyne.com" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -124,9 +124,9 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Phone Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="+1 (555) 000-0000" {...field} />
+                      <Input placeholder="+1 (555) 000-0000" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -138,9 +138,9 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="companyName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Company Name</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Company Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Cyberdyne Systems" {...field} />
+                      <Input placeholder="Cyberdyne Systems" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -154,11 +154,12 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="estimatedValue"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Estimated Value ($)</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Estimated Value ($)</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
                         placeholder="5000"
+                        className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                         {...field}
                         onChange={(e) =>
                           field.onChange(
@@ -177,9 +178,9 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="source"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Source</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Source</FormLabel>
                     <FormControl>
-                      <Input placeholder="LinkedIn, Referral..." {...field} />
+                      <Input placeholder="LinkedIn, Referral..." className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -191,17 +192,17 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Pipeline Stage</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Pipeline Stage</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="Select stage" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         <SelectItem value="NEW">New</SelectItem>
                         <SelectItem value="CONTACTED">Contacted</SelectItem>
                         <SelectItem value="PROPOSAL_SENT">Proposal Sent</SelectItem>
@@ -221,11 +222,12 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Notes</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Notes</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={3}
                       placeholder="Key project scope discussed, call notes..."
+                      className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                       {...field}
                     />
                   </FormControl>
@@ -234,11 +236,11 @@ export const CreateLeadModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
               )}
             />
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-              <Button type="button" variant="outline" onClick={onClose}>
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+              <Button type="button" variant="outline" onClick={onClose} className="border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                 Cancel
               </Button>
-              <Button type="submit" disabled={form.formState.isSubmitting}>
+              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold">
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />

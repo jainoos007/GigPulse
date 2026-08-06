@@ -79,15 +79,15 @@ export const CreateTaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/20">
               <CheckSquare className="w-5 h-5" />
             </div>
             <div>
-              <DialogTitle className="text-xl font-bold">Create New Task</DialogTitle>
-              <DialogDescription className="text-slate-400 text-xs">
+              <DialogTitle className="text-xl font-bold text-slate-900 dark:text-white">Create New Task</DialogTitle>
+              <DialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                 Add an actionable deliverable item to a project
               </DialogDescription>
             </div>
@@ -101,14 +101,14 @@ export const CreateTaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
               name="projectId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Select Project *</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Select Project *</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         <SelectValue placeholder="Select a Project" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                       {projects.map((p) => (
                         <SelectItem key={p.id} value={p.id}>
                           {p.name} {p.clientName ? `(${p.clientName})` : ""}
@@ -126,9 +126,9 @@ export const CreateTaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Task Title *</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Task Title *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Design UI Layout / Setup API Endpoint" {...field} />
+                    <Input placeholder="Design UI Layout / Setup API Endpoint" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -141,14 +141,14 @@ export const CreateTaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="priority"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Priority</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Priority</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="Priority" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         <SelectItem value="LOW">Low</SelectItem>
                         <SelectItem value="MEDIUM">Medium</SelectItem>
                         <SelectItem value="HIGH">High</SelectItem>
@@ -165,14 +165,14 @@ export const CreateTaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Stage Column</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Stage Column</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="Stage" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         <SelectItem value="TODO">To Do</SelectItem>
                         <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
                         <SelectItem value="REVIEW">Review</SelectItem>
@@ -189,9 +189,9 @@ export const CreateTaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
                 name="dueDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Due Date</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Due Date</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} />
+                      <Input type="date" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -204,11 +204,12 @@ export const CreateTaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Description</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={3}
                       placeholder="Detailed requirements or technical notes..."
+                      className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                       {...field}
                     />
                   </FormControl>
@@ -217,11 +218,11 @@ export const CreateTaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) 
               )}
             />
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-              <Button type="button" variant="outline" onClick={onClose}>
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+              <Button type="button" variant="outline" onClick={onClose} className="border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                 Cancel
               </Button>
-              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-emerald-600 hover:bg-emerald-500">
+              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold">
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />

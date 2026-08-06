@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Task, TaskStatus } from "../types/task.types";
 import { Calendar, Briefcase, Trash2, ArrowRightLeft } from "lucide-react";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -66,33 +66,33 @@ export const TaskCard: React.FC<Props> = ({ task, onMoveStage, onDelete }) => {
   };
 
   return (
-    <Card className="p-4 bg-slate-900 border-slate-800 hover:border-slate-700 transition-all space-y-3 shadow-md group">
+    <Card className="p-4 bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all space-y-3 shadow-sm dark:shadow-md group">
       <div className="flex items-start justify-between gap-2">
-        <h4 className="text-xs sm:text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
+        <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
           {task.title}
         </h4>
         {getPriorityBadge(task.priority)}
       </div>
 
       {task.description && (
-        <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">{task.description}</p>
+        <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">{task.description}</p>
       )}
 
       {task.projectName && (
-        <p className="text-[11px] text-slate-400 flex items-center gap-1">
-          <Briefcase className="w-3 h-3 text-slate-500" />
+        <p className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1">
+          <Briefcase className="w-3 h-3 text-slate-400 dark:text-slate-500" />
           {task.projectName}
         </p>
       )}
 
-      <div className="pt-2 border-t border-slate-800/60 flex items-center justify-between">
+      <div className="pt-2 border-t border-slate-200 dark:border-slate-800/60 flex items-center justify-between">
         {task.dueDate ? (
-          <span className="text-[11px] text-slate-400 flex items-center gap-1">
-            <Calendar className="w-3 h-3 text-slate-500" />
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1">
+            <Calendar className="w-3 h-3 text-slate-400 dark:text-slate-500" />
             {new Date(task.dueDate).toLocaleDateString()}
           </span>
         ) : (
-          <span className="text-[10px] text-slate-600">No Due Date</span>
+          <span className="text-[10px] text-slate-400 dark:text-slate-600">No Due Date</span>
         )}
 
         <div className="flex items-center gap-1">
@@ -100,7 +100,7 @@ export const TaskCard: React.FC<Props> = ({ task, onMoveStage, onDelete }) => {
             variant="ghost"
             size="sm"
             onClick={handleMove}
-            className="h-7 px-2 text-[11px] text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 font-semibold"
+            className="h-7 px-2 text-[11px] text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-500/10 font-semibold"
             title={`Move to ${nextStatusMap[task.status].replace("_", " ")}`}
           >
             <ArrowRightLeft className="w-3 h-3 mr-1" /> Advance
@@ -111,22 +111,22 @@ export const TaskCard: React.FC<Props> = ({ task, onMoveStage, onDelete }) => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-7 w-7 text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+                className="h-7 w-7 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
                 title="Delete Task"
               >
                 <Trash2 className="w-3.5 h-3.5" />
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
               <AlertDialogHeader>
                 <AlertDialogTitle>Delete Task &quot;{task.title}&quot;?</AlertDialogTitle>
-                <AlertDialogDescription>
+                <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                   This action will permanently delete this task from the Kanban board.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={handleDelete}>Delete Task</AlertDialogAction>
+                <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Task</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>

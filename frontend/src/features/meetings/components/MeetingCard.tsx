@@ -36,16 +36,16 @@ export const MeetingCard: React.FC<Props> = ({ meeting, onDelete }) => {
   };
 
   return (
-    <Card className="flex flex-col justify-between hover:border-slate-700 transition-all group">
+    <Card className="flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 transition-all group bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none">
       <CardHeader className="p-5 pb-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
               {meeting.title}
             </h3>
             {meeting.clientName && (
-              <p className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
-                <User className="w-3.5 h-3.5 text-slate-500" />
+              <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-0.5">
+                <User className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                 {meeting.clientName}
               </p>
             )}
@@ -56,27 +56,27 @@ export const MeetingCard: React.FC<Props> = ({ meeting, onDelete }) => {
         </div>
       </CardHeader>
 
-      <CardContent className="p-5 py-3 space-y-2 text-xs text-slate-300 border-t border-b border-slate-800/60 my-2">
-        <div className="flex items-center gap-2 text-blue-400 font-semibold">
+      <CardContent className="p-5 py-3 space-y-2 text-xs text-slate-600 dark:text-slate-300 border-t border-b border-slate-200 dark:border-slate-800/60 my-2">
+        <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold">
           <Calendar className="w-4 h-4 text-blue-500 shrink-0" />
           <span>{new Date(meeting.meetingDate).toLocaleString()}</span>
         </div>
 
         {meeting.platform && (
-          <div className="flex items-center gap-2 text-slate-300">
-            <Video className="w-4 h-4 text-slate-500 shrink-0" />
+          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300">
+            <Video className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
             <span>{meeting.platform}</span>
           </div>
         )}
 
         {meeting.locationUrl && (
           <div className="flex items-center gap-2">
-            <ExternalLink className="w-4 h-4 text-slate-500 shrink-0" />
+            <ExternalLink className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
             <a
               href={meeting.locationUrl}
               target="_blank"
               rel="noreferrer"
-              className="text-blue-400 hover:underline truncate font-medium"
+              className="text-blue-600 dark:text-blue-400 hover:underline truncate font-medium"
             >
               Join Meeting Link
             </a>
@@ -84,7 +84,7 @@ export const MeetingCard: React.FC<Props> = ({ meeting, onDelete }) => {
         )}
 
         {meeting.notes && (
-          <p className="text-xs text-slate-400 line-clamp-2 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/50 mt-1">
+          <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 bg-slate-100/80 dark:bg-slate-950/60 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800/50 mt-1">
             {meeting.notes}
           </p>
         )}
@@ -92,11 +92,11 @@ export const MeetingCard: React.FC<Props> = ({ meeting, onDelete }) => {
 
       <CardFooter className="p-5 pt-2 flex items-center justify-between">
         {meeting.reminder ? (
-          <span className="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
+          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium flex items-center gap-1">
             <Bell className="w-3 h-3" /> Reminder active
           </span>
         ) : (
-          <span className="text-[10px] text-slate-600">No reminder</span>
+          <span className="text-[10px] text-slate-400 dark:text-slate-600">No reminder</span>
         )}
 
         <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
@@ -104,22 +104,22 @@ export const MeetingCard: React.FC<Props> = ({ meeting, onDelete }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+              className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
               title="Delete Meeting"
             >
               <Trash2 className="w-4 h-4" />
             </Button>
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
             <AlertDialogHeader>
               <AlertDialogTitle>Delete Meeting &quot;{meeting.title}&quot;?</AlertDialogTitle>
-              <AlertDialogDescription>
+              <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                 This action will remove the scheduled call from your calendar.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete}>Delete Meeting</AlertDialogAction>
+              <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Meeting</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

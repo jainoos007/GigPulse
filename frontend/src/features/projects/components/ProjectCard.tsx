@@ -48,15 +48,15 @@ export const ProjectCard: React.FC<Props> = ({ project, onDelete }) => {
   const getPriorityBadge = (priority: string) => {
     switch (priority) {
       case "LOW":
-        return <span className="text-slate-400 font-medium">Low</span>;
+        return <span className="text-slate-500 dark:text-slate-400 font-medium">Low</span>;
       case "MEDIUM":
-        return <span className="text-blue-400 font-medium">Medium</span>;
+        return <span className="text-blue-600 dark:text-blue-400 font-medium">Medium</span>;
       case "HIGH":
-        return <span className="text-amber-400 font-semibold">High</span>;
+        return <span className="text-amber-600 dark:text-amber-400 font-semibold">High</span>;
       case "URGENT":
-        return <span className="text-red-400 font-bold">Urgent</span>;
+        return <span className="text-red-600 dark:text-red-400 font-bold">Urgent</span>;
       default:
-        return <span className="text-slate-400">{priority}</span>;
+        return <span className="text-slate-500 dark:text-slate-400">{priority}</span>;
     }
   };
 
@@ -68,16 +68,16 @@ export const ProjectCard: React.FC<Props> = ({ project, onDelete }) => {
   };
 
   return (
-    <Card className="flex flex-col justify-between hover:border-slate-700 transition-all group">
+    <Card className="flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 transition-all group bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none">
       <CardHeader className="p-5 pb-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
               {project.name}
             </h3>
             {project.clientName && (
-              <p className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
-                <User className="w-3.5 h-3.5 text-slate-500" />
+              <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-0.5">
+                <User className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                 {project.clientName}
               </p>
             )}
@@ -86,40 +86,40 @@ export const ProjectCard: React.FC<Props> = ({ project, onDelete }) => {
         </div>
       </CardHeader>
 
-      <CardContent className="p-5 py-3 space-y-3 text-xs border-t border-b border-slate-800/60 my-2">
+      <CardContent className="p-5 py-3 space-y-3 text-xs border-t border-b border-slate-200 dark:border-slate-800/60 my-2">
         {/* Progress Bar */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs font-semibold">
-            <span className="text-slate-400">Progress</span>
-            <span className="text-blue-400">{project.progress}%</span>
+            <span className="text-slate-600 dark:text-slate-400">Progress</span>
+            <span className="text-blue-600 dark:text-blue-400">{project.progress}%</span>
           </div>
           <Progress value={project.progress} className="h-2" />
         </div>
 
-        <div className="space-y-1.5 text-slate-300 pt-1">
+        <div className="space-y-1.5 text-slate-600 dark:text-slate-300 pt-1">
           {project.budget && (
-            <div className="flex items-center gap-2 font-semibold text-emerald-400">
+            <div className="flex items-center gap-2 font-semibold text-emerald-600 dark:text-emerald-400">
               <DollarSign className="w-4 h-4 text-emerald-500 shrink-0" />
               <span>Budget: ${project.budget.toLocaleString()}</span>
             </div>
           )}
 
           {project.deadline && (
-            <div className="flex items-center gap-2 text-slate-400">
-              <Calendar className="w-4 h-4 text-slate-500 shrink-0" />
+            <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+              <Calendar className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
               <span>Deadline: {new Date(project.deadline).toLocaleDateString()}</span>
             </div>
           )}
 
-          <div className="flex items-center gap-2 text-slate-400">
-            <Flag className="w-4 h-4 text-slate-500 shrink-0" />
+          <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+            <Flag className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
             <span>Priority: {getPriorityBadge(project.priority)}</span>
           </div>
         </div>
       </CardContent>
 
       <CardFooter className="p-5 pt-2 flex items-center justify-between">
-        <span className="text-[10px] text-slate-500">
+        <span className="text-[10px] text-slate-400 dark:text-slate-500">
           Created {new Date(project.createdAt).toLocaleDateString()}
         </span>
 
@@ -128,22 +128,22 @@ export const ProjectCard: React.FC<Props> = ({ project, onDelete }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+              className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
               title="Delete Project"
             >
               <Trash2 className="w-4 h-4" />
             </Button>
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
             <AlertDialogHeader>
               <AlertDialogTitle>Delete Project &quot;{project.name}&quot;?</AlertDialogTitle>
-              <AlertDialogDescription>
+              <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                 This action cannot be undone. This will permanently delete the project and all related tasks.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete}>Delete Project</AlertDialogAction>
+              <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Project</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

@@ -71,15 +71,15 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-500/20">
               <UserPlus className="w-5 h-5" />
             </div>
             <div>
-              <DialogTitle className="text-xl font-bold">Add New Client</DialogTitle>
-              <DialogDescription className="text-slate-400 text-xs">
+              <DialogTitle className="text-xl font-bold text-slate-900 dark:text-white">Add New Client</DialogTitle>
+              <DialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                 Store client contact and company details in your directory
               </DialogDescription>
             </div>
@@ -94,9 +94,9 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Client Name *</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Client Name *</FormLabel>
                     <FormControl>
-                      <Input placeholder="Acme Corp / John Doe" {...field} />
+                      <Input placeholder="Acme Corp / John Doe" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -108,9 +108,9 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address *</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Email Address *</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="contact@acme.com" {...field} />
+                      <Input type="email" placeholder="contact@acme.com" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -124,9 +124,9 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Phone Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="+1 (555) 000-0000" {...field} />
+                      <Input placeholder="+1 (555) 000-0000" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -138,9 +138,9 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
                 name="companyName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Company Name</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Company Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Acme Industries" {...field} />
+                      <Input placeholder="Acme Industries" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -154,9 +154,9 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
                 name="industry"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Industry</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Industry</FormLabel>
                     <FormControl>
-                      <Input placeholder="Technology, E-commerce..." {...field} />
+                      <Input placeholder="Technology, E-commerce..." className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -168,17 +168,17 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Status</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Status</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="Select status" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         <SelectItem value="ACTIVE">Active</SelectItem>
                         <SelectItem value="PROSPECT">Prospect</SelectItem>
                         <SelectItem value="INACTIVE">Inactive</SelectItem>
@@ -196,9 +196,9 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
               name="website"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Website URL</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Website URL</FormLabel>
                   <FormControl>
-                    <Input placeholder="https://acme.com" {...field} />
+                    <Input placeholder="https://acme.com" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -210,11 +210,12 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Notes</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Notes</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={3}
                       placeholder="Special billing requirements, preferences..."
+                      className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                       {...field}
                     />
                   </FormControl>
@@ -223,11 +224,11 @@ export const CreateClientModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }
               )}
             />
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-              <Button type="button" variant="outline" onClick={onClose}>
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+              <Button type="button" variant="outline" onClick={onClose} className="border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                 Cancel
               </Button>
-              <Button type="submit" disabled={form.formState.isSubmitting}>
+              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold">
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />

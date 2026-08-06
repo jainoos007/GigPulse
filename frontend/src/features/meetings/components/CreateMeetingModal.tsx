@@ -81,15 +81,15 @@ export const CreateMeetingModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center border border-blue-500/20">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
-              <DialogTitle className="text-xl font-bold">Schedule Meeting</DialogTitle>
-              <DialogDescription className="text-slate-400 text-xs">
+              <DialogTitle className="text-xl font-bold text-slate-900 dark:text-white">Schedule Meeting</DialogTitle>
+              <DialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                 Set up client calls, platform links, and notifications
               </DialogDescription>
             </div>
@@ -103,14 +103,14 @@ export const CreateMeetingModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
               name="clientId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Select Client *</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Select Client *</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         <SelectValue placeholder="Select a Client" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                       {clients.map((c) => (
                         <SelectItem key={c.id} value={c.id}>
                           {c.name} {c.companyName ? `(${c.companyName})` : ""}
@@ -128,9 +128,9 @@ export const CreateMeetingModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Meeting Title *</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Meeting Title *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Project Kickoff Call / Sprint Review" {...field} />
+                    <Input placeholder="Project Kickoff Call / Sprint Review" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -143,9 +143,9 @@ export const CreateMeetingModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                 name="meetingDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Date & Time *</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Date & Time *</FormLabel>
                     <FormControl>
-                      <Input type="datetime-local" {...field} />
+                      <Input type="datetime-local" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -157,14 +157,14 @@ export const CreateMeetingModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                 name="platform"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Platform</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Platform</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="Select Platform" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         <SelectItem value="Google Meet">Google Meet</SelectItem>
                         <SelectItem value="Zoom">Zoom</SelectItem>
                         <SelectItem value="Microsoft Teams">Microsoft Teams</SelectItem>
@@ -183,9 +183,9 @@ export const CreateMeetingModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
               name="locationUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Join Link / Location URL</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Join Link / Location URL</FormLabel>
                   <FormControl>
-                    <Input placeholder="https://meet.google.com/xyz-abc-def" {...field} />
+                    <Input placeholder="https://meet.google.com/xyz-abc-def" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -197,11 +197,12 @@ export const CreateMeetingModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Agenda / Notes</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Agenda / Notes</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={3}
                       placeholder="Key discussion points, agenda..."
+                      className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                       {...field}
                     />
                   </FormControl>
@@ -221,18 +222,18 @@ export const CreateMeetingModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
-                  <FormLabel className="text-xs text-slate-300 font-medium cursor-pointer">
+                  <FormLabel className="text-xs text-slate-700 dark:text-slate-300 font-medium cursor-pointer">
                     Send automated notification reminder
                   </FormLabel>
                 </FormItem>
               )}
             />
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-              <Button type="button" variant="outline" onClick={onClose}>
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+              <Button type="button" variant="outline" onClick={onClose} className="border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                 Cancel
               </Button>
-              <Button type="submit" disabled={form.formState.isSubmitting}>
+              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold">
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />

@@ -62,16 +62,16 @@ export const LeadCard: React.FC<Props> = ({ lead, onConvert, onDelete }) => {
   };
 
   return (
-    <Card className="flex flex-col justify-between hover:border-slate-700 transition-all group">
+    <Card className="flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 transition-all group bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none">
       <CardHeader className="p-5 pb-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-base font-bold text-white group-hover:text-purple-400 transition-colors">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
               {lead.name}
             </h3>
             {lead.companyName && (
-              <p className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
-                <Building className="w-3.5 h-3.5 text-slate-500" />
+              <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-0.5">
+                <Building className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                 {lead.companyName}
               </p>
             )}
@@ -80,21 +80,21 @@ export const LeadCard: React.FC<Props> = ({ lead, onConvert, onDelete }) => {
         </div>
       </CardHeader>
 
-      <CardContent className="p-5 py-3 space-y-2 text-xs text-slate-300 border-t border-b border-slate-800/60 my-2">
+      <CardContent className="p-5 py-3 space-y-2 text-xs text-slate-600 dark:text-slate-300 border-t border-b border-slate-200 dark:border-slate-800/60 my-2">
         <div className="flex items-center gap-2">
-          <Mail className="w-4 h-4 text-slate-500 shrink-0" />
+          <Mail className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
           <span className="truncate">{lead.email}</span>
         </div>
 
         {lead.phone && (
           <div className="flex items-center gap-2">
-            <Phone className="w-4 h-4 text-slate-500 shrink-0" />
+            <Phone className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
             <span>{lead.phone}</span>
           </div>
         )}
 
         {lead.estimatedValue && (
-          <div className="flex items-center gap-2 font-semibold text-emerald-400 pt-1">
+          <div className="flex items-center gap-2 font-semibold text-emerald-600 dark:text-emerald-400 pt-1">
             <DollarSign className="w-4 h-4 text-emerald-500 shrink-0" />
             <span>${lead.estimatedValue.toLocaleString()} Deal Value</span>
           </div>
@@ -103,7 +103,7 @@ export const LeadCard: React.FC<Props> = ({ lead, onConvert, onDelete }) => {
 
       <CardFooter className="p-5 pt-2 flex items-center justify-between">
         {lead.convertedToId ? (
-          <span className="text-xs text-emerald-400 font-semibold flex items-center gap-1">
+          <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
             <CheckCircle2 className="w-4 h-4" /> Converted to Client
           </span>
         ) : (
@@ -111,7 +111,7 @@ export const LeadCard: React.FC<Props> = ({ lead, onConvert, onDelete }) => {
             variant="link"
             size="sm"
             onClick={handleConvert}
-            className="p-0 h-auto text-xs text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1"
+            className="p-0 h-auto text-xs text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold flex items-center gap-1"
           >
             Convert to Client <ArrowUpRight className="w-3.5 h-3.5" />
           </Button>
@@ -122,22 +122,22 @@ export const LeadCard: React.FC<Props> = ({ lead, onConvert, onDelete }) => {
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+              className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
               title="Delete Lead"
             >
               <Trash2 className="w-4 h-4" />
             </Button>
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
             <AlertDialogHeader>
               <AlertDialogTitle>Delete Lead &quot;{lead.name}&quot;?</AlertDialogTitle>
-              <AlertDialogDescription>
+              <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                 This action will remove the lead opportunity from your pipeline.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete}>Delete Lead</AlertDialogAction>
+              <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Lead</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

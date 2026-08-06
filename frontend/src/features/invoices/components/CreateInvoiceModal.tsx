@@ -90,15 +90,15 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/20">
               <FileText className="w-5 h-5" />
             </div>
             <div>
-              <DialogTitle className="text-xl font-bold">Create New Invoice</DialogTitle>
-              <DialogDescription className="text-slate-400 text-xs">
+              <DialogTitle className="text-xl font-bold text-slate-900 dark:text-white">Create New Invoice</DialogTitle>
+              <DialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                 Generate a billing invoice with taxes and discounts
               </DialogDescription>
             </div>
@@ -113,14 +113,14 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                 name="clientId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Select Client *</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Select Client *</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="Select a Client" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         {clients.map((c) => (
                           <SelectItem key={c.id} value={c.id}>
                             {c.name} {c.companyName ? `(${c.companyName})` : ""}
@@ -138,14 +138,14 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                 name="projectId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Linked Project (Optional)</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Linked Project (Optional)</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="No Project Selected" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         {projects.map((p) => (
                           <SelectItem key={p.id} value={p.id}>
                             {p.name}
@@ -165,12 +165,13 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                 name="amount"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Subtotal ($) *</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Subtotal ($) *</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
                         step="0.01"
                         placeholder="1000.00"
+                        className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                         {...field}
                         onChange={(e) => field.onChange(Number(e.target.value))}
                       />
@@ -185,12 +186,13 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                 name="tax"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tax Rate (%)</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Tax Rate (%)</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
                         step="0.1"
                         placeholder="10"
+                        className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                         {...field}
                         onChange={(e) => field.onChange(Number(e.target.value))}
                       />
@@ -205,12 +207,13 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                 name="discount"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Discount ($)</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Discount ($)</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
                         step="0.01"
                         placeholder="50"
+                        className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                         {...field}
                         onChange={(e) => field.onChange(Number(e.target.value))}
                       />
@@ -221,9 +224,9 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
               />
             </div>
 
-            <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-between text-sm">
-              <span className="text-slate-400 font-medium">Calculated Total:</span>
-              <span className="text-emerald-400 font-bold text-base">${estimatedTotal.toFixed(2)}</span>
+            <div className="p-3 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between text-sm">
+              <span className="text-slate-600 dark:text-slate-400 font-medium">Calculated Total:</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-bold text-base">${estimatedTotal.toFixed(2)}</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -232,9 +235,9 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                 name="dueDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Due Date *</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Due Date *</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} />
+                      <Input type="date" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -246,14 +249,14 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Status</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Status</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="Select Status" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         <SelectItem value="DRAFT">Draft</SelectItem>
                         <SelectItem value="SENT">Sent</SelectItem>
                         <SelectItem value="PAID">Paid</SelectItem>
@@ -272,11 +275,12 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
               name="notes"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Payment Terms & Notes</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Payment Terms & Notes</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={3}
                       placeholder="Payment due within 14 days. Bank details..."
+                      className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                       {...field}
                     />
                   </FormControl>
@@ -285,11 +289,11 @@ export const CreateInvoiceModal: React.FC<Props> = ({ isOpen, onClose, onSubmit 
               )}
             />
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-              <Button type="button" variant="outline" onClick={onClose}>
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+              <Button type="button" variant="outline" onClick={onClose} className="border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                 Cancel
               </Button>
-              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-emerald-600 hover:bg-emerald-500">
+              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold">
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />

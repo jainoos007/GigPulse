@@ -84,15 +84,15 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
         <DialogHeader>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20">
+            <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center border border-purple-500/20">
               <FileCode className="w-5 h-5" />
             </div>
             <div>
-              <DialogTitle className="text-xl font-bold">Create New Proposal</DialogTitle>
-              <DialogDescription className="text-slate-400 text-xs">
+              <DialogTitle className="text-xl font-bold text-slate-900 dark:text-white">Create New Proposal</DialogTitle>
+              <DialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
                 Draft project scopes, contract terms, and estimated budgets
               </DialogDescription>
             </div>
@@ -107,14 +107,14 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
                 name="clientId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Select Client *</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Select Client *</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="Select a Client" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         {clients.map((c) => (
                           <SelectItem key={c.id} value={c.id}>
                             {c.name} {c.companyName ? `(${c.companyName})` : ""}
@@ -132,14 +132,14 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
                 name="leadId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Linked Lead (Optional)</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Linked Lead (Optional)</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="No Lead Selected" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         {leads.map((l) => (
                           <SelectItem key={l.id} value={l.id}>
                             {l.name} {l.companyName ? `(${l.companyName})` : ""}
@@ -158,9 +158,9 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Proposal Title *</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Proposal Title *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Web Application Redesign Proposal" {...field} />
+                    <Input placeholder="Web Application Redesign Proposal" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -173,12 +173,13 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
                 name="value"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Value ($)</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Value ($)</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
                         step="0.01"
                         placeholder="5000.00"
+                        className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                         {...field}
                         onChange={(e) =>
                           field.onChange(
@@ -197,14 +198,14 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Status</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Status</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                           <SelectValue placeholder="Status" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
                         <SelectItem value="DRAFT">Draft</SelectItem>
                         <SelectItem value="SENT">Sent</SelectItem>
                         <SelectItem value="ACCEPTED">Accepted</SelectItem>
@@ -222,9 +223,9 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
                 name="expiryDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Expiry Date</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Expiry Date</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} />
+                      <Input type="date" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -237,11 +238,12 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Scope & Deliverables Details</FormLabel>
+                  <FormLabel className="text-slate-700 dark:text-slate-300">Scope & Deliverables Details</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={4}
                       placeholder="Detailed scope, milestone roadmap, terms..."
+                      className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                       {...field}
                     />
                   </FormControl>
@@ -250,11 +252,11 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
               )}
             />
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-              <Button type="button" variant="outline" onClick={onClose}>
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+              <Button type="button" variant="outline" onClick={onClose} className="border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                 Cancel
               </Button>
-              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-purple-600 hover:bg-purple-500">
+              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold">
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
