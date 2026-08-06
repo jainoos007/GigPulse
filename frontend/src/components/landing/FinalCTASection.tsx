@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, LayoutDashboard } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/landing/FadeIn";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 
 export function FinalCTASection() {
+  const { user } = useAuth();
+
   return (
     <section className="py-20 sm:py-28 bg-slate-50 dark:bg-slate-950 relative overflow-hidden border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-200">
       {/* Decorative Glow */}
@@ -36,9 +39,15 @@ export function FinalCTASection() {
                 asChild
                 className="w-full sm:w-auto h-13 px-8 text-base font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-xl"
               >
-                <Link href="/login" className="flex items-center justify-center gap-2">
-                  Launch Application <ArrowRight className="w-5 h-5" />
-                </Link>
+                {user ? (
+                  <Link href="/dashboard" className="flex items-center justify-center gap-2">
+                    <LayoutDashboard className="w-5 h-5" /> Go to Dashboard
+                  </Link>
+                ) : (
+                  <Link href="/login" className="flex items-center justify-center gap-2">
+                    Launch Application <ArrowRight className="w-5 h-5" />
+                  </Link>
+                )}
               </Button>
               <Button
                 size="lg"

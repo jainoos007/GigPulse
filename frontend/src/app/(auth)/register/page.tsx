@@ -1,7 +1,33 @@
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 import { RegisterForm } from "@/features/auth/components/RegisterForm";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function RegisterPage() {
+  const { user, isLoading, fetchCurrentUser } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    fetchCurrentUser();
+  }, [fetchCurrentUser]);
+
+  useEffect(() => {
+    if (!isLoading && user) {
+      router.replace("/dashboard");
+    }
+  }, [user, isLoading, router]);
+
+  if (isLoading || user) {
+    return (
+      <main className="min-h-screen w-full flex items-center justify-center p-4 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+        <div className="w-8 h-8 rounded-full border-2 border-blue-600 border-t-transparent animate-spin" />
+      </main>
+    );
+  }
+
   return (
     <main className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200 relative overflow-hidden">
       {/* Background Glow Effects */}

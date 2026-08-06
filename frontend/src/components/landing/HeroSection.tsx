@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/landing/FadeIn";
-import { motion } from "framer-motion";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 import {
   ArrowRight,
   CheckCircle2,
@@ -14,9 +14,12 @@ import {
   Clock,
   DollarSign,
   ChevronRight,
+  LayoutDashboard,
 } from "lucide-react";
 
 export function HeroSection() {
+  const { user } = useAuth();
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
       {/* Background Decorative Glow Effects */}
@@ -64,9 +67,15 @@ export function HeroSection() {
               asChild
               className="w-full sm:w-auto h-13 px-8 text-base font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-xl"
             >
-              <Link href="/login" className="flex items-center gap-2 justify-center">
-                Launch Application <ArrowRight className="w-5 h-5" />
-              </Link>
+              {user ? (
+                <Link href="/dashboard" className="flex items-center gap-2 justify-center">
+                  <LayoutDashboard className="w-5 h-5" /> Go to Dashboard
+                </Link>
+              ) : (
+                <Link href="/login" className="flex items-center gap-2 justify-center">
+                  Launch Application <ArrowRight className="w-5 h-5" />
+                </Link>
+              )}
             </Button>
             <Button
               size="lg"
