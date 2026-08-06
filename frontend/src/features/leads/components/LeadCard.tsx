@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Lead } from "../types/lead.types";
-import { Building, Mail, Phone, DollarSign, Trash2, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { Building, Mail, Phone, DollarSign, Trash2, ArrowUpRight, CheckCircle2, Pencil } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,9 +23,10 @@ interface Props {
   lead: Lead;
   onConvert: (id: string) => void;
   onDelete: (id: string) => void;
+  onEdit: (lead: Lead) => void;
 }
 
-export const LeadCard: React.FC<Props> = ({ lead, onConvert, onDelete }) => {
+export const LeadCard: React.FC<Props> = ({ lead, onConvert, onDelete, onEdit }) => {
   const [deleteOpen, setDeleteOpen] = useState(false);
 
   const getStatusBadge = (status: string) => {
@@ -117,30 +118,42 @@ export const LeadCard: React.FC<Props> = ({ lead, onConvert, onDelete }) => {
           </Button>
         )}
 
-        <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
-          <AlertDialogTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
-              title="Delete Lead"
-            >
-              <Trash2 className="w-4 h-4" />
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete Lead &quot;{lead.name}&quot;?</AlertDialogTitle>
-              <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
-                This action will remove the lead opportunity from your pipeline.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Lead</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-500/10"
+            title="Edit Lead"
+            onClick={() => onEdit(lead)}
+          >
+            <Pencil className="w-4 h-4" />
+          </Button>
+
+          <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
+                title="Delete Lead"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delete Lead &quot;{lead.name}&quot;?</AlertDialogTitle>
+                <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
+                  This action will remove the lead opportunity from your pipeline.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Lead</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </CardFooter>
     </Card>
   );

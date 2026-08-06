@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import { useLeads } from "../hooks/useLeads";
+import { Lead } from "../types/lead.types";
 import { LeadCard } from "./LeadCard";
 import { CreateLeadModal } from "./CreateLeadModal";
+import { EditLeadModal } from "./EditLeadModal";
 import { Search, Plus, Target, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,11 +28,13 @@ export const LeadList: React.FC = () => {
     statusFilter,
     setStatusFilter,
     addLead,
+    updateLead,
     convertLead,
     removeLead,
   } = useLeads();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingLead, setEditingLead] = useState<Lead | null>(null);
 
   return (
     <div className="space-y-6">
@@ -120,7 +124,7 @@ export const LeadList: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {leads.map((lead) => (
-            <LeadCard key={lead.id} lead={lead} onConvert={convertLead} onDelete={removeLead} />
+            <LeadCard key={lead.id} lead={lead} onConvert={convertLead} onDelete={removeLead} onEdit={setEditingLead} />
           ))}
         </div>
       )}
@@ -130,6 +134,14 @@ export const LeadList: React.FC = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={addLead}
+      />
+
+      {/* Edit Modal */}
+      <EditLeadModal
+        isOpen={!!editingLead}
+        lead={editingLead}
+        onClose={() => setEditingLead(null)}
+        onSubmit={updateLead}
       />
     </div>
   );

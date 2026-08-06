@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import { useProjects } from "../hooks/useProjects";
+import { Project } from "../types/project.types";
 import { ProjectCard } from "./ProjectCard";
 import { CreateProjectModal } from "./CreateProjectModal";
+import { EditProjectModal } from "./EditProjectModal";
 import { Search, Plus, Briefcase, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,10 +30,12 @@ export const ProjectList: React.FC = () => {
     priorityFilter,
     setPriorityFilter,
     addProject,
+    updateProject,
     removeProject,
   } = useProjects();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingProject, setEditingProject] = useState<Project | null>(null);
 
   return (
     <div className="space-y-6">
@@ -136,7 +140,7 @@ export const ProjectList: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} onDelete={removeProject} />
+            <ProjectCard key={project.id} project={project} onDelete={removeProject} onEdit={setEditingProject} />
           ))}
         </div>
       )}
@@ -146,6 +150,14 @@ export const ProjectList: React.FC = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={addProject}
+      />
+
+      {/* Edit Modal */}
+      <EditProjectModal
+        isOpen={!!editingProject}
+        project={editingProject}
+        onClose={() => setEditingProject(null)}
+        onSubmit={updateProject}
       />
     </div>
   );

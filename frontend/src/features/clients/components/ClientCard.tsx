@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Client } from "../types/client.types";
-import { Building, Mail, Phone, Globe, Trash2, Tag } from "lucide-react";
+import { Building, Mail, Phone, Globe, Trash2, Tag, Pencil } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,9 +23,10 @@ import { toast } from "sonner";
 interface Props {
   client: Client;
   onDelete: (id: string) => void;
+  onEdit: (client: Client) => void;
 }
 
-export const ClientCard: React.FC<Props> = ({ client, onDelete }) => {
+export const ClientCard: React.FC<Props> = ({ client, onDelete, onEdit }) => {
   const [deleteOpen, setDeleteOpen] = useState(false);
 
   const getStatusBadge = (status: string) => {
@@ -123,30 +124,42 @@ export const ClientCard: React.FC<Props> = ({ client, onDelete }) => {
           Added {new Date(client.createdAt).toLocaleDateString()}
         </span>
 
-        <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
-          <AlertDialogTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
-              title="Delete Client"
-            >
-              <Trash2 className="w-4 h-4" />
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete Client &quot;{client.name}&quot;?</AlertDialogTitle>
-              <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
-                This action cannot be undone. This will permanently delete the client record and disassociate related projects and invoices.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Client</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-500/10"
+            title="Edit Client"
+            onClick={() => onEdit(client)}
+          >
+            <Pencil className="w-4 h-4" />
+          </Button>
+
+          <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
+                title="Delete Client"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delete Client &quot;{client.name}&quot;?</AlertDialogTitle>
+                <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
+                  This action cannot be undone. This will permanently delete the client record and disassociate related projects and invoices.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Client</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </CardFooter>
     </Card>
   );

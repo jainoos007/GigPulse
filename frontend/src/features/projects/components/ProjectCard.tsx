@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Project } from "../types/project.types";
-import { Calendar, DollarSign, User, Trash2, Flag } from "lucide-react";
+import { Calendar, DollarSign, User, Trash2, Flag, Pencil } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,9 +23,10 @@ import { toast } from "sonner";
 interface Props {
   project: Project;
   onDelete: (id: string) => void;
+  onEdit: (project: Project) => void;
 }
 
-export const ProjectCard: React.FC<Props> = ({ project, onDelete }) => {
+export const ProjectCard: React.FC<Props> = ({ project, onDelete, onEdit }) => {
   const [deleteOpen, setDeleteOpen] = useState(false);
 
   const getStatusBadge = (status: string) => {
@@ -123,30 +124,42 @@ export const ProjectCard: React.FC<Props> = ({ project, onDelete }) => {
           Created {new Date(project.createdAt).toLocaleDateString()}
         </span>
 
-        <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
-          <AlertDialogTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
-              title="Delete Project"
-            >
-              <Trash2 className="w-4 h-4" />
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-            <AlertDialogHeader>
-              <AlertDialogTitle>Delete Project &quot;{project.name}&quot;?</AlertDialogTitle>
-              <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
-                This action cannot be undone. This will permanently delete the project and all related tasks.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Project</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-500/10"
+            title="Edit Project"
+            onClick={() => onEdit(project)}
+          >
+            <Pencil className="w-4 h-4" />
+          </Button>
+
+          <AlertDialog open={deleteOpen} onOpenChange={setDeleteOpen}>
+            <AlertDialogTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-500/10"
+                title="Delete Project"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Delete Project &quot;{project.name}&quot;?</AlertDialogTitle>
+                <AlertDialogDescription className="text-slate-600 dark:text-slate-400 text-xs">
+                  This action cannot be undone. This will permanently delete the project and all related tasks.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="border-slate-200 dark:border-slate-800">Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700 text-white">Delete Project</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </CardFooter>
     </Card>
   );

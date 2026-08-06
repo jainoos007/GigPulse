@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import { useClients } from "../hooks/useClients";
+import { Client } from "../types/client.types";
 import { ClientCard } from "./ClientCard";
 import { CreateClientModal } from "./CreateClientModal";
+import { EditClientModal } from "./EditClientModal";
 import { Search, Plus, Users, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,10 +28,12 @@ export const ClientList: React.FC = () => {
     statusFilter,
     setStatusFilter,
     addClient,
+    updateClient,
     removeClient,
   } = useClients();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingClient, setEditingClient] = useState<Client | null>(null);
 
   return (
     <div className="space-y-6">
@@ -117,7 +121,7 @@ export const ClientList: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {clients.map((client) => (
-            <ClientCard key={client.id} client={client} onDelete={removeClient} />
+            <ClientCard key={client.id} client={client} onDelete={removeClient} onEdit={setEditingClient} />
           ))}
         </div>
       )}
@@ -127,6 +131,14 @@ export const ClientList: React.FC = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={addClient}
+      />
+
+      {/* Edit Modal */}
+      <EditClientModal
+        isOpen={!!editingClient}
+        client={editingClient}
+        onClose={() => setEditingClient(null)}
+        onSubmit={updateClient}
       />
     </div>
   );
