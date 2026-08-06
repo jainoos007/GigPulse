@@ -44,7 +44,7 @@ export const ProjectList: React.FC = () => {
 
         <Button
           onClick={() => setIsModalOpen(true)}
-          className="gap-2 text-xs sm:text-sm font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
+          className="gap-2 text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-500 text-white"
         >
           <Plus className="w-4 h-4" /> Create Project
         </Button>

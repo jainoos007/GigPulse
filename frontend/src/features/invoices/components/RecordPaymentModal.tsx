@@ -173,7 +173,7 @@ export const RecordPaymentModal: React.FC<Props> = ({ invoice, isOpen, onClose, 
               <Button type="button" variant="outline" onClick={onClose} className="border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                 Cancel
               </Button>
-              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold">
+              <Button type="submit" disabled={form.formState.isSubmitting} className="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold">
                 {form.formState.isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />

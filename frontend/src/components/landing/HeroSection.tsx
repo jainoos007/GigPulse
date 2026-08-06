@@ -65,7 +65,7 @@ export function HeroSection() {
             <Button
               size="lg"
               asChild
-              className="w-full sm:w-auto h-13 px-8 text-base font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-xl"
+              className="w-full sm:w-auto h-13 px-8 text-base font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-xl"
             >
               {user ? (
                 <Link href="/dashboard" className="flex items-center gap-2 justify-center">

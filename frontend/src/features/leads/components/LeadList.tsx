@@ -43,7 +43,7 @@ export const LeadList: React.FC = () => {
 
         <Button
           onClick={() => setIsModalOpen(true)}
-          className="gap-2 text-xs sm:text-sm font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 text-white"
+          className="gap-2 text-xs sm:text-sm font-semibold bg-purple-600 hover:bg-purple-500 text-white"
         >
           <Plus className="w-4 h-4" /> Add Lead
         </Button>

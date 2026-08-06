@@ -61,7 +61,7 @@ export function LandingNav() {
             {user ? (
               <Button
                 asChild
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300 rounded-xl"
+                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300 rounded-xl"
               >
                 <Link href="/dashboard" className="flex items-center gap-2">
                   <LayoutDashboard className="w-4 h-4" /> Go to Dashboard
@@ -78,7 +78,7 @@ export function LandingNav() {
                 </Button>
                 <Button
                   asChild
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300"
+                  className="bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300"
                 >
                   <Link href="/login" className="flex items-center gap-2">
                     Launch App <ArrowRight className="w-4 h-4" />
@@ -121,7 +121,7 @@ export function LandingNav() {
             {user ? (
               <Button
                 asChild
-                className="w-full justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg shadow-blue-600/25 rounded-xl"
+                className="w-full justify-center bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/25 rounded-xl"
               >
                 <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
                   <LayoutDashboard className="w-4 h-4 mr-2" /> Go to Dashboard
@@ -140,7 +140,7 @@ export function LandingNav() {
                 </Button>
                 <Button
                   asChild
-                  className="w-full justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg shadow-blue-600/25"
+                  className="w-full justify-center bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-lg shadow-blue-600/25"
                 >
                   <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
                     Launch App

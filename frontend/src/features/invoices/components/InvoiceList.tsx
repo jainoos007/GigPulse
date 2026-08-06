@@ -47,7 +47,7 @@ export const InvoiceList: React.FC = () => {
 
         <Button
           onClick={() => setIsCreateModalOpen(true)}
-          className="gap-2 text-xs sm:text-sm font-semibold bg-gradient-to-r from-emerald-600 to-teal-600 text-white"
+          className="gap-2 text-xs sm:text-sm font-semibold bg-emerald-600 hover:bg-emerald-500 text-white"
         >
           <Plus className="w-4 h-4" /> Create Invoice
         </Button>

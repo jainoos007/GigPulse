@@ -155,7 +155,7 @@ export function PricingSection() {
                     asChild
                     className={`w-full h-11 text-sm font-semibold rounded-xl ${
                       plan.popular
-                        ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-lg shadow-blue-500/25"
+                        ? "bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-500/25"
                         : "bg-slate-800 hover:bg-slate-700 text-slate-200"
                     }`}
                   >

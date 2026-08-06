@@ -198,7 +198,7 @@ export const RegisterForm: React.FC = () => {
             <Button
               type="submit"
               disabled={form.formState.isSubmitting}
-              className="w-full h-11 text-sm font-semibold mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-lg shadow-blue-600/25"
+              className="w-full h-11 text-sm font-semibold mt-2 bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/25"
             >
               {form.formState.isSubmitting ? (
                 <>
