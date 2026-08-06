@@ -4,17 +4,17 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  Sparkles,
   ArrowRight,
-  Play,
+  Github,
   CheckCircle2,
   TrendingUp,
   Users,
   Briefcase,
-  DollarSign,
   Clock,
-  ChevronRight,
-  CheckCircle,
+  DollarSign,
+  Layers,
+  Code,
+  Sparkles,
 } from "lucide-react";
 
 export function HeroSection() {
@@ -29,26 +29,25 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:32px_32px] opacity-25 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8 z-10">
-        {/* Announcement Badge */}
+        {/* Project Type Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs sm:text-sm font-medium text-slate-300 shadow-xl backdrop-blur-md hover:border-blue-500/50 transition-colors">
-          <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[11px] px-2 py-0.5 rounded-full border-none font-semibold">
-            NEW 2.0
+          <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[11px] px-2.5 py-0.5 rounded-full border-none font-semibold">
+            PORTFOLIO SHOWCASE
           </Badge>
-          <span>The Operating System Built for Modern Freelancers</span>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+          <span>Full Stack Freelance Operating System</span>
         </div>
 
         {/* Headline */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-5xl mx-auto">
-          Manage Clients, Projects, Invoices & Tasks —{" "}
+          Manage Clients, Projects, Tasks, Invoices & Meetings —{" "}
           <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
             All in One Place.
           </span>
         </h1>
 
-        {/* Supporting Subheadline */}
+        {/* Supporting Description */}
         <p className="text-slate-400 text-lg sm:text-xl max-w-3xl mx-auto font-normal leading-relaxed">
-          FreelanceFlow replaces scattered spreadsheets, manual invoice templates, and lost client notes with a unified, precision CRM engineered for freelancers and agency owners.
+          A modern CRM built for freelancers to manage clients, projects, tasks, invoices, and meetings in one place.
         </p>
 
         {/* Action CTAs */}
@@ -58,8 +57,8 @@ export function HeroSection() {
             asChild
             className="w-full sm:w-auto h-13 px-8 text-base font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-xl shadow-blue-600/30 hover:shadow-blue-500/50 border border-blue-400/30 transition-all duration-300 rounded-xl"
           >
-            <Link href="/register" className="flex items-center gap-2 justify-center">
-              Get Started Free <ArrowRight className="w-5 h-5" />
+            <Link href="/login" className="flex items-center gap-2 justify-center">
+              Launch Application <ArrowRight className="w-5 h-5" />
             </Link>
           </Button>
           <Button
@@ -68,34 +67,39 @@ export function HeroSection() {
             asChild
             className="w-full sm:w-auto h-13 px-8 text-base font-semibold border-slate-800 bg-slate-900/60 hover:bg-slate-900 text-slate-200 hover:text-white rounded-xl backdrop-blur-md border hover:border-slate-700"
           >
-            <a href="#showcase" className="flex items-center gap-2 justify-center">
-              <Play className="w-4 h-4 fill-slate-300 text-slate-300" /> View Interactive Demo
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 justify-center"
+            >
+              <Github className="w-4 h-4" /> View GitHub Source
             </a>
           </Button>
         </div>
 
-        {/* Trust Badges */}
+        {/* Technical Highlights Bar */}
         <div className="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-400 font-medium pt-2">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span>No credit card required</span>
+            <CheckCircle2 className="w-4 h-4 text-blue-400" />
+            <span>Modular Monolith Architecture</span>
           </div>
           <div className="hidden sm:block text-slate-700">•</div>
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span>14-day free trial</span>
+            <CheckCircle2 className="w-4 h-4 text-indigo-400" />
+            <span>Type-Safe Next.js & Express</span>
           </div>
           <div className="hidden sm:block text-slate-700">•</div>
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span>Setup in 2 minutes</span>
+            <CheckCircle2 className="w-4 h-4 text-purple-400" />
+            <span>Production Deployment Ready</span>
           </div>
         </div>
 
         {/* High-Fidelity Dashboard Mockup */}
         <div className="pt-10 max-w-6xl mx-auto">
           <div className="relative rounded-2xl border border-slate-800/80 bg-slate-900/90 shadow-2xl shadow-blue-950/50 backdrop-blur-2xl overflow-hidden p-2 sm:p-4 group">
-            {/* Top Mac Window Control Bar */}
+            {/* Top Window Control Bar */}
             <div className="flex items-center justify-between px-4 py-3 bg-slate-950/80 rounded-t-xl border-b border-slate-800/80 mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-rose-500/80" />
@@ -110,7 +114,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* Dashboard Mock Content */}
+            {/* Dashboard Content Mockup */}
             <div className="p-4 sm:p-6 bg-slate-950/50 rounded-xl space-y-6 text-left">
               {/* Stat Cards Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -153,20 +157,18 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Main Visual Row: Pipeline & Recent Invoices */}
+              {/* Main Visual Row: Pipeline & Active Deliverables */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Visual Pipeline Bar Chart */}
                 <div className="lg:col-span-2 bg-slate-900/90 border border-slate-800 rounded-xl p-5 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="text-sm font-semibold text-white">Revenue & Lead Pipeline</h4>
-                      <p className="text-xs text-slate-400">Q3 Financial Performance & Forecast</p>
+                      <p className="text-xs text-slate-400">2026 Financial Performance & Forecast</p>
                     </div>
                     <Badge variant="outline" className="border-slate-700 text-slate-300 text-xs">
                       2026 YTD
                     </Badge>
                   </div>
-                  {/* Simulated Chart Bars */}
                   <div className="h-44 flex items-end justify-between gap-2 sm:gap-4 pt-4 border-b border-slate-800/80 pb-2">
                     {[
                       { month: "Jan", val: "65%", amount: "$9.4k" },
@@ -196,7 +198,6 @@ export function HeroSection() {
                   </div>
                 </div>
 
-                {/* Live Task / Project Widget */}
                 <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-5 space-y-4">
                   <div className="flex items-center justify-between">
                     <h4 className="text-sm font-semibold text-white">Active Deliverables</h4>
@@ -204,9 +205,9 @@ export function HeroSection() {
                   </div>
                   <div className="space-y-3">
                     {[
-                      { title: "Acme Corp Brand System", client: "Acme Inc.", status: "In Review", color: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
-                      { title: "Vortex Web App Redesign", client: "Vortex LLC", status: "In Progress", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
-                      { title: "Stripe Payment Integration", client: "FinTech Co", status: "Completed", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
+                      { title: "Acme Brand System", client: "Acme Inc.", status: "In Review", color: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
+                      { title: "Vortex Web App", client: "Vortex LLC", status: "In Progress", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
+                      { title: "Stripe Webhook", client: "FinTech Co", status: "Completed", color: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" },
                     ].map((task, idx) => (
                       <div key={idx} className="flex items-center justify-between p-3 rounded-lg bg-slate-950/60 border border-slate-800/80 text-xs">
                         <div className="space-y-0.5">

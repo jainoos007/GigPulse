@@ -4,18 +4,18 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { Sparkles, Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Github } from "lucide-react";
 
 export function LandingNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
+    { label: "About", href: "#about" },
     { label: "Features", href: "#features" },
     { label: "Showcase", href: "#showcase" },
     { label: "Workflow", href: "#workflow" },
-    { label: "Benefits", href: "#benefits" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Tech Stack", href: "#tech-stack" },
+    { label: "Architecture", href: "#architecture" },
   ];
 
   return (
@@ -32,7 +32,7 @@ export function LandingNav() {
                 FreelanceFlow
               </span>
               <span className="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-medium -mt-1">
-                CRM for Freelancers
+                Portfolio Showcase
               </span>
             </div>
           </Link>
@@ -64,8 +64,8 @@ export function LandingNav() {
               asChild
               className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium shadow-lg shadow-blue-600/25 hover:shadow-blue-500/40 border border-blue-400/30 transition-all duration-300"
             >
-              <Link href="/register" className="flex items-center gap-2">
-                Get Started Free <ArrowRight className="w-4 h-4" />
+              <Link href="/login" className="flex items-center gap-2">
+                Launch App <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
           </div>
@@ -113,8 +113,8 @@ export function LandingNav() {
               asChild
               className="w-full justify-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg shadow-blue-600/25"
             >
-              <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
-                Get Started Free
+              <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                Launch App
               </Link>
             </Button>
           </div>

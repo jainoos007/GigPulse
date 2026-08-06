@@ -8,17 +8,20 @@ import {
   Calendar,
   FileText,
   CreditCard,
-  FolderLock,
+  UploadCloud,
   BarChart3,
+  History,
+  Bell,
   ArrowUpRight,
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export function FeaturesSection() {
   const features = [
     {
       icon: Users,
       title: "Client Management",
-      description: "Complete 360° client directory with contact info, rates, project logs, and notes in one searchable hub.",
+      description: "360° client directory with contact info, custom rates, contract history, and notes in one searchable hub.",
       tag: "CRM Core",
       color: "from-blue-500/20 to-indigo-500/10 text-blue-400 border-blue-500/30",
     },
@@ -32,21 +35,21 @@ export function FeaturesSection() {
     {
       icon: Briefcase,
       title: "Project Management",
-      description: "Organize client deliverables, track milestones, deadlines, and project statuses effortlessly.",
+      description: "Organize client deliverables, track milestones, deadlines, budget usage, and project statuses.",
       tag: "Workflow",
       color: "from-purple-500/20 to-pink-500/10 text-purple-400 border-purple-500/30",
     },
     {
       icon: Kanban,
       title: "Kanban Task Board",
-      description: "Intuitive drag-and-drop task boards categorized by priority, project, and status tags.",
+      description: "Intuitive task boards categorized by priority tags, project associations, and progress columns.",
       tag: "Productivity",
       color: "from-amber-500/20 to-orange-500/10 text-amber-400 border-amber-500/30",
     },
     {
       icon: Calendar,
       title: "Meeting Scheduler",
-      description: "Schedule client calls, set agenda notes, and sync project review meetings effortlessly.",
+      description: "Schedule client calls, attach agenda notes, set meeting links, and sync review sessions.",
       tag: "Scheduling",
       color: "from-cyan-500/20 to-blue-500/10 text-cyan-400 border-cyan-500/30",
     },
@@ -60,43 +63,57 @@ export function FeaturesSection() {
     {
       icon: CreditCard,
       title: "Payment Tracking",
-      description: "Track paid, pending, and overdue invoices with automatic payment status updates.",
+      description: "Track paid, pending, and overdue invoices with real-time financial ledger updates.",
       tag: "Finance",
       color: "from-emerald-500/20 to-green-500/10 text-emerald-400 border-emerald-500/30",
     },
     {
-      icon: FolderLock,
-      title: "Contract & File Storage",
-      description: "Store signed client contracts, design assets, and project briefs securely in cloud storage.",
-      tag: "Vault",
+      icon: UploadCloud,
+      title: "File Uploads",
+      description: "Store signed client contracts, design briefs, and deliverable files securely via Cloudinary integration.",
+      tag: "Assets",
       color: "from-rose-500/20 to-pink-500/10 text-rose-400 border-rose-500/30",
     },
     {
       icon: BarChart3,
       title: "Dashboard Analytics",
-      description: "Real-time metrics on monthly revenue, client lifetime value, billable hours, and growth trends.",
+      description: "Real-time metrics on monthly revenue, client lifetime value, active retainers, and billable hours.",
       tag: "Insights",
       color: "from-blue-500/20 to-cyan-500/10 text-blue-400 border-blue-500/30",
+    },
+    {
+      icon: History,
+      title: "Activity Timeline",
+      description: "Chronological audit log tracking recent client communications, invoice dispatches, and project updates.",
+      tag: "Audit Trail",
+      color: "from-violet-500/20 to-purple-500/10 text-violet-400 border-violet-500/30",
+    },
+    {
+      icon: Bell,
+      title: "Notifications",
+      description: "Instant in-app alerts for pending task deadlines, paid invoices, and upcoming client meetings.",
+      tag: "Alerts",
+      color: "from-amber-500/20 to-yellow-500/10 text-amber-400 border-amber-500/30",
     },
   ];
 
   return (
-    <section className="py-20 sm:py-32 bg-slate-950 relative" id="features">
+    <section className="py-20 sm:py-32 bg-slate-950 relative border-t border-slate-800/80" id="features">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <span className="px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider">
-            All-In-One Toolkit
-          </span>
+          <Badge variant="outline" className="border-blue-500/30 text-blue-400 bg-blue-500/10 px-3 py-1 text-xs">
+            Full Suite Capabilities
+          </Badge>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Everything You Need to Run Your Freelance Empire
+            Everything You Need to Manage Your Freelance Operations
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            Purpose-built modules that integrate seamlessly so you never lose track of a client, project, or invoice.
+            Integrated modules designed to handle the complete end-to-end freelancer workflow without third-party friction.
           </p>
         </div>
 
-        {/* Bento Grid */}
+        {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feat) => {
             const Icon = feat.icon;
@@ -115,17 +132,17 @@ export function FeaturesSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors flex items-center gap-1.5">
+                  <h3 className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors flex items-center gap-1.5">
                     {feat.title}
                   </h3>
 
-                  <p className="text-sm text-slate-400 leading-relaxed">
+                  <p className="text-xs text-slate-400 leading-relaxed">
                     {feat.description}
                   </p>
                 </div>
 
                 <div className="pt-6 flex items-center text-xs font-semibold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>Explore module</span>
+                  <span>Explore capability</span>
                   <ArrowUpRight className="w-4 h-4 ml-1" />
                 </div>
               </div>

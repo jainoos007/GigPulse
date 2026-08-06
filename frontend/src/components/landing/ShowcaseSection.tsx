@@ -2,32 +2,34 @@
 
 import { useState } from "react";
 import {
-  BarChart3,
-  Kanban,
+  LayoutDashboard,
   Users,
+  Briefcase,
+  Kanban,
   FileText,
   Calendar,
-  CheckCircle2,
-  DollarSign,
   TrendingUp,
-  Clock,
   Plus,
   Search,
   Download,
-  Filter,
+  FolderKanban,
+  CheckCircle2,
+  Clock,
+  ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export function ShowcaseSection() {
-  const [activeTab, setActiveTab] = useState<"analytics" | "kanban" | "clients" | "invoices" | "calendar">("analytics");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "clients" | "projects" | "tasks" | "invoices" | "calendar">("dashboard");
 
   const tabs = [
-    { id: "analytics", label: "Analytics", icon: BarChart3 },
-    { id: "kanban", label: "Kanban Board", icon: Kanban },
-    { id: "clients", label: "Client Directory", icon: Users },
-    { id: "invoices", label: "Invoice Page", icon: FileText },
-    { id: "calendar", label: "Calendar View", icon: Calendar },
+    { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { id: "clients", label: "Clients", icon: Users },
+    { id: "projects", label: "Projects", icon: Briefcase },
+    { id: "tasks", label: "Tasks", icon: Kanban },
+    { id: "invoices", label: "Invoices", icon: FileText },
+    { id: "calendar", label: "Calendar", icon: Calendar },
   ] as const;
 
   return (
@@ -39,10 +41,10 @@ export function ShowcaseSection() {
             Interactive Product Preview
           </Badge>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Designed for Speed, Built for Professional Power
+            Explore the Core Application Interfaces
           </h2>
           <p className="text-slate-400 text-base sm:text-lg">
-            Experience the intuitive interface of FreelanceFlow. Switch between core screens below to explore.
+            Switch between the screens below to experience FreelanceFlow's responsive UI modules.
           </p>
         </div>
 
@@ -68,56 +70,53 @@ export function ShowcaseSection() {
           })}
         </div>
 
-        {/* Dynamic Display Area */}
+        {/* Dynamic Screen View */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-2xl shadow-blue-950/40 backdrop-blur-xl">
-          {/* Tab 1: Analytics Overview */}
-          {activeTab === "analytics" && (
+          {/* Tab 1: Dashboard */}
+          {activeTab === "dashboard" && (
             <div className="space-y-6 animate-in fade-in duration-300">
               <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                 <div>
-                  <h3 className="text-lg font-bold text-white">Revenue & Growth Analytics</h3>
-                  <p className="text-xs text-slate-400">Monthly breakdown of income and pending retainers</p>
+                  <h3 className="text-lg font-bold text-white">Main Executive Dashboard</h3>
+                  <p className="text-xs text-slate-400">High-level financial KPIs, revenue charts, and active client stats</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-slate-400 font-mono">Aug 2026</span>
-                  <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20">+$3,400 Pending</Badge>
-                </div>
+                <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20">Live System</Badge>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
-                  <span className="text-xs text-slate-400">Total Billed YTD</span>
-                  <p className="text-2xl font-bold text-white">$68,450.00</p>
+                  <span className="text-xs text-slate-400">Monthly Revenue</span>
+                  <p className="text-2xl font-bold text-white">$14,850.00</p>
                   <p className="text-xs text-emerald-400 flex items-center gap-1">
-                    <TrendingUp className="w-3 h-3" /> +18.2% vs target
+                    <TrendingUp className="w-3 h-3" /> +24% vs last month
                   </p>
                 </div>
                 <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
-                  <span className="text-xs text-slate-400">Average Invoice Size</span>
-                  <p className="text-2xl font-bold text-white">$4,250.00</p>
-                  <p className="text-xs text-slate-400">Across 16 completed projects</p>
+                  <span className="text-xs text-slate-400">Active Retainers</span>
+                  <p className="text-2xl font-bold text-white">4 Clients</p>
+                  <p className="text-xs text-slate-400">$9,500 recurring MRR</p>
                 </div>
                 <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-2">
-                  <span className="text-xs text-slate-400">Billable Hours Tracked</span>
-                  <p className="text-2xl font-bold text-white">142.5 hrs</p>
-                  <p className="text-xs text-blue-400">Avg rate $95/hr</p>
+                  <span className="text-xs text-slate-400">Open Deliverables</span>
+                  <p className="text-2xl font-bold text-white">8 Projects</p>
+                  <p className="text-xs text-blue-400">92% completed on time</p>
                 </div>
               </div>
 
               {/* Chart Representation */}
               <div className="p-5 bg-slate-950/60 border border-slate-800 rounded-xl space-y-3">
                 <div className="flex items-center justify-between text-xs text-slate-400">
-                  <span>Monthly Revenue Trend</span>
-                  <span>Goal: $15,000/mo</span>
+                  <span>Revenue Trend (2026)</span>
+                  <span>Target: $15,000/mo</span>
                 </div>
                 <div className="h-40 flex items-end justify-between gap-3 pt-4">
                   {[
-                    { m: "Mar", h: "40%", val: "$8,200" },
-                    { m: "Apr", h: "60%", val: "$11,500" },
-                    { m: "May", h: "55%", val: "$10,100" },
-                    { m: "Jun", h: "75%", val: "$13,800" },
-                    { m: "Jul", h: "70%", val: "$12,400" },
-                    { m: "Aug", h: "90%", val: "$14,850", current: true },
+                    { m: "Mar", h: "40%", val: "$8.2k" },
+                    { m: "Apr", h: "60%", val: "$11.5k" },
+                    { m: "May", h: "55%", val: "$10.1k" },
+                    { m: "Jun", h: "75%", val: "$13.8k" },
+                    { m: "Jul", h: "70%", val: "$12.4k" },
+                    { m: "Aug", h: "90%", val: "$14.8k", current: true },
                   ].map((col) => (
                     <div key={col.m} className="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
                       <span className="text-[10px] text-slate-400">{col.val}</span>
@@ -135,102 +134,13 @@ export function ShowcaseSection() {
             </div>
           )}
 
-          {/* Tab 2: Kanban Board */}
-          {activeTab === "kanban" && (
-            <div className="space-y-6 animate-in fade-in duration-300">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-                <div>
-                  <h3 className="text-lg font-bold text-white">Project Deliverables Kanban</h3>
-                  <p className="text-xs text-slate-400">Drag and drop tasks across workflow columns</p>
-                </div>
-                <Button size="sm" className="bg-blue-600 text-white gap-1.5 text-xs">
-                  <Plus className="w-3.5 h-3.5" /> Add Task
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* Column 1: Backlog */}
-                <div className="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3 space-y-3">
-                  <div className="flex items-center justify-between text-xs font-semibold text-slate-400 px-1">
-                    <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-slate-500" /> To Do
-                    </span>
-                    <span className="bg-slate-800 px-2 py-0.5 rounded text-[10px]">2</span>
-                  </div>
-                  <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg space-y-2">
-                    <p className="text-xs font-semibold text-white">Figma Wireframes for Mobile App</p>
-                    <div className="flex items-center justify-between text-[10px] text-slate-400">
-                      <span className="text-amber-400">High Priority</span>
-                      <span>Due Aug 12</span>
-                    </div>
-                  </div>
-                  <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg space-y-2">
-                    <p className="text-xs font-semibold text-white">Setup PostgreSQL Schemas</p>
-                    <div className="flex items-center justify-between text-[10px] text-slate-400">
-                      <span className="text-slate-400">Medium</span>
-                      <span>Due Aug 15</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Column 2: In Progress */}
-                <div className="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3 space-y-3">
-                  <div className="flex items-center justify-between text-xs font-semibold text-blue-400 px-1">
-                    <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-blue-500" /> In Progress
-                    </span>
-                    <span className="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded text-[10px]">2</span>
-                  </div>
-                  <div className="p-3 bg-slate-900 border border-blue-500/30 rounded-lg space-y-2">
-                    <p className="text-xs font-semibold text-white">Landing Page Redesign</p>
-                    <div className="flex items-center justify-between text-[10px] text-slate-400">
-                      <span className="text-blue-400">Active Task</span>
-                      <span>Today</span>
-                    </div>
-                  </div>
-                  <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg space-y-2">
-                    <p className="text-xs font-semibold text-white">Stripe Webhook Handler</p>
-                    <div className="flex items-center justify-between text-[10px] text-slate-400">
-                      <span className="text-amber-400">Urgent</span>
-                      <span>Tomorrow</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Column 3: Completed */}
-                <div className="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3 space-y-3">
-                  <div className="flex items-center justify-between text-xs font-semibold text-emerald-400 px-1">
-                    <span className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500" /> Done
-                    </span>
-                    <span className="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px]">2</span>
-                  </div>
-                  <div className="p-3 bg-slate-900 border border-slate-800 opacity-75 rounded-lg space-y-2">
-                    <p className="text-xs font-semibold text-slate-300 line-through">Client Onboarding Call</p>
-                    <div className="flex items-center justify-between text-[10px] text-emerald-400">
-                      <span>Completed</span>
-                      <span>Yesterday</span>
-                    </div>
-                  </div>
-                  <div className="p-3 bg-slate-900 border border-slate-800 opacity-75 rounded-lg space-y-2">
-                    <p className="text-xs font-semibold text-slate-300 line-through">Brand Style Guide Export</p>
-                    <div className="flex items-center justify-between text-[10px] text-emerald-400">
-                      <span>Completed</span>
-                      <span>Aug 04</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Tab 3: Client Directory */}
+          {/* Tab 2: Clients */}
           {activeTab === "clients" && (
             <div className="space-y-6 animate-in fade-in duration-300">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
                 <div>
-                  <h3 className="text-lg font-bold text-white">Client Directory</h3>
-                  <p className="text-xs text-slate-400">360° client records and project histories</p>
+                  <h3 className="text-lg font-bold text-white">Client Management Directory</h3>
+                  <p className="text-xs text-slate-400">360° client profiles with rates, project logs, and notes</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="relative">
@@ -281,13 +191,122 @@ export function ShowcaseSection() {
             </div>
           )}
 
-          {/* Tab 4: Invoice Page */}
+          {/* Tab 3: Projects */}
+          {activeTab === "projects" && (
+            <div className="space-y-6 animate-in fade-in duration-300">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div>
+                  <h3 className="text-lg font-bold text-white">Project Deliverables Tracker</h3>
+                  <p className="text-xs text-slate-400">Manage client projects, milestones, and deliverable timelines</p>
+                </div>
+                <Button size="sm" className="bg-blue-600 text-white gap-1.5 text-xs">
+                  <Plus className="w-3.5 h-3.5" /> New Project
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { title: "Acme Brand System Redesign", client: "Acme Corp", progress: "85%", status: "In Final Review", budget: "$12,500", due: "Aug 14" },
+                  { title: "Nexus E-Commerce Platform", client: "Nexus Studio", progress: "45%", status: "In Development", budget: "$18,000", due: "Aug 30" },
+                  { title: "Vantage Mobile App Design", client: "Vantage Health", progress: "20%", status: "Planning Phase", budget: "$9,500", due: "Sep 10" },
+                  { title: "FinTech Stripe Integration", client: "FinTech Co", progress: "100%", status: "Completed", budget: "$6,200", due: "Completed" },
+                ].map((proj, idx) => (
+                  <div key={idx} className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-3 hover:border-slate-700 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h4 className="text-sm font-bold text-white">{proj.title}</h4>
+                        <p className="text-xs text-slate-400">{proj.client}</p>
+                      </div>
+                      <span className="text-xs font-mono font-semibold text-blue-400">{proj.budget}</span>
+                    </div>
+
+                    <div className="space-y-1">
+                      <div className="flex items-center justify-between text-[11px] text-slate-400">
+                        <span>Progress: {proj.progress}</span>
+                        <span>Due: {proj.due}</span>
+                      </div>
+                      <div className="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full" style={{ width: proj.progress }} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tab 4: Tasks */}
+          {activeTab === "tasks" && (
+            <div className="space-y-6 animate-in fade-in duration-300">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div>
+                  <h3 className="text-lg font-bold text-white">Kanban Task Board</h3>
+                  <p className="text-xs text-slate-400">Drag and drop deliverables across priority status columns</p>
+                </div>
+                <Button size="sm" className="bg-blue-600 text-white gap-1.5 text-xs">
+                  <Plus className="w-3.5 h-3.5" /> Add Task
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3 space-y-3">
+                  <div className="flex items-center justify-between text-xs font-semibold text-slate-400 px-1">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-slate-500" /> To Do
+                    </span>
+                    <span className="bg-slate-800 px-2 py-0.5 rounded text-[10px]">2</span>
+                  </div>
+                  <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg space-y-2">
+                    <p className="text-xs font-semibold text-white">Figma Wireframes for Mobile App</p>
+                    <div className="flex items-center justify-between text-[10px] text-slate-400">
+                      <span className="text-amber-400">High Priority</span>
+                      <span>Due Aug 12</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3 space-y-3">
+                  <div className="flex items-center justify-between text-xs font-semibold text-blue-400 px-1">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-blue-500" /> In Progress
+                    </span>
+                    <span className="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded text-[10px]">2</span>
+                  </div>
+                  <div className="p-3 bg-slate-900 border border-blue-500/30 rounded-lg space-y-2">
+                    <p className="text-xs font-semibold text-white">Landing Page Redesign</p>
+                    <div className="flex items-center justify-between text-[10px] text-slate-400">
+                      <span className="text-blue-400">Active Task</span>
+                      <span>Today</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-slate-950/80 border border-slate-800/80 rounded-xl p-3 space-y-3">
+                  <div className="flex items-center justify-between text-xs font-semibold text-emerald-400 px-1">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500" /> Done
+                    </span>
+                    <span className="bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded text-[10px]">2</span>
+                  </div>
+                  <div className="p-3 bg-slate-900 border border-slate-800 opacity-75 rounded-lg space-y-2">
+                    <p className="text-xs font-semibold text-slate-300 line-through">Client Onboarding Call</p>
+                    <div className="flex items-center justify-between text-[10px] text-emerald-400">
+                      <span>Completed</span>
+                      <span>Yesterday</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Tab 5: Invoices */}
           {activeTab === "invoices" && (
             <div className="space-y-6 animate-in fade-in duration-300">
               <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                 <div>
-                  <h3 className="text-lg font-bold text-white">Invoice Builder & History</h3>
-                  <p className="text-xs text-slate-400">Generate, track, and send PDF invoices in seconds</p>
+                  <h3 className="text-lg font-bold text-white">Invoice Builder & Payout Ledger</h3>
+                  <p className="text-xs text-slate-400">Generate PDF invoices, calculate taxes, and track paid status</p>
                 </div>
                 <Button size="sm" className="bg-blue-600 text-white gap-1.5 text-xs">
                   <Download className="w-3.5 h-3.5" /> Export All
@@ -320,13 +339,13 @@ export function ShowcaseSection() {
             </div>
           )}
 
-          {/* Tab 5: Calendar View */}
+          {/* Tab 6: Calendar */}
           {activeTab === "calendar" && (
             <div className="space-y-6 animate-in fade-in duration-300">
               <div className="flex items-center justify-between border-b border-slate-800 pb-4">
                 <div>
-                  <h3 className="text-lg font-bold text-white">Schedule & Client Meetings</h3>
-                  <p className="text-xs text-slate-400">Keep milestones and calls in sync</p>
+                  <h3 className="text-lg font-bold text-white">Calendar & Meeting Scheduler</h3>
+                  <p className="text-xs text-slate-400">Sync project milestones, deliverables, and client calls</p>
                 </div>
                 <Badge variant="outline" className="border-slate-700 text-slate-300 text-xs">
                   Week of Aug 06, 2026
@@ -335,7 +354,7 @@ export function ShowcaseSection() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-3">
-                  <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">Today's Schedule</span>
+                  <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">Scheduled Meetings</span>
                   <div className="space-y-2">
                     <div className="p-3 bg-slate-900 border border-blue-500/30 rounded-lg space-y-1">
                       <div className="flex items-center justify-between text-xs font-semibold text-white">
@@ -343,13 +362,6 @@ export function ShowcaseSection() {
                         <span className="text-blue-400 font-mono">Zoom</span>
                       </div>
                       <p className="text-[11px] text-slate-400">With Nexus Digital Team</p>
-                    </div>
-                    <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg space-y-1">
-                      <div className="flex items-center justify-between text-xs font-semibold text-white">
-                        <span>02:30 PM - Deliverable Review</span>
-                        <span className="text-emerald-400 font-mono">Google Meet</span>
-                      </div>
-                      <p className="text-[11px] text-slate-400">Acme Brand System presentation</p>
                     </div>
                   </div>
                 </div>
@@ -359,17 +371,10 @@ export function ShowcaseSection() {
                   <div className="space-y-2">
                     <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-between text-xs">
                       <div>
-                        <p className="font-semibold text-white">Project Sprint 2 Release</p>
+                        <p className="font-semibold text-white">Project Sprint Release</p>
                         <p className="text-[11px] text-slate-400">Vantage Health Portal</p>
                       </div>
                       <span className="text-slate-400 font-mono">Aug 10</span>
-                    </div>
-                    <div className="p-3 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-between text-xs">
-                      <div>
-                        <p className="font-semibold text-white">Monthly Retainer Invoice Due</p>
-                        <p className="text-[11px] text-slate-400">Acme Corp</p>
-                      </div>
-                      <span className="text-amber-400 font-mono">Aug 15</span>
                     </div>
                   </div>
                 </div>

@@ -1,14 +1,11 @@
 import { LandingNav } from "@/components/landing/LandingNav";
 import { HeroSection } from "@/components/landing/HeroSection";
-import { TrustedBySection } from "@/components/landing/TrustedBySection";
-import { ProblemSection } from "@/components/landing/ProblemSection";
+import { AboutSection } from "@/components/landing/AboutSection";
 import { FeaturesSection } from "@/components/landing/FeaturesSection";
 import { ShowcaseSection } from "@/components/landing/ShowcaseSection";
 import { WorkflowSection } from "@/components/landing/WorkflowSection";
-import { BenefitsSection } from "@/components/landing/BenefitsSection";
-import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
-import { PricingSection } from "@/components/landing/PricingSection";
-import { FAQSection } from "@/components/landing/FAQSection";
+import { TechStackSection } from "@/components/landing/TechStackSection";
+import { ArchitectureSection } from "@/components/landing/ArchitectureSection";
 import { FinalCTASection } from "@/components/landing/FinalCTASection";
 import { LandingFooter } from "@/components/landing/LandingFooter";
 
@@ -18,19 +15,15 @@ export default function Home() {
       <LandingNav />
       <main className="flex-1">
         <HeroSection />
-        <TrustedBySection />
-        <ProblemSection />
+        <AboutSection />
         <FeaturesSection />
         <ShowcaseSection />
         <WorkflowSection />
-        <BenefitsSection />
-        <TestimonialsSection />
-        <PricingSection />
-        <FAQSection />
+        <TechStackSection />
+        <ArchitectureSection />
         <FinalCTASection />
       </main>
       <LandingFooter />
     </div>
   );
 }
-
