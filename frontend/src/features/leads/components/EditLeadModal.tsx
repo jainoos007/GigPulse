@@ -89,8 +89,8 @@ export const EditLeadModal: React.FC<Props> = ({ isOpen, lead, onClose, onSubmit
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-xl max-h-[85vh] p-0 flex flex-col overflow-hidden bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-2xl shadow-2xl">
+        <DialogHeader className="p-6 pb-4 border-b border-slate-100 dark:border-slate-800/80 shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center border border-purple-500/20">
               <Edit3 className="w-5 h-5" />
@@ -105,7 +105,8 @@ export const EditLeadModal: React.FC<Props> = ({ isOpen, lead, onClose, onSubmit
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-4 pt-2">
+          <form onSubmit={form.handleSubmit(handleFormSubmit)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -243,7 +244,9 @@ export const EditLeadModal: React.FC<Props> = ({ isOpen, lead, onClose, onSubmit
               )}
             />
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+            </div>
+
+            <div className="flex items-center justify-end gap-3 p-4 sm:p-5 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/80 shrink-0">
               <Button type="button" variant="outline" onClick={onClose} className="border-slate-200 dark:border-slate-800">Cancel</Button>
               <Button type="submit" disabled={form.formState.isSubmitting} className="bg-purple-600 hover:bg-purple-500 text-white font-semibold gap-2">
                 {form.formState.isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}

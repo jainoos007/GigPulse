@@ -84,8 +84,8 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-xl max-h-[85vh] p-0 flex flex-col overflow-hidden bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100 rounded-2xl shadow-2xl">
+        <DialogHeader className="p-6 pb-4 border-b border-slate-100 dark:border-slate-800/80 shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center border border-purple-500/20">
               <FileCode className="w-5 h-5" />
@@ -100,159 +100,162 @@ export const CreateProposalModal: React.FC<Props> = ({ isOpen, onClose, onSubmit
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-4 pt-2">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="clientId"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-700 dark:text-slate-300">Select Client *</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <form onSubmit={form.handleSubmit(handleFormSubmit)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-slate-700 dark:text-slate-300">Proposal Title *</FormLabel>
                       <FormControl>
-                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                          <SelectValue placeholder="Select a Client" />
-                        </SelectTrigger>
+                        <Input placeholder="E-Commerce Redesign Proposal" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
                       </FormControl>
-                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                        {clients.map((c) => (
-                          <SelectItem key={c.id} value={c.id}>
-                            {c.name} {c.companyName ? `(${c.companyName})` : ""}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              <FormField
-                control={form.control}
-                name="leadId"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-700 dark:text-slate-300">Linked Lead (Optional)</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
+                <FormField
+                  control={form.control}
+                  name="clientId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-slate-700 dark:text-slate-300">Client (Optional)</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+                            <SelectValue placeholder="Select Client" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+                          {clients.map((c) => (
+                            <SelectItem key={c.id} value={c.id}>
+                              {c.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="leadId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-slate-700 dark:text-slate-300">Lead (Optional)</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+                            <SelectValue placeholder="Select Lead" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+                          {leads.map((l) => (
+                            <SelectItem key={l.id} value={l.id}>
+                              {l.name} {l.companyName ? `(${l.companyName})` : ""}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="status"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-slate-700 dark:text-slate-300">Status</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+                            <SelectValue placeholder="Select status" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
+                          <SelectItem value="DRAFT">Draft</SelectItem>
+                          <SelectItem value="SENT">Sent</SelectItem>
+                          <SelectItem value="ACCEPTED">Accepted</SelectItem>
+                          <SelectItem value="REJECTED">Rejected</SelectItem>
+                          <SelectItem value="EXPIRED">Expired</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="value"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-slate-700 dark:text-slate-300">Estimated Value ($)</FormLabel>
                       <FormControl>
-                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                          <SelectValue placeholder="No Lead Selected" />
-                        </SelectTrigger>
+                        <Input
+                          type="number"
+                          placeholder="8500"
+                          className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
+                          {...field}
+                          onChange={(e) =>
+                            field.onChange(
+                              e.target.value === "" ? undefined : Number(e.target.value)
+                            )
+                          }
+                        />
                       </FormControl>
-                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                        {leads.map((l) => (
-                          <SelectItem key={l.id} value={l.id}>
-                            {l.name} {l.companyName ? `(${l.companyName})` : ""}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-slate-700 dark:text-slate-300">Proposal Title *</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Web Application Redesign Proposal" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                <FormField
+                  control={form.control}
+                  name="expiryDate"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-slate-700 dark:text-slate-300">Valid Until</FormLabel>
+                      <FormControl>
+                        <Input type="date" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <FormField
                 control={form.control}
-                name="value"
+                name="content"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-slate-700 dark:text-slate-300">Value ($)</FormLabel>
+                    <FormLabel className="text-slate-700 dark:text-slate-300">Scope of Work & Deliverables *</FormLabel>
                     <FormControl>
-                      <Input
-                        type="number"
-                        step="0.01"
-                        placeholder="5000.00"
+                      <Textarea
+                        rows={4}
+                        placeholder="Detailed project requirements, milestones, payment terms, and timeline..."
                         className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
                         {...field}
-                        onChange={(e) =>
-                          field.onChange(
-                            e.target.value === "" ? undefined : Number(e.target.value)
-                          )
-                        }
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
-              <FormField
-                control={form.control}
-                name="status"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-700 dark:text-slate-300">Status</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                          <SelectValue placeholder="Status" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent className="bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-                        <SelectItem value="DRAFT">Draft</SelectItem>
-                        <SelectItem value="SENT">Sent</SelectItem>
-                        <SelectItem value="ACCEPTED">Accepted</SelectItem>
-                        <SelectItem value="REJECTED">Rejected</SelectItem>
-                        <SelectItem value="EXPIRED">Expired</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="expiryDate"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-slate-700 dark:text-slate-300">Expiry Date</FormLabel>
-                    <FormControl>
-                      <Input type="date" className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
             </div>
 
-            <FormField
-              control={form.control}
-              name="content"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-slate-700 dark:text-slate-300">Scope & Deliverables Details</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      rows={4}
-                      placeholder="Detailed scope, milestone roadmap, terms..."
-                      className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <div className="flex items-center justify-end gap-3 p-4 sm:p-5 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/80 shrink-0">
               <Button type="button" variant="outline" onClick={onClose} className="border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
                 Cancel
               </Button>
