@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -10,9 +10,22 @@ import { useAuth } from "@/features/auth/hooks/useAuth";
 
 export function LandingNav() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, isLoading } = useAuth();
-  // Don't render auth-dependent CTAs until we know the auth state
-  const showAuthActions = !isLoading;
+  const [mounted, setMounted] = useState(false);
+  const { user, isLoading, fetchCurrentUser } = useAuth();
+
+  // Ensure hydration is done before rendering auth-dependent UI
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // The landing page doesn't have a layout that calls fetchCurrentUser,
+  // so we do it here if a token exists but user hasn't been loaded yet.
+  useEffect(() => {
+    if (isLoading) {
+      fetchCurrentUser();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const navLinks = [
     { label: "About", href: "#about" },
@@ -56,7 +69,7 @@ export function LandingNav() {
           {/* Action CTAs */}
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            {showAuthActions && (
+            {mounted && !isLoading && (
               user ? (
                 <Button
                   asChild
@@ -118,7 +131,7 @@ export function LandingNav() {
             ))}
           </div>
           <div className="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex flex-col gap-3">
-            {user ? (
+            {!isLoading && (user ? (
               <Button
                 asChild
                 className="w-full justify-center bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/25 rounded-xl"
@@ -147,7 +160,7 @@ export function LandingNav() {
                   </Link>
                 </Button>
               </>
-            )}
+            ))}
           </div>
         </div>
       )}

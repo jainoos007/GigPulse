@@ -13,8 +13,13 @@ export default function RegisterPage() {
   const router = useRouter();
 
   useEffect(() => {
-    fetchCurrentUser();
-  }, [fetchCurrentUser]);
+    // Only verify session if there's a stored token (isLoading === true means token exists).
+    // After logout, isLoading is false and there's nothing to verify.
+    if (isLoading) {
+      fetchCurrentUser();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!isLoading && user) {

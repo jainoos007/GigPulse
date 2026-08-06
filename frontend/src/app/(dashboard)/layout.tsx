@@ -74,6 +74,11 @@ export default function DashboardLayout({
   const router = useRouter();
   const { user, logout, fetchCurrentUser, isLoading } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     fetchCurrentUser();
@@ -86,7 +91,7 @@ export default function DashboardLayout({
     }
   }, [isLoading, user, router]);
 
-  if (isLoading) {
+  if (mounted && isLoading) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-6 space-y-4">
         <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center p-2">
