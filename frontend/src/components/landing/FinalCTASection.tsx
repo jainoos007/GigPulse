@@ -52,7 +52,7 @@ export function FinalCTASection() {
 
           <div className="flex items-center justify-center gap-2 text-xs text-slate-400 font-medium pt-2">
             <CheckCircle className="w-4 h-4 text-emerald-400" />
-            <span>Enterprise Security • SSL Encrypted • Fast & Reliable</span>
+            <span>Client & Lead CRM • Automated PDF Invoices • Fast & Secure</span>
           </div>
         </div>
       </div>
