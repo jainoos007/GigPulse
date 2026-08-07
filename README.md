@@ -6,8 +6,6 @@
 
 ---
 
-Test
-
 ## Key Features
 
 - **Authentication & Security**: Secure JWT auth, refresh token rotation, bcrypt password hashing, and role-based access control (`FREELANCER`, `ASSISTANT`).
