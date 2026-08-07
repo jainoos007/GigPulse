@@ -34,7 +34,7 @@ export function HeroSection() {
         {/* Category Badge */}
         <FadeIn delay={0.1} direction="down">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm dark:shadow-xl backdrop-blur-md hover:border-blue-500/50 transition-colors">
-            <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[11px] px-2.5 py-0.5 rounded-full border-none font-semibold">
+            <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white dark:text-white text-[11px] px-2.5 py-0.5 rounded-full border-none font-semibold">
               FREELANCE OPERATING SYSTEM
             </Badge>
             <span>All-in-One CRM, Tasks & Invoicing</span>
